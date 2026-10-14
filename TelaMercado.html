@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Last Kingdom | Tesouro da Coroa</title>
+  <link rel="stylesheet" href="TelaMercado.css">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+</head>
+
+<body>
+
+  <header>
+    <div class="header-ornament">✧ ━━━━━━━ ⚜ ━━━━━━━ ✧</div>
+    <div class="crest">♛</div>
+    <h1>THE LAST KINGDOM</h1>
+    <p class="subtitle">O REINO · A COROA · O TESOURO</p>
+    <div class="header-bottom"></div>
+  </header>
+
+  <nav class="topbar" aria-label="Navegação do reino">
+    <button class="nav-button" id="market-nav" type="button">
+      ⚜ MERCADO REAL
+    </button>
+    <button class="nav-button primary" id="bank-toggle" type="button" aria-expanded="false" aria-controls="royal-bank">
+      ♛ VER BANCO
+    </button>
+  </nav>
+
+  <main>
+    <section class="royal-intro">
+      <div class="eyebrow">✦ BEM-VINDO ÀS TERRAS DA COROA ✦</div>
+      <h2>Ouro, honra e poder.</h2>
+      <p>
+        Entre no mercado real, adquira artefatos lendários e administre
+        suas riquezas como um verdadeiro soberano.
+      </p>
+      <div class="ornamental-line">⚜</div>
+    </section>
+
+    <section class="panel" aria-label="Resumo da sua fortuna">
+      <div class="stat">
+        <div class="label">OURO DISPONÍVEL</div>
+        <div class="value">🪙 <span id="gold">250</span></div>
+        <p class="stat-note">Pronto para utilizar</p>
+      </div>
+
+      <div class="stat">
+        <div class="label">BÔNUS DA COROA</div>
+        <div class="value">+50 🪙</div>
+        <p class="stat-note">Recompensa desta partida</p>
+      </div>
+
+      <div class="stat">
+        <div class="label">AQUISIÇÕES REAIS</div>
+        <div class="value" id="item-count">0</div>
+        <p class="stat-note">Itens adquiridos</p>
+      </div>
+    </section>
+
+    <!-- PAINEL DE ATRIBUTOS DO HERÓI -->
+    <section class="hero-panel" aria-labelledby="hero-title">
+      <div class="eyebrow" style="text-align:center">✦ FICHA DO PERSONAGEM ✦</div>
+      <h2 id="hero-title">Atributos do Herói</h2>
+      <p class="hero-description">
+        Cada compra confirmada pode fortalecer seu personagem.
+      </p>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="symbol">⚔️</span>
+          <div class="label">ATAQUE</div>
+          <strong id="hero-attack">10</strong>
+          <span class="bonus" id="attack-bonus">Atributo inicial</span>
+        </div>
+
+        <div class="hero-stat">
+          <span class="symbol">🛡️</span>
+          <div class="label">DEFESA</div>
+          <strong id="hero-defense">10</strong>
+          <span class="bonus" id="defense-bonus">Atributo inicial</span>
+        </div>
+
+        <div class="hero-stat">
+          <span class="symbol">❤️</span>
+          <div class="label">VIDA</div>
+          <strong id="hero-health">100</strong>
+          <span class="bonus" id="health-bonus">Atributo inicial</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="bank" id="royal-bank" aria-labelledby="bank-title" hidden>
+      <div class="bank-top">
+        <div class="bank-emblem">♛</div>
+        <div class="eyebrow">✦ CÂMARA DO TESOURO ✦</div>
+        <h2 id="bank-title">Banco Real</h2>
+        <p class="bank-description">
+          As riquezas confiadas à coroa permanecem protegidas.
+          Deposite seu ouro ou desbloqueie moedas para negociar.
+        </p>
+      </div>
+
+      <div class="bank-grid">
+        <div class="bank-stat">
+          <span class="symbol">🔒</span>
+          <div class="label">OURO GUARDADO</div>
+          <div class="value"><span id="locked">0</span> 🪙</div>
+        </div>
+
+        <div class="bank-stat">
+          <span class="symbol">⚔</span>
+          <div class="label">GASTOS NESTA PARTIDA</div>
+          <div class="value"><span id="spent">0</span> 🪙</div>
+        </div>
+      </div>
+
+      <h3 class="bank-actions-title">✦ Administrar o tesouro</h3>
+
+      <div class="bank-actions">
+        <input id="amount" type="number" min="1" step="1" inputmode="numeric" placeholder="Quantidade de ouro"
+          aria-label="Quantidade de ouro">
+
+        <button class="gold-button" id="deposit" type="button">
+          🔒 DEPOSITAR OURO
+        </button>
+
+        <button class="dark-button" id="withdraw" type="button">
+          🔓 DESBLOQUEAR OURO
+        </button>
+      </div>
+
+      <p class="bank-tip">
+        O depósito transfere moedas disponíveis para o tesouro.
+        O desbloqueio devolve moedas guardadas ao saldo da partida.
+      </p>
+
+      <div class="history">
+        <h3>📜 Livro de registros da coroa</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>OPERAÇÃO</th>
+                <th>VALOR</th>
+                <th>DETALHES</th>
+                <th>DATA</th>
+              </tr>
+            </thead>
+            <tbody id="history"></tbody>
+          </table>
+        </div>
+
+        <p id="empty-history" class="empty">
+          ✧ Nenhuma operação registrada no tesouro. ✧
+        </p>
+      </div>
+
+      <button class="dark-button bank-close" id="bank-close" type="button">
+        ✕ FECHAR BANCO
+      </button>
+    </section>
+
+    <div class="market-heading" id="market-heading">
+      <div class="eyebrow">✦ RARIDADES SELECIONADAS PARA A NOBREZA ✦</div>
+      <h2>Mercado do Reino</h2>
+      <p>Artefatos, armas e relíquias dignos de uma coroa.</p>
+      <div class="ornamental-line">⚜</div>
+    </div>
+
+    <section class="market" id="market" aria-label="Itens disponíveis no mercado"></section>
+
+    <div class="message" id="message" role="status" aria-live="polite"></div>
+  </main>
+
+  <footer>
+    <div class="footer-crest">♛</div>
+    <p>THE LAST KINGDOM · TESOURO SOB A PROTEÇÃO DA COROA</p>
+    <p class="footer-note">Que sua fortuna cresça e seu reinado perdure.</p>
+  </footer>
+
+</body>
+
+</html>
