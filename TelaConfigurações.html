@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Last Kingdom - Configurações</title>
+    <link rel="stylesheet" href="TelaConfigurações.css">
+</head>
+<body>
+    <main class="game-screen">
+
+        <div class="background"></div>
+        <div class="dark-overlay"></div>
+
+        <img class="elfa" src="WhatsApp Image 2026-10-07 at 11.34.19.png" alt="Elfa">
+        <img class="logo" src="Captura de tela 2026-10-14 103825.png">
+
+        <section class="settings-panel">
+
+            <h1>Configurações</h1>
+
+            <div class="settings-grid top-grid">
+                <div class="setting">
+                    <h2>SFX</h2>
+                    <button class="gold-button toggle" data-setting="sfx">
+                        Desligado
+                    </button>
+                </div>
+
+                <div class="setting">
+                    <h2>Música</h2>
+                    <button class="gold-button toggle" data-setting="music">
+                        Desligado
+                    </button>
+                </div>
+            </div>
+
+            <div class="middle-row">
+                <div></div>
+
+                <button class="gold-button about-button" id="aboutButton">
+                    Sobre
+                </button>
+
+                <label class="fullscreen-label">
+                    <input type="checkbox" id="fullscreen">
+                    <span>Tela Cheia</span>
+                </label>
+            </div>
+
+            <div class="settings-grid lower-grid">
+                <div class="setting">
+                    <h2>Brilho</h2>
+                    <button class="gold-button" id="brightnessButton">
+                        Claro
+                    </button>
+                </div>
+
+                <div class="setting credits-setting">
+                    <div class="credits-spacer"></div>
+                    <button class="gold-button" id="creditsButton">
+                        Créditos
+                    </button>
+                </div>
+            </div>
+
+            <div class="bottom-buttons">
+                <button class="action-button" id="cancelButton">
+                    Cancelar
+                </button>
+
+                <button class="action-button" id="saveButton">
+                    Salvar
+                </button>
+            </div>
+
+        </section>
+
+        <div class="modal hidden" id="infoModal">
+            <div class="modal-content">
+                <h2 id="modalTitle">Sobre</h2>
+                <p id="modalText"></p>
+                <button class="gold-button" id="closeModal">
+                    Voltar
+                </button>
+            </div>
+        </div>
+
+        <div class="message hidden" id="message"></div>
+
+    </main>
+
+    <script src="TelaConfigurações.js"></script>
+</body>
+</html>
