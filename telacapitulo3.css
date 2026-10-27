@@ -1,0 +1,131 @@
+/* Configuração básica */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Rajdhani", sans-serif;
+  color: #e5e7eb;
+  background-color: #0b0f19;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Fundo com a imagem local do castelo */
+.container-fundo {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("images/REINORPG.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 20px;
+}
+
+/* Camada escura por cima da imagem para destacar o card */
+.container-fundo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+}
+
+/* Card central estilo vidro (Glassmorphism) */
+.card-conteudo {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 750px;
+  background: rgba(12, 12, 18, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* Indicadores de progresso no topo */
+.indicadores {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.barra {
+  width: 32px;
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+}
+
+.barra.ativa {
+  background-color: #ffffff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
+/* Título */
+h1 {
+  font-family: "Cinzel", serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  color: #f3f4f6;
+}
+
+/* Texto descritivo */
+.texto-descricao {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #d1d5db;
+  margin-bottom: 30px;
+}
+
+.texto-descricao strong {
+  color: #ffffff;
+}
+
+.lista-regras {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #9ca3af;
+}
+
+/* Botão Próximo */
+.btn-proximo {
+  display: inline-block;
+  background: linear-gradient(135deg, #4b5563 0%, #1f2937 100%);
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 12px 48px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  transition: all 0.2s ease;
+}
+
+.btn-proximo:hover {
+  background: linear-gradient(135deg, #6b7280 0%, #374151 100%);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-2px);
+}
