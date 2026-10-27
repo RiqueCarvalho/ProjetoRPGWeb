@@ -1,0 +1,171 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    overflow: hidden;
+    background: #080b16;
+    color: #f5dfaa;
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+.tela-carregamento {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    background: url("./castelo.png") center / cover no-repeat;
+}
+
+.sombra {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+        to bottom,
+        rgba(3, 5, 12, 0.35),
+        rgba(3, 5, 12, 0.75)
+    );
+}
+
+.painel-carregamento {
+    position: relative;
+    z-index: 2;
+    width: min(800px, 92%);
+    padding: 20px;
+    text-align: center;
+}
+
+.titulo-jogo {
+    margin-bottom: 20px;
+    color: #f5d17b;
+    text-shadow:
+        2px 2px 0 #9a621d,
+        4px 4px 0 #261505,
+        0 0 18px rgba(224, 168, 65, 0.4);
+}
+
+.titulo-jogo h1 {
+    font-size: clamp(36px, 5vw, 60px);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: 5px;
+}
+
+.titulo-jogo h1 span {
+    color: #e8b957;
+}
+
+.ornamento {
+    display: block;
+    margin-bottom: 12px;
+    color: #d9a94f;
+    font-size: clamp(12px, 2vw, 18px);
+    letter-spacing: 2px;
+}
+
+.ornamento.inferior {
+    margin-top: 12px;
+    margin-bottom: 0;
+}
+
+.subtitulo {
+    margin-top: 18px;
+    color: #f3dfb2;
+    font-size: clamp(15px, 2vw, 20px);
+    text-shadow: 2px 2px 4px #000;
+}
+
+/* Área fixa que contém o mago e a barra */
+.area-barra {
+    position: relative;
+    width: min(660px, 90%);
+    height: 120px;
+    margin: 55px auto 0;
+}
+
+/* Mago acompanhando o carregamento */
+.mago {
+    position: absolute;
+    z-index: 3;
+    width: 100px;
+    height: 100px;
+    left: 0;
+    bottom: 20px;
+    object-fit: contain;
+    pointer-events: none;
+    filter: drop-shadow(2px 3px 4px rgba(0, 0, 0, 0.9));
+}
+
+/* Barra de carregamento */
+.barra {
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 22px;
+    overflow: hidden;
+    background: #17120b;
+    border: 2px solid #d9a441;
+    border-radius: 4px;
+    box-shadow:
+        0 0 8px rgba(0, 0, 0, 0.9),
+        inset 0 0 5px #000;
+}
+
+.progresso {
+    display: block;
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        #ffe6a0,
+        #e6b64f,
+        #a66a20
+    );
+    box-shadow: 0 0 12px rgba(255, 190, 70, 0.65);
+}
+
+.texto-carregamento {
+    margin-top: 20px;
+    color: #e8d5ad;
+    font-size: clamp(13px, 1.8vw, 17px);
+    text-shadow: 2px 2px 4px #000;
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 600px) {
+    .painel-carregamento {
+        width: 96%;
+        padding: 12px 8px;
+    }
+
+    .titulo-jogo h1 {
+        font-size: 34px;
+        letter-spacing: 3px;
+    }
+
+    .area-barra {
+        width: 92%;
+        height: 105px;
+        margin-top: 50px;
+    }
+
+    .mago {
+        width: 80px;
+        height: 80px;
+        bottom: 20px;
+    }
+
+    .barra {
+        height: 20px;
+    }
+}
