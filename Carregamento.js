@@ -50,7 +50,7 @@ function animarCarregamento(tempo) {
     } else if (!concluido) {
         concluido = true;
 
-        mago.src = "mago-sorrindo.png";
+        mago.src = "./Imagens/mago-sorrindo.png";
         mago.alt = "Professor mago sorrindo";
 
         texto.textContent = "A jornada começa agora...";

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TelaMonstros - The Last Kingdom</title>
+    <link rel="stylesheet" href="TelaViloes.css" />
+    <!-- Fontes Fantasy -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Metamorphous&display=swap"
+      rel="stylesheet"
+    />
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <div class="screen-container">
+      <!-- Botão de Voltar (Canto Superior Esquerdo) -->
+      <button class="btn-back" title="Voltar">
+        <span>&#10140;</span>
+      </button>
+
+      <!-- Setas de Navegação das Laterais -->
+      <button class="nav-arrow prev" id="btnPrev">&#10094;</button>
+      <button class="nav-arrow next" id="btnNext">&#10095;</button>
+
+      <!-- Container Central do Carrossel -->
+      <div class="carousel-wrapper">
+        <div class="carousel-track" id="carouselTrack">
+          <!-- Monstro 1: Cavaleiro Espectral (Verde) -->
+          <div
+            class="character-card"
+            data-id="1"
+            data-name="Cavaleiro Espectral"
+          >
+            <div class="character-box">
+              <img
+                src="monstro_espectral.png"
+                alt="Cavaleiro Espectral"
+                class="character-img"
+              />
+            </div>
+            <button class="btn-select">Selecionar</button>
+          </div>
+
+          <!-- Monstro 2: Bárbaro do Norte (Centro / Ativo) -->
+          <div
+            class="character-card active"
+            data-id="2"
+            data-name="Bárbaro do Norte"
+          >
+            <div class="character-box">
+              <img
+                src="monstro_barbaro.png"
+                alt="Bárbaro do Norte"
+                class="character-img"
+              />
+            </div>
+            <button class="btn-select">Selecionar</button>
+          </div>
+
+          <!-- Monstro 3: Lorde Infernal (Vermelho) -->
+          <div class="character-card" data-id="3" data-name="Lorde Infernal">
+            <div class="character-box">
+              <img
+                src="monstro_infernal.png"
+                alt="Lorde Infernal"
+                class="character-img"
+              />
+            </div>
+            <button class="btn-select">Selecionar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="TelaViloes.js"></script>
+  </body>
+</html>

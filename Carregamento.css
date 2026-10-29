@@ -21,7 +21,7 @@ body {
     width: 100%;
     min-height: 100vh;
     overflow: hidden;
-    background: url("./castelo.png") center / cover no-repeat;
+    background: url("./Imagens/castelo.png") center / cover no-repeat;
 }
 
 .sombra {

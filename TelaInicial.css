@@ -1,284 +1,234 @@
-/* ==========================================
-   THE LAST KINGDOM — TELA INICIAL
-   Medieval • Vidro mágico • Pixel art
-========================================== */
-
-/* Configuração geral */
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html,
 body {
-    width: 100%;
-    min-height: 100%;
-    margin: 0;
-    padding: 0;
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    min-height: 100vh;
-    overflow: hidden;
-
-    font-family: Georgia, "Times New Roman", serif;
-    color: #f0e2c2;
-
-    background-color: #080d18;
-    background-image: url("./image.webp");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+  min-height: 100vh;
+  overflow: hidden;
+  font-family: Georgia, "Times New Roman", serif;
+  color: #f0e2c2;
+  background-color: #080d18;
+  background-image: url("./Imagens/image.webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-/* Sombra suave sobre o cenário */
 body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-
-    background: linear-gradient(90deg,
-            rgba(4, 7, 15, 0.35) 0%,
-            rgba(4, 7, 15, 0.12) 55%,
-            rgba(4, 7, 15, 0.05) 100%);
-
-    pointer-events: none;
-    z-index: 0;
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(4, 7, 15, 0.35) 0%,
+    rgba(4, 7, 15, 0.12) 55%,
+    rgba(4, 7, 15, 0.05) 100%
+  );
+  pointer-events: none;
+  z-index: 0;
 }
 
-/* Tela inicial */
 .tela-inicial {
-    position: relative;
-
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-
-    width: 100%;
-    min-height: 100vh;
-
-    padding: 35px 5%;
-    isolation: isolate;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  min-height: 100vh;
+  padding: 35px 5%;
+  isolation: isolate;
 }
 
-/* Menu */
 .menu {
-    position: relative;
-    z-index: 2;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    width: 300px;
-    max-width: 38vw;
-    gap: 24px;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  max-width: 38vw;
+  gap: 24px;
 }
 
-/* Logo */
 .logo {
-    display: block;
-
-    width: 100%;
-    max-width: 300px;
-    height: auto;
-
-    object-fit: contain;
-
-    filter: drop-shadow(2px 4px 5px rgba(0, 0, 0, 0.65));
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(2px 4px 5px rgba(0, 0, 0, 0.65));
 }
 
-/* Área dos botões */
 .botoes-menu {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    width: 272px;
-    max-width: 100%;
-    gap: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 272px;
+  max-width: 100%;
+  gap: 14px;
 }
 
-/* Botões translúcidos */
 .botoes-menu button {
-    position: relative;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-
-    box-sizing: border-box;
-    width: 100%;
-    min-height: 58px;
-    padding: 10px 12px;
-
-    background: rgba(8, 16, 35, 0.35);
-
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
-
-    border: 1px solid rgba(205, 165, 91, 0.75);
-    border-radius: 4px;
-
-    color: #d8b56d;
-
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 16px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    text-align: center;
-    text-transform: uppercase;
-    text-shadow: 1px 1px 2px #000;
-
-    box-shadow:
-        inset 0 0 12px rgba(190, 150, 70, 0.05),
-        0 3px 8px rgba(0, 0, 0, 0.20);
-
-    cursor: pointer;
-    transition:
-        background 0.25s ease,
-        border-color 0.25s ease,
-        color 0.25s ease,
-        box-shadow 0.25s ease,
-        transform 0.25s ease;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 58px;
+  padding: 10px 12px;
+  background: rgba(8, 16, 35, 0.35);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  border: 1px solid rgba(205, 165, 91, 0.75);
+  border-radius: 4px;
+  color: #d8b56d;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 2px #000;
+  box-shadow:
+    inset 0 0 12px rgba(190, 150, 70, 0.05),
+    0 3px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
 }
 
-/* Detalhe interno da moldura */
 .botoes-menu button::before {
-    content: "";
-
-    position: absolute;
-    inset: 3px;
-
-    border: 1px solid rgba(205, 165, 91, 0.15);
-
-    pointer-events: none;
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border: 1px solid rgba(205, 165, 91, 0.15);
+  pointer-events: none;
 }
 
-/* Efeito ao passar o mouse */
 .botoes-menu button:hover {
-    background: rgba(30, 43, 66, 0.65);
-
-    border-color: #f0cf86;
-    color: #ffe3a0;
-
-    box-shadow:
-        inset 0 0 12px rgba(220, 175, 85, 0.10),
-        0 0 10px rgba(205, 165, 91, 0.16);
-
-    transform: translateX(3px);
+  background: rgba(30, 43, 66, 0.65);
+  border-color: #f0cf86;
+  color: #ffe3a0;
+  box-shadow:
+    inset 0 0 12px rgba(220, 175, 85, 0.1),
+    0 0 10px rgba(205, 165, 91, 0.16);
+  transform: translateX(3px);
 }
 
-/* Efeito ao clicar */
 .botoes-menu button:active {
-    background: rgba(15, 25, 45, 0.70);
-    transform: scale(0.98);
+  background: rgba(15, 25, 45, 0.7);
+  transform: scale(0.98);
 }
 
-/* Foco pelo teclado */
 .botoes-menu button:focus-visible {
-    outline: 2px solid #e5c47c;
-    outline-offset: 3px;
+  outline: 2px solid #e5c47c;
+  outline-offset: 3px;
 }
-
-/* ==========================================
-   CAVALEIRO
-========================================== */
 
 .cavaleiro {
-    position: absolute;
-
-    right: 4%;
-    bottom: 0;
-
-    width: 38%;
-    max-width: 540px;
-    max-height: 82vh;
-    height: auto;
-
-    object-fit: contain;
-    object-position: bottom;
-
-    z-index: 1;
-    pointer-events: none;
-    user-select: none;
+  position: absolute;
+  right: 4%;
+  bottom: 0;
+  width: 38%;
+  max-width: 540px;
+  max-height: 82vh;
+  height: auto;
+  object-fit: contain;
+  object-position: bottom;
+  z-index: 1;
+  pointer-events: none;
+  user-select: none;
 }
-
-/* ==========================================
-   TELAS MÉDIAS
-========================================== */
 
 @media (max-width: 900px) {
-    .tela-inicial {
-        padding: 28px 4%;
-    }
+  .tela-inicial {
+    padding: 28px 4%;
+  }
 
-    .menu {
-        width: 270px;
-        max-width: 42vw;
-        gap: 20px;
-    }
+  .menu {
+    width: 270px;
+    max-width: 42vw;
+    gap: 20px;
+  }
 
-    .botoes-menu {
-        width: 100%;
-    }
+  .botoes-menu {
+    width: 100%;
+  }
 
-    .botoes-menu button {
-        font-size: 14px;
-    }
+  .botoes-menu button {
+    font-size: 14px;
+  }
 
-    .cavaleiro {
-        width: 42%;
-        max-height: 75vh;
-    }
+  .cavaleiro {
+    width: 42%;
+    max-height: 75vh;
+  }
 }
-
-/* ==========================================
-   CELULARES
-========================================== */
 
 @media (max-width: 600px) {
-    .tela-inicial {
-        padding: 20px 16px;
-    }
+  .tela-inicial {
+    padding: 20px 16px;
+  }
 
-    .menu {
-        width: 230px;
-        max-width: 65vw;
-        gap: 18px;
-    }
+  .menu {
+    width: 230px;
+    max-width: 65vw;
+    gap: 18px;
+  }
 
-    .logo {
-        max-width: 230px;
-    }
+  .logo {
+    max-width: 230px;
+  }
 
-    .botoes-menu {
-        gap: 10px;
-    }
+  .botoes-menu {
+    gap: 10px;
+  }
 
-    .botoes-menu button {
-        min-height: 46px;
-        padding: 9px 6px;
-        font-size: 12px;
-        letter-spacing: 0.5px;
-    }
+  .botoes-menu button {
+    min-height: 46px;
+    padding: 9px 6px;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
 
-    .cavaleiro {
-        right: -8%;
-        width: 58%;
-        max-height: 48vh;
-        opacity: 0.85;
-    }
+  .cavaleiro {
+    right: -8%;
+    width: 58%;
+    max-height: 48vh;
+    opacity: 0.85;
+  }
 }
 
-/* Telas muito pequenas */
 @media (max-width: 360px) {
-    .menu {
-        width: 200px;
-        max-width: 72vw;
-    }
+  .menu {
+    width: 200px;
+    max-width: 72vw;
+  }
 
-    .botoes-menu button {
-        font-size: 11px;
-    }
+  .botoes-menu button {
+    font-size: 11px;
+  }
+}
+.botao {
+  text-decoration: none; /* Remove sublinhados indesejados */
+  display: inline-flex; /* Garante que o link se comporte como um bloco/botão */
+  align-items: center; /* Alinha o emoji e o texto verticalmente */
+  justify-content: center; /* Centraliza o conteúdo */
+
+  /* Caso eles tenham sumido por causa da cor do texto padrão do navegador: */
+  color: inherit; /* Faz o link herdar a cor de texto que você já tinha definido */
 }
