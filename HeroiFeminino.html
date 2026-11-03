@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Seleção de Personagem - RPG</title>
+    <link rel="stylesheet" href="HeroiFeminino.css" />
+  </head>
+  <body>
+    <div class="container-selecao">
+      <!-- Botão de Voltar -->
+      <button class="btn-voltar" onclick="voltar()">
+        <img src="Seta.png" alt="Voltar" />
+      </button>
+
+      <!-- Container Flexbox dos Personagens -->
+      <div class="container-personagens">
+        <!-- Personagem 1: Alquimista -->
+        <div class="coluna-personagem">
+          <img
+            src="Alquimista.png"
+            alt="Alquimista"
+            class="sprite-heroi alquimista-img"
+          />
+          <button
+            class="btn-selecionar"
+            onclick="selecionarPersonagem('Alquimista')"
+          >
+            Selecionar
+          </button>
+        </div>
+
+        <!-- Personagem 2: Bruxa -->
+        <div class="coluna-personagem">
+          <img src="Bruxa.png" alt="Bruxa" class="sprite-heroi bruxa-img" />
+          <button
+            class="btn-selecionar"
+            onclick="selecionarPersonagem('Bruxa')"
+          >
+            Selecionar
+          </button>
+        </div>
+
+        <!-- Personagem 3: Atiradora -->
+        <div class="coluna-personagem">
+          <img
+            src="Atiradora.png"
+            alt="Atiradora"
+            class="sprite-heroi atiradora-img"
+          />
+          <button
+            class="btn-selecionar"
+            onclick="selecionarPersonagem('Atiradora')"
+          >
+            Selecionar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="HeroiFeminino.js"></script>
+  </body>
+</html>

@@ -1,5 +1,5 @@
 :root {
-  --fundo: url("./imagens/Fundp.png"); /* TROQUE AQUI a imagem de fundo */
+  --fundo: url("./Imagens/Cenários/Fundp.png"); /* TROQUE AQUI a imagem de fundo */
 }
 * {
   box-sizing: border-box;

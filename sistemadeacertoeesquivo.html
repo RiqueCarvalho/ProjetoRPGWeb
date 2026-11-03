@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Arena de Batalha</title>
+
+<style>
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* ARENA OCUPANDO TODA A TELA */
+.arena {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    margin: 0;
+    padding: 20px;
+
+    text-align: center;
+
+    background-image: url("./arena.png.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    border: none;
+    border-radius: 0;
+
+    overflow: hidden;
+}
+/* TÍTULO */
+.titulo {
+    position: absolute;
+
+    top: 25px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    color: white;
+    font-size: 32px;
+    font-weight: bold;
+
+    text-shadow: 0 3px 8px black;
+
+    z-index: 10;
+}
+
+/* ÁREA DOS PERSONAGENS */
+.personagem {
+    position: absolute;
+
+    bottom: 12%;
+
+    width: 250px;
+    height: 350px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 5;
+}
+
+.personagem img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+}
+
+/* HERÓI */
+.heroi {
+    left: 12%;
+}
+
+/* MONSTRO */
+.monstro {
+    right: 12%;
+}
+
+/* BARRAS DE VIDA */
+.status {
+    position: absolute;
+
+    top: 80px;
+
+    left: 5%;
+    right: 5%;
+
+    display: flex;
+    justify-content: space-between;
+
+    z-index: 20;
+}
+
+.status-box {
+    width: 35%;
+    text-align: center;
+
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+
+    text-shadow: 0 2px 5px black;
+}
+
+.barra {
+    width: 100%;
+    height: 25px;
+
+    margin-top: 8px;
+
+    background: #44151c;
+
+    border: 2px solid white;
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+.hp {
+    width: 100%;
+    height: 100%;
+
+    background: linear-gradient(
+        90deg,
+        #ff3030,
+        #ffd52e,
+        #40ed58
+    );
+
+    transition: width 0.3s;
+}
+
+/* BOTÕES */
+.botoes {
+    position: absolute;
+
+    bottom: 30px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+    gap: 20px;
+
+    z-index: 30;
+}
+
+button {
+    padding: 15px 30px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: #c35ee0;
+
+    color: white;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow: 0 5px 0 #74358b;
+}
+
+button:hover {
+    background: #d978ef;
+}
+
+button:active {
+    transform: translateY(4px);
+    box-shadow: 0 1px 0 #74358b;
+}
+
+/* MOEDAS */
+.moedas {
+    position: absolute;
+
+    top: 25px;
+    right: 30px;
+
+    color: #ffd83d;
+
+    font-size: 22px;
+    font-weight: bold;
+
+    background: rgba(0,0,0,.45);
+
+    padding: 10px 20px;
+
+    border-radius: 15px;
+
+    z-index: 40;
+}
+
+/* RESPONSIVO */
+@media (max-width: 700px) {
+
+    .titulo {
+        font-size: 22px;
+    }
+
+    .personagem {
+        width: 160px;
+        height: 230px;
+
+        bottom: 15%;
+    }
+
+    .heroi {
+        left: 3%;
+    }
+
+    .monstro {
+        right: 3%;
+    }
+
+    .status-box {
+        width: 42%;
+        font-size: 15px;
+    }
+
+    .botoes {
+        gap: 8px;
+    }
+
+    button {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="arena">
+
+    <div class="titulo">
+        ⚔️ Arena de Batalha
+    </div>
+
+
+    <!-- MOEDAS -->
+
+    <div class="moedas">
+        🪙 <span id="moedas">0</span>
+    </div>
+
+
+    <!-- BARRAS DE VIDA -->
+
+    <div class="status">
+
+        <div class="status-box">
+
+            Herói
+
+            <div class="barra">
+                <div
+                    id="hpHeroi"
+                    class="hp">
+                </div>
+            </div>
+
+            <span id="textoHeroi">
+                100 HP
+            </span>
+
+        </div>
+
+
+        <div class="status-box">
+
+            Monstro
+
+            <div class="barra">
+                <div
+                    id="hpMonstro"
+                    class="hp">
+                </div>
+            </div>
+
+            <span id="textoMonstro">
+                100 HP
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- HERÓI -->
+
+    <div class="personagem heroi">
+
+        <img src="heroi.png.png">
+
+    </div>
+
+
+    <!-- MONSTRO -->
+
+    <div class="personagem monstro">
+
+        <img src="monstro.png.png">
+
+    </div>
+
+
+    <!-- BOTÕES -->
+
+    <div class="botoes">
+
+    <button id="btnAtacar" onclick="atacar()">
+        ⚔️ Atacar
+    </button>
+
+    <button id="btnEsquivar" onclick="esquivar()">
+        💨 Esquivar
+    </button>
+
+    <button id="btnPocao" onclick="pocao()">
+        🧪 Usar Poção
+    </button>
+
+    <button id="btnReiniciar" onclick="reiniciarBatalha()">
+        🔄 Reiniciar
+    </button>
+
+</div>
+
+</div>
+
+
+<script>
+
+let hpHeroi = 100;
+let hpMonstro = 100;
+
+let moedas = 0;
+
+
+function atualizarTela() {
+
+    document.getElementById("hpHeroi").style.width =
+        hpHeroi + "%";
+
+    document.getElementById("hpMonstro").style.width =
+        hpMonstro + "%";
+
+    document.getElementById("textoHeroi").textContent =
+        hpHeroi + " HP";
+
+    document.getElementById("textoMonstro").textContent =
+        hpMonstro + " HP";
+
+    document.getElementById("moedas").textContent =
+        moedas;
+
+}
+
+
+function atacar() {
+
+    if (hpHeroi <= 0 || hpMonstro <= 0) {
+        return;
+    }
+
+    /* dano do herói */
+
+    let dano =
+        Math.floor(Math.random() * 20) + 10;
+
+    hpMonstro -= dano;
+
+    if (hpMonstro < 0) {
+        hpMonstro = 0;
+    }
+
+    atualizarTela();
+
+
+    /* monstro derrotado */
+
+    if (hpMonstro === 0) {
+
+        moedas += 10;
+
+        alert(
+            "🏆 Você venceu!\n" +
+            "🪙 +10 moedas!"
+        );
+
+        atualizarTela();
+
+        return;
+    }
+
+
+    /* contra-ataque */
+
+    setTimeout(() => {
+
+        let danoMonstro =
+            Math.floor(Math.random() * 15) + 5;
+
+        hpHeroi -= danoMonstro;
+
+        if (hpHeroi < 0) {
+            hpHeroi = 0;
+        }
+
+        atualizarTela();
+
+
+        if (hpHeroi === 0) {
+
+            alert("💀 Você foi derrotado!");
+
+        }
+
+    }, 500);
+
+}
+
+
+function pocao() {
+
+    if (hpHeroi <= 0) {
+        return;
+    }
+
+    hpHeroi += 20;
+
+    if (hpHeroi > 100) {
+        hpHeroi = 100;
+    }
+
+    atualizarTela();
+
+}
+
+
+atualizarTela();
+
+</script>
+
+</body>
+</html>
