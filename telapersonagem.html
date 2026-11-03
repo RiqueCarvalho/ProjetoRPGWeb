@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Seleção de Personagens</title>
+
+    <link rel="stylesheet" href="telapersonagem.css">
+</head>
+
+<body>
+
+    <main class="game-screen">
+
+        <!-- IMAGEM ORIGINAL COM OS PERSONAGENS -->
+        <img
+            src="WhatsApp Image 2026-11-03 at 09.22.06.jpeg"
+            class="background"
+            alt="Cenário medieval de seleção"
+        >
+
+        <!-- EFEITO DE NUVENS -->
+        <div class="clouds clouds-one"></div>
+        <div class="clouds clouds-two"></div>
+
+        <!-- BRILHOS DOS PERSONAGENS -->
+        <div class="character-glow glow-one"></div>
+        <div class="character-glow glow-two"></div>
+        <div class="character-glow glow-three"></div>
+
+        <!-- BOTÃO VOLTAR -->
+        <button class="back-button" onclick="goBack()" aria-label="Voltar">
+            <span class="back-arrow"></span>
+        </button>
+
+        <!-- BOTÕES DE SELEÇÃO -->
+        <section class="selection-buttons">
+
+            <button class="select-button" data-character="1">
+                <span class="diamond"></span>
+                <span class="button-label">Selecionar</span>
+                <span class="diamond"></span>
+            </button>
+
+            <button class="select-button" data-character="2">
+                <span class="diamond"></span>
+                <span class="button-label">Selecionar</span>
+                <span class="diamond"></span>
+            </button>
+
+            <button class="select-button" data-character="3">
+                <span class="diamond"></span>
+                <span class="button-label">Selecionar</span>
+                <span class="diamond"></span>
+            </button>
+
+        </section>
+
+        <!-- MENSAGEM DE SELEÇÃO -->
+        <div class="selection-message" aria-live="polite"></div>
+
+    </main>
+
+    <script src="telapersonagem.js"></script>
+
+</body>
+</html>
