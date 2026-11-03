@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preload" href="./Imagens/Fundp.png" as="image" />
+    <title>Loja</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Metamorphous&family=Cinzel:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="TelaLoja.css" />
+    <link rel="stylesheet" href="transicao.css" />
+  </head>
+  <body>
+    <div class="tela">
+      <div class="voltar" id="voltar" title="Voltar">&#8592;</div>
+
+      <div class="saldo" title="Seu saldo">
+        <img id="saldoIcone" alt="Moedas" />
+        <span><span id="saldoValor">0</span> Moedas</span>
+      </div>
+
+      <div class="palco">
+        <div class="lista" id="lista"></div>
+      </div>
+    </div>
+
+    <script src="./saldo.js"></script>
+    <script src="./transicao.js"></script>
+    <script>
+      /* =====================================================
+   CONFIGURAÇÃO — edite aqui para trocar as imagens
+   =====================================================
+   nome   : texto que aparece embaixo do card
+   imagem : imagem do item (PNG com fundo transparente)
+   link   : página que abre ao clicar no card
+   Para adicionar outra categoria, copie uma linha e mude os valores.
+*/
+      const ICONE_MOEDA = "./imagens/moeda.png"; // imagem da moeda (se não existir, usa uma moeda dourada em CSS)
+
+      const categorias = [
+        {
+          nome: "Espadas",
+          imagem: "./imagens/Espada.png",
+          link: "./Espadas/Espadas.html",
+        },
+        {
+          nome: "Poções",
+          imagem: "./imagens/Poção.png",
+          link: "./Poções/Poções.html",
+        },
+        {
+          nome: "Escudos",
+          imagem: "./imagens/Escudo.png",
+          link: "./Escudos/Escudos.html",
+        },
+        {
+          nome: "Armaduras",
+          imagem: "./imagens/Armadurak.png",
+          link: "./Armaduras/Armaduras.html",
+        },
+      ];
+
+      /* ===================== LÓGICA ===================== */
+      const lista = document.getElementById("lista");
+      const fmt = (n) => Number(n).toLocaleString("pt-BR");
+
+      /* O saldo é lido do navegador (localStorage, chave "saldo"),
+   assim as outras telas da loja podem usar o mesmo valor. */
+      function lerSaldo() {
+        return window.SaldoLoja.ler();
+      }
+
+      function atualizarSaldo() {
+        document.getElementById("saldoValor").textContent = fmt(lerSaldo());
+      }
+
+      function iniciarIconeMoeda() {
+        const img = document.getElementById("saldoIcone");
+        img.onerror = () => {
+          const s = document.createElement("span");
+          s.className = "moeda";
+          img.replaceWith(s);
+        };
+        img.src = ICONE_MOEDA;
+      }
+
+      function criarCard(c) {
+        const el = document.createElement("article");
+        el.className = "card";
+        el.innerHTML = `
+    <div class="arte"><img src="${c.imagem}" alt="${c.nome}"></div>
+    <div class="nome">${c.nome}</div>`;
+        el.addEventListener("click", () => navegar(c.link));
+        return el;
+      }
+
+      categorias.forEach((c) => lista.appendChild(criarCard(c)));
+
+      function navegar(url) {
+        window.transicaoNavegar(url);
+      }
+
+      document.getElementById("voltar").onclick = () =>
+        window.transicaoVoltar();
+
+      atualizarSaldo();
+      iniciarIconeMoeda();
+      window.addEventListener("saldoAtualizado", (evento) => {
+        document.getElementById("saldoValor").textContent = fmt(evento.detail);
+      });
+    </script>
+  </body>
+</html>

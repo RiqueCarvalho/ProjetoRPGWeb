@@ -21,7 +21,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url("images/REINORPG.jpg");
+  background-image: url("/Imagens/REINORPG.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

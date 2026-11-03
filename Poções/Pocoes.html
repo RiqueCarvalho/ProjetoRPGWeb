@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preload" href="../Imagens/Fundp.png" as="image" />
+    <title>Poções</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Metamorphous&family=Cinzel:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="Pocoes.css" />
+    <link rel="stylesheet" href="../transicao.css" />
+  </head>
+  <body>
+    <div class="tela">
+      <div class="voltar" id="voltar" title="Voltar">&#8592;</div>
+
+      <div class="saldo" title="Seu saldo">
+        <img id="saldoIcone" alt="Moedas" />
+        <span><span id="saldoValor">0</span> Moedas</span>
+      </div>
+
+      <div class="palco">
+        <!-- Lista à esquerda -->
+        <div class="coluna">
+          <button
+            class="seta sobe oculta"
+            id="sobe"
+            aria-label="Subir"
+          ></button>
+          <div class="lista" id="lista"></div>
+          <button class="seta desce" id="desce" aria-label="Descer"></button>
+        </div>
+
+        <!-- Detalhes à direita -->
+        <div class="painel" id="painel">
+          <div class="foto"><img id="pFoto" alt="" /></div>
+          <h2 class="titulo" id="pNome"></h2>
+          <div class="preco">
+            <img id="pMoeda" alt="" /><span id="pPreco"></span>
+          </div>
+          <hr />
+          <div class="efeito">
+            <span id="pEfeitoIcone"></span>
+            <p id="pEfeito"></p>
+          </div>
+          <hr />
+          <p class="desc" id="pDesc"></p>
+          <button class="comprar" id="comprar">Comprar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="aviso" id="aviso"></div>
+
+    <script src="../saldo.js"></script>
+    <script src="../transicao.js"></script>
+    <script>
+      /* =====================================================
+   CONFIGURAÇÃO — edite aqui para trocar as imagens
+   =====================================================
+   nome        : nome da poção
+   imagem      : imagem pequena da lista (e do painel, se não houver imagemGrande)
+   imagemGrande: (opcional) imagem maior para o painel da direita
+   preco       : preço em moedas
+   efeito      : texto do efeito. Use <b>número</b> para destacar em dourado
+   efeitoIcone : (opcional) ícone ao lado do efeito (se vazio, usa um coração)
+   desc        : descrição
+   Para adicionar outra poção, copie um bloco { ... } e mude os valores.
+*/
+      const ICONE_MOEDA = "./imagens/moeda.png"; // imagem da moeda (se não existir, usa moeda dourada em CSS)
+
+      const pocoes = [
+        {
+          nome: "Poção de Cura",
+          imagem: "./imagens/Poção de cura.png",
+          imagemGrande: "./imagens/Poção de cura banner.png",
+          preco: 50,
+          efeito: "Restaura <b>50</b> pontos de vida.",
+          efeitoIcone: "./imagens/coracao.png",
+          desc: "Uma poção simples feita com ervas medicinais. Cura ferimentos leves e recupera a vitalidade.",
+        },
+        {
+          nome: "Poção de Força",
+          imagem: "./imagens/Poção de força.png",
+          imagemGrande: "./imagens/Poção de força banner.png",
+          preco: 80,
+          efeito: "Aumenta o dano em <b>20%</b> por 60 segundos.",
+          efeitoIcone: "",
+          desc: "Um elixir escuro que enche os músculos de poder. Os golpes ficam mais pesados por um tempo.",
+        },
+        {
+          nome: "Poção de Agilidade",
+          imagem: "./imagens/Poção de agilidade.png",
+          imagemGrande: "./imagens/Poção de agilidade banner.png",
+          preco: 80,
+          efeito: "Aumenta a velocidade em <b>25%</b> por 60 segundos.",
+          efeitoIcone: "",
+          desc: "Líquido azul e leve que faz os pés parecerem não tocar o chão.",
+        },
+        {
+          nome: "Poção de Defesa",
+          imagem: "./imagens/Poção de defesa.png",
+          imagemGrande: "./imagens/Poção de defesa banner.png",
+          preco: 10,
+          efeito: "Restaura <b>5</b> pontos de vida.",
+          efeitoIcone: "",
+          desc: "Uma poção que aumenta a defesa do usuário por um 60 segundos.",
+        },
+        {
+          nome: "Cerveja",
+          imagem: "./imagens/Cerveja.png",
+          imagemGrande: "./imagens/Cerveja banner.png",
+          preco: 10,
+          efeito: "Restaura <b>5</b> pontos de vida.",
+          efeitoIcone: "",
+          desc: "Gelada e refrescante. Diminui seus pontos de defesa, mas aumenta o dano de ataque.",
+        },
+      ];
+
+      /* ===================== SALDO ===================== */
+      /* O saldo fica no localStorage (chave "saldo"), igual na tela principal da loja. */
+      const fmt = (n) => Number(n).toLocaleString("pt-BR");
+      const lerSaldo = () => window.SaldoLoja.ler();
+      const salvarSaldo = (v) => window.SaldoLoja.salvar(v);
+      function atualizarSaldo() {
+        document.getElementById("saldoValor").textContent = fmt(lerSaldo());
+      }
+
+      /* Imagem com plano B: se o arquivo não existir, troca por um elemento alternativo */
+      function imgComFallback(img, src, criarFallback) {
+        img.onerror = () => {
+          const f = criarFallback();
+          f.id = img.id;
+          img.replaceWith(f);
+        };
+        img.src = src;
+      }
+      const criarMoeda = () => {
+        const s = document.createElement("span");
+        s.className = "moeda";
+        return s;
+      };
+
+      /* ===================== LISTA E PAINEL ===================== */
+      const lista = document.getElementById("lista");
+      const btnSobe = document.getElementById("sobe");
+      const btnDesce = document.getElementById("desce");
+      let atual = 0;
+
+      function montarLista() {
+        lista.innerHTML = "";
+        pocoes.forEach((p, i) => {
+          const el = document.createElement("div");
+          el.className = "item";
+          el.innerHTML = `<img src="${p.imagem}" alt=""><span>${p.nome}</span>`;
+          el.querySelector("img").onerror = (e) =>
+            (e.target.style.visibility = "hidden");
+          el.onclick = () => selecionar(i);
+          lista.appendChild(el);
+        });
+      }
+
+      function selecionar(i) {
+        atual = i;
+        const p = pocoes[i];
+        [...lista.children].forEach((el, j) =>
+          el.classList.toggle("ativo", j === i),
+        );
+
+        const foto = document.getElementById("pFoto");
+        foto.onerror = () => {
+          foto.onerror = null;
+          if (p.imagem && foto.src !== new URL(p.imagem, location.href).href)
+            foto.src = p.imagem;
+        };
+        foto.src = p.imagemGrande || p.imagem;
+        foto.alt = p.nome;
+
+        document.getElementById("pNome").textContent = p.nome;
+        document.getElementById("pPreco").textContent =
+          `${fmt(p.preco)} Moedas`;
+        document.getElementById("pEfeito").innerHTML = p.efeito;
+        document.getElementById("pDesc").textContent = p.desc;
+
+        const box = document.getElementById("pEfeitoIcone");
+        box.innerHTML = "";
+        if (p.efeitoIcone) {
+          const im = document.createElement("img");
+          im.onerror = () => {
+            box.innerHTML = '<span class="coracao">&#10084;</span>';
+          };
+          im.src = p.efeitoIcone;
+          box.appendChild(im);
+        } else {
+          box.innerHTML = '<span class="coracao">&#10084;</span>';
+        }
+      }
+
+      /* Setas da lista */
+      const PASSO = 88 * 2; // altura de 2 itens (78px + 10px de espaço)
+      function atualizarSetas() {
+        btnSobe.classList.toggle("oculta", lista.scrollTop <= 2);
+        btnDesce.classList.toggle(
+          "oculta",
+          lista.scrollTop + lista.clientHeight >= lista.scrollHeight - 2,
+        );
+      }
+      btnSobe.onclick = () => lista.scrollBy({ top: -PASSO });
+      btnDesce.onclick = () => lista.scrollBy({ top: PASSO });
+      lista.addEventListener("scroll", atualizarSetas);
+      window.addEventListener("resize", atualizarSetas);
+
+      /* ===================== COMPRA ===================== */
+      let timerAviso;
+      function avisar(texto, tipo) {
+        const a = document.getElementById("aviso");
+        a.textContent = texto;
+        a.className = `aviso mostra ${tipo}`;
+        clearTimeout(timerAviso);
+        timerAviso = setTimeout(() => a.classList.remove("mostra"), 2200);
+      }
+
+      /* Chamada quando a compra dá certo. Coloque aqui sua lógica (ex.: inventario.push(p.nome)). */
+      function aoComprar(p) {
+        console.log("Comprou:", p.nome, "por", p.preco);
+      }
+
+      document.getElementById("comprar").onclick = () => {
+        const p = pocoes[atual];
+        const saldo = lerSaldo();
+        if (saldo < p.preco) {
+          avisar("Saldo insuficiente de moedas!", "erro");
+          return;
+        }
+        salvarSaldo(saldo - p.preco);
+        atualizarSaldo();
+        aoComprar(p);
+        avisar(`Você comprou ${p.nome}!`, "ok");
+      };
+
+      document.getElementById("voltar").onclick = () =>
+        window.transicaoVoltar();
+
+      /* ===================== INÍCIO ===================== */
+      montarLista();
+      selecionar(0);
+      atualizarSaldo();
+      imgComFallback(
+        document.getElementById("saldoIcone"),
+        ICONE_MOEDA,
+        criarMoeda,
+      );
+      imgComFallback(
+        document.getElementById("pMoeda"),
+        ICONE_MOEDA,
+        criarMoeda,
+      );
+      atualizarSetas();
+      window.addEventListener("saldoAtualizado", (evento) => {
+        document.getElementById("saldoValor").textContent = fmt(evento.detail);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,24 @@
+.transicao-bau {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #08070a;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.transicao-bau.ativo {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.transicao-bau.sem-transicao {
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .transicao-bau {
+    transition-duration: 0.01ms;
+  }
+}
