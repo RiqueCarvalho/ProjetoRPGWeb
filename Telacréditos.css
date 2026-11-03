@@ -1,0 +1,130 @@
+/* Importação de uma fonte com visual mais trabalhado/fantasia */
+@import url('https://googleapis.com');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Cinzel', serif; /* Mantém o estilo medieval/fantasia da imagem */
+    color: #ffffff;
+    background-image: url('./WhatsApp\ Image\ 2026-10-28\ at\ 10.35.55.jpeg'); /* Adicione sua imagem de lava/castelo aqui */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Estilização do Botão de Voltar */
+.btn-voltar {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    z-index: 10;
+    transition: transform 0.2s ease;
+}
+
+.btn-voltar:hover {
+    transform: scale(1.1);
+}
+
+.btn-voltar img {
+    width: 60px; /* Tamanho da moldura com a seta */
+    height: auto;
+    display: block;
+}
+
+/* Estrutura da Janela de Créditos */
+.container-creditos {
+    width: 90%;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Estilo do Título Principal */
+.titulo-principal {
+    font-size: 2.5rem;
+    font-weight: 700;
+    padding: 10px 40px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 30px;
+    background: rgba(0, 0, 0, 0.6); /* Fundo escuro semi-transparente */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    margin-bottom: 40px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Alinhamento das Duas Colunas de Créditos */
+.conteudo-colunas {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+}
+
+/* Estilo Individual de Cada Coluna */
+.coluna {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px;
+}
+
+/* Caixa Vermelha do Subtítulo (Desenvolvedores/as) */
+.subtitulo-coluna {
+    font-size: 1.3rem;
+    background-color: rgba(100, 15, 15, 0.85); /* Tom vermelho escuro idêntico ao jogo */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 8px 35px;
+    border-radius: 4px;
+    margin-bottom: 25px;
+    text-align: center;
+    width: 80%;
+    max-width: 250px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Bloco Semi-transparente dos Nomes */
+.lista-nomes {
+    background: rgba(255, 255, 255, 0.05); /* Efeito de vidro bem suave */
+    border-radius: 15px;
+    padding: 30px;
+    width: 85%;
+    min-height: 350px;
+    text-align: center;
+    backdrop-filter: blur(3px); /* Leve desfoque no fundo */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Estilo do Texto dos Nomes */
+.lista-nomes p {
+    font-size: 1.2rem;
+    margin: 12px 0;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
+    letter-spacing: 1px;
+}
+
+/* Linha Divisória Branca no Centro */
+.divisor-vertical {
+    width: 4px;
+    background-color: rgba(255, 255, 255, 0.7);
+    height: 400px;
+    align-self: center;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}

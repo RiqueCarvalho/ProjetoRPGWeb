@@ -1,0 +1,332 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --ouro: #d5ae61;
+  --claro: #f2d79a;
+}
+
+body {
+  min-height: 100vh;
+  background: #0b1019;
+  color: #f4e8d0;
+  font-family: "Cinzel", serif;
+}
+
+.tela {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background:
+    linear-gradient(#07101b45, #080c13b8),
+    url("https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1800&q=80")
+      center / cover fixed;
+}
+
+header {
+  padding: 25px 12px 15px;
+  text-align: center;
+  text-shadow: 2px 2px 6px #000;
+}
+
+header h1 {
+  color: var(--claro);
+  font-size: clamp(22px, 4vw, 38px);
+  letter-spacing: 3px;
+}
+
+header p {
+  margin-top: 8px;
+  color: var(--ouro);
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+.subtitulo {
+  text-align: center;
+  color: var(--claro);
+  margin: 8px 0 20px;
+  font-size: 13px;
+}
+
+.personagens {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  flex: 1;
+  padding: 5px 15px 25px;
+}
+
+.personagem {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  min-width: 0;
+  min-height: 350px;
+  overflow: hidden;
+  border: 1px solid #d5ae6177;
+  background: linear-gradient(#101a2020, #070a10d9);
+  transition: 0.3s;
+}
+
+.personagem:hover {
+  border-color: var(--claro);
+  box-shadow: 0 0 18px #d5ae6144;
+}
+
+.area-imagem {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.area-imagem img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  filter: drop-shadow(0 4px 10px #000);
+  transition: transform 0.3s;
+}
+
+.personagem:hover img {
+  transform: scale(1.04);
+}
+
+.nome {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: 12px 4px 8px;
+  text-align: center;
+  color: var(--claro);
+  font-size: clamp(10px, 1.6vw, 17px);
+  text-shadow: 2px 2px 5px #000;
+  background: linear-gradient(transparent, #070a10f5);
+}
+
+.botao {
+  position: relative;
+  z-index: 2;
+  width: 88%;
+  margin: 5px 0 12px;
+  padding: 11px 4px;
+  border: 2px solid #b38a54;
+  border-radius: 28px;
+  background: #777777d9;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.botao:hover {
+  background: #a77d42;
+}
+
+.fundo-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  background: #000d;
+  backdrop-filter: blur(5px);
+}
+
+.fundo-modal.aberto {
+  display: flex;
+}
+
+.painel {
+  position: relative;
+  width: min(760px, 100%);
+  max-height: 92vh;
+  overflow-y: auto;
+  padding: 25px;
+  border: 2px solid #c09a56;
+  border-radius: 14px;
+  background: linear-gradient(145deg, #202635, #090d15);
+  box-shadow: 0 0 35px #000;
+}
+
+.fechar {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  width: 35px;
+  height: 35px;
+  border: 1px solid var(--ouro);
+  border-radius: 50%;
+  background: #10151d;
+  color: var(--claro);
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.painel h2 {
+  padding-right: 35px;
+  color: var(--claro);
+  font-size: clamp(20px, 4vw, 30px);
+}
+
+.local {
+  margin: 8px 0 18px;
+  color: var(--ouro);
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+.historia {
+  margin-bottom: 20px;
+  color: #e4dfd3;
+  font-family: Georgia, serif;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.painel h3 {
+  color: var(--claro);
+  font-size: 15px;
+}
+
+.opcoes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 18px 0;
+}
+
+.opcao {
+  min-width: 0;
+  padding: 13px 5px;
+  color: var(--claro);
+  background: linear-gradient(145deg, #30364b, #10151e);
+  border: 1px solid #a9874c;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.opcao:hover,
+.opcao.ativo {
+  background: #554126;
+  border-color: var(--claro);
+}
+
+.icone {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 28px;
+}
+
+.opcao strong {
+  display: block;
+  font-size: clamp(9px, 1.5vw, 13px);
+}
+
+.detalhe {
+  min-height: 90px;
+  padding: 15px;
+  margin-bottom: 18px;
+  border: 1px solid #8c6a3b88;
+  border-radius: 8px;
+  background: #070b12;
+}
+
+.detalhe h3 {
+  margin-bottom: 8px;
+}
+
+.detalhe p {
+  color: #ddd4c3;
+  font-family: Georgia, serif;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.lista-habilidades {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.atributos {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin: 15px 0;
+}
+
+.atributo {
+  padding: 12px 5px;
+  text-align: center;
+  border: 1px solid #a9874c;
+  background: #161c27;
+  border-radius: 7px;
+}
+
+.atributo span {
+  display: block;
+  margin-bottom: 5px;
+  color: #cbbda4;
+  font-size: 10px;
+}
+
+.atributo strong {
+  color: var(--claro);
+  font-size: clamp(18px, 3vw, 25px);
+}
+
+.rodape-painel {
+  text-align: center;
+  color: #bba578;
+  font-size: 10px;
+  line-height: 1.7;
+}
+
+footer {
+  padding: 15px;
+  text-align: center;
+  color: var(--ouro);
+  background: #080b11e8;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+@media (max-width: 560px) {
+  .personagens {
+    padding: 5px 4px 15px;
+    gap: 4px;
+  }
+
+  .personagem {
+    min-height: 280px;
+  }
+
+  .botao {
+    width: 96%;
+    font-size: 9px;
+  }
+
+  .nome {
+    font-size: 10px;
+  }
+
+  .painel {
+    padding: 20px 13px;
+  }
+
+  .opcoes {
+    gap: 5px;
+  }
+}
