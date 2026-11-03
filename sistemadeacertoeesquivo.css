@@ -1,0 +1,128 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #100d20;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.arena {
+    width: 95%;
+    max-width: 850px;
+    padding: 20px;
+    text-align: center;
+    background: #211936;
+    border: 2px solid #8c52ff;
+    border-radius: 15px;
+}
+
+.vidas {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.vidas > div {
+    width: 45%;
+}
+
+.barra {
+    height: 18px;
+    background: #555;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.vida {
+    width: 100%;
+    height: 100%;
+    background: #39dc72;
+    transition: width 0.3s;
+}
+
+.campo {
+    height: 300px;
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    overflow: hidden;
+    background:
+        linear-gradient(#17152b99, #17152b99),
+        url("arena.png.png") center/cover no-repeat;
+    border: 2px solid #6f49a8;
+    border-radius: 12px;
+}
+
+.personagem {
+    width: 35%;
+    transition: transform 0.25s;
+}
+
+.personagem img {
+    width: 100%;
+    max-height: 230px;
+    object-fit: contain;
+}
+
+.atacando1 {
+    transform: translateX(65px) scale(1.08);
+}
+
+.atacando2 {
+    transform: translateX(-65px) scale(1.08);
+}
+
+.esquivando1 {
+    transform: translate(-25px, -35px) rotate(-8deg);
+}
+
+.esquivando2 {
+    transform: translate(25px, -35px) rotate(8deg);
+}
+
+.dano {
+    filter: brightness(2) sepia(1) saturate(5);
+}
+
+#mensagem {
+    min-height: 25px;
+    font-weight: bold;
+}
+
+.botoes {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 15px 0;
+}
+
+button {
+    padding: 12px 22px;
+    border: none;
+    border-radius: 8px;
+    background: #8c52ff;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #a979ff;
+}
+
+#reiniciar {
+    background: #444;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
