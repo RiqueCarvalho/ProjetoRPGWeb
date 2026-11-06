@@ -16,7 +16,7 @@ html {
   position: relative;
   width: 100vw;
   height: 100vh;
-  background-image: url("Telafundo.png");
+  background-image: url("./Imagens/Cenários/fundo.jpeg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

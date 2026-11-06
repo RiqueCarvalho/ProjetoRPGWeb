@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>The Last Kingdom - A Alquimista</title>
+
+    <link rel="stylesheet" href="TelaDiscricaoF.css">
+</head>
+
+<body>
+
+    <main class="tela-personagem">
+<div class="fundo-cenario"></div>
+        <!-- Botão voltar -->
+<button class="botao-voltar" onclick="history.back()" aria-label="Voltar">
+    <img src="botão voltar.png" alt="Voltar">
+</button>
+
+        <!-- Conteúdo principal -->
+        <section class="conteudo">
+
+            <!-- Personagem e cenário -->
+            <div class="area-personagem">
+
+                <img
+                    src="fundo-personagem.png"
+                    alt="A Alquimista no cenário medieval"
+                    class="imagem-personagem"
+                >
+
+                <h1 class="nome-personagem">
+                    ✦ A ALQUIMISTA ✦
+                </h1>
+
+                <button class="botao-escolher" id="escolher">
+                    ESCOLHER
+                </button>
+
+            </div>
+
+            <!-- Painel de informações -->
+            <aside class="painel">
+
+                <!-- Imagem da história -->
+                <div class="imagem-historia">
+                    <img
+                        src="image.png"
+                        alt="A Alquimista preparando poções"
+                    >
+                </div>
+
+                <!-- Descrição -->
+                <div class="historia">
+                    <p>
+                        Uma alquimista e médica de campo, que utiliza
+                        poções curativas e seu cajado místico para
+                        restaurar aliados e purificar a praga.
+                    </p>
+                </div>
+
+                <!-- Habilidade especial -->
+                <div class="habilidade-especial">
+
+                    <h2>✧ HABILIDADE ESPECIAL ✧</h2>
+
+                    <div class="habilidade-card">
+
+                        <div class="icone-habilidade">
+                            🧪
+                        </div>
+
+                        <div class="descricao-habilidade">
+
+                            <h3>Elixir da Vida</h3>
+
+                            <p>
+                                Prepara uma poção especial capaz de
+                                restaurar parte de sua vida durante
+                                o combate.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Atributos -->
+                <div class="atributos">
+
+                    <div class="atributo">
+                        <span>⚔ Atk:</span>
+
+                        <div class="barra">
+                            <div class="ataque"></div>
+                        </div>
+
+                        <span>65</span>
+                    </div>
+
+                    <div class="atributo">
+                        <span>♧ Def:</span>
+
+                        <div class="barra">
+                            <div class="defesa"></div>
+                        </div>
+
+                        <span>50</span>
+                    </div>
+
+                    <div class="atributo">
+                        <span>♥ Vida:</span>
+
+                        <div class="barra">
+                            <div class="vida"></div>
+                        </div>
+
+                        <span>80</span>
+                    </div>
+
+                </div>
+
+            </aside>
+
+        </section>
+
+    </main>
+
+    <script src="TelaDiscricaoF.js"></script>
+
+</body>
+</html>
