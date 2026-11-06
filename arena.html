@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Last Kingdom - Selecionar Arenas</title>
+  <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body,
+    html {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: #000;
+      font-family: 'MedievalSharp', cursive;
+    }
+
+    .arena-screen {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 20px;
+      background-size: cover !important;
+      background-position: center center !important;
+      background-repeat: no-repeat !important;
+      image-rendering: pixelated;
+      transition: background 0.5s ease;
+    }
+
+    /* 5 Arenas (Substitua pelos nomes dos arquivos das suas 5 imagens de fundo) */
+    .arena-1 {
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5)), url('Arena.jpg');
+    }
+
+    .arena-2 {
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5)), url('Arena 2.jpg');
+    }
+
+    .arena-3 {
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5)), url('Arena 3.jpg');
+    }
+
+    .arena-4 {
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5)), url('Arena 4.jpg');
+    }
+
+    .arena-5 {
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5)), url('Arena 5.jpg');
+    }
+
+    .arena-frame {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 10px solid #23170f;
+      box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.8);
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* Seletor das 5 Arenas no Topo */
+    .arena-selector-debug {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 20;
+      display: flex;
+      gap: 10px;
+      background: rgba(0, 0, 0, 0.75);
+      padding: 8px 15px;
+      border-radius: 6px;
+      border: 1px solid #5a3e22;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+    }
+
+    .arena-btn {
+      background: #2a1f18;
+      color: #f3c653;
+      border: 1px solid #6b4f2c;
+      padding: 6px 12px;
+      cursor: pointer;
+      font-family: 'MedievalSharp', cursive;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    .arena-btn:hover {
+      background: #4a331c;
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="arena-screen arena-1" id="arena-bg">
+    <div class="arena-frame"></div>
+
+    <!-- Botões para alternar entre as 5 arenas -->
+    <div class="arena-selector-debug">
+      <span style="color: #aaa; font-size: 14px; align-self: center;">Arena:</span>
+      <button class="arena-btn" onclick="trocarArena('arena-1')">1</button>
+      <button class="arena-btn" onclick="trocarArena('arena-2')">2</button>
+      <button class="arena-btn" onclick="trocarArena('arena-3')">3</button>
+      <button class="arena-btn" onclick="trocarArena('arena-4')">4</button>
+      <button class="arena-btn" onclick="trocarArena('arena-5')">5</button>
+    </div>
+  </div>
+
+  <script>
+    function trocarArena(nomeClasse) {
+      const bg = document.getElementById('arena-bg');
+      bg.className = 'arena-screen ' + nomeClasse;
+    }
+  </script>
+
+</body>
+
+</html>
