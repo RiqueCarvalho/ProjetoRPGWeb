@@ -1,53 +1,40 @@
 <!doctype html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Last Kingdom</title>
-    <link rel="stylesheet" href="TelaInicial2.css" />
-    <script src="TelaInicial.js" defer></script>
-  </head>
-  <body>
-    <main class="tela-inicial">
-      <section class="menu">
-        <img
-          src="./Imagens/Elementos_gráficos/logo.png"
-          alt="The Last Kingdom"
-          class="logo"
-        />
-        <nav class="botoes-menu">
-          <!-- Voltamos para <button> para manter o design perfeito do seu CSS -->
-          <button
-            id="novoJogo"
-            class="botao"
-            onclick="window.location.href = 'TelaPersonagem.html'"
-          >
-            <span>⚔️</span>
-            <span>Escolher Personagens</span>
-          </button>
-          <button
-            id="creditos"
-            class="botao"
-            onclick="window.location.href = 'TelaViloes.html'"
-          >
-            <span>🪙</span>
-            <span>Escolher Monstros</span>
-          </button>
-          <button
-            id="configuracoes"
-            class="botao"
-            onclick="window.location.href = 'TelaLoja.html'"
-          >
-            <span>🏪</span>
-            <span>Loja/Mercado</span>
-          </button>
-        </nav>
-      </section>
-      <img
-        src="./Imagens/Elementos_gráficos/cavaleiro.png"
-        alt="Cavaleiro medieval"
-        class="cavaleiro"
-      />
-    </main>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Last Kingdom</title>
+  <link rel="stylesheet" href="TelaInicial2.css" />
+  <script src="TelaInicial.js" defer></script>
+</head>
+
+<body>
+
+  <button class="btn-voltar" onclick="window.location.href = 'telainicial.html'">
+    <img src="./Imagens/Elementos_gráficos/WhatsApp Image 2026-10-28 at 11.26.43.jpeg" alt="Voltar" />
+  </button>
+  <main class="tela-inicial">
+    <section class="menu">
+      <img src="./Imagens/Elementos_gráficos/logo.png" alt="The Last Kingdom" class="logo" />
+      <nav class="botoes-menu">
+        <!-- Voltamos para <button> para manter o design perfeito do seu CSS -->
+        <button id="novoJogo" class="botao" onclick="window.location.href = 'TelaInicial3.html'">
+          <span>⚔️</span>
+          <span>Escolher Personagens</span>
+        </button>
+        <button id="creditos" class="botao" onclick="window.location.href = 'TelaViloes.html'">
+          <span>🪙</span>
+          <span>Escolher Monstros</span>
+        </button>
+        <button id="configuracoes" class="botao" onclick="window.location.href = 'TelaLoja.html'">
+          <span>🏪</span>
+          <span>Loja/Mercado</span>
+        </button>
+      </nav>
+    </section>
+    <img src="./Imagens/Elementos_gráficos/cavaleiro.png" alt="Cavaleiro medieval" class="cavaleiro" />
+  </main>
+</body>
+
 </html>

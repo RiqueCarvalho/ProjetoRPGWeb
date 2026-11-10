@@ -1,5 +1,7 @@
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
@@ -11,7 +13,36 @@ body {
     background: #100d20;
     color: white;
     font-family: Arial, sans-serif;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 }
+
+.titulo {
+    position: absolute;
+
+    top: 25px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    color: white;
+    font-size: 32px;
+    font-weight: bold;
+
+    text-shadow: 0 3px 8px black;
+
+    z-index: 10;
+}
+
+.heroi {
+    left: 12%;
+}
+
+.monstro {
+    right: 12%;
+}
+
 
 .arena {
     width: 95%;
@@ -21,6 +52,21 @@ body {
     background: #211936;
     border: 2px solid #8c52ff;
     border-radius: 15px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+    background-image: url("./Imagens/Cenários/arena.png.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none;
+    border-radius: 0;
+    overflow: hidden;
 }
 
 .vidas {
@@ -29,7 +75,7 @@ body {
     gap: 20px;
 }
 
-.vidas > div {
+.vidas>div {
     width: 45%;
 }
 
@@ -64,12 +110,153 @@ body {
 .personagem {
     width: 35%;
     transition: transform 0.25s;
+    position: absolute;
+
+    bottom: 12%;
+
+    width: 250px;
+    height: 350px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 5;
+}
+
+.barra {
+    width: 100%;
+    height: 25px;
+
+    margin-top: 8px;
+
+    background: #44151c;
+
+    border: 2px solid white;
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+/* BOTÕES */
+.botoes {
+    position: absolute;
+
+    bottom: 30px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+    gap: 20px;
+
+    z-index: 30;
+}
+
+button {
+    padding: 15px 30px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: #c35ee0;
+
+    color: white;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow: 0 5px 0 #74358b;
+}
+
+button:hover {
+    background: #d978ef;
+}
+
+button:active {
+    transform: translateY(4px);
+    box-shadow: 0 1px 0 #74358b;
+}
+
+/* MOEDAS */
+.moedas {
+    position: absolute;
+
+    top: 25px;
+    right: 30px;
+
+    color: #ffd83d;
+
+    font-size: 22px;
+    font-weight: bold;
+
+    background: rgba(0, 0, 0, .45);
+
+    padding: 10px 20px;
+
+    border-radius: 15px;
+
+    z-index: 40;
+}
+
+/* RESPONSIVO */
+@media (max-width: 700px) {
+
+    .titulo {
+        font-size: 22px;
+    }
+
+    .personagem {
+        width: 160px;
+        height: 230px;
+
+        bottom: 15%;
+    }
+
+    .heroi {
+        left: 3%;
+    }
+
+    .monstro {
+        right: 3%;
+    }
+
+    .status-box {
+        width: 42%;
+        font-size: 15px;
+    }
+
+    .botoes {
+        gap: 8px;
+    }
+
+    button {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+}
+
+.hp {
+    width: 100%;
+    height: 100%;
+
+    background: linear-gradient(90deg,
+            #ff3030,
+            #ffd52e,
+            #40ed58);
+
+    transition: width 0.3s;
 }
 
 .personagem img {
     width: 100%;
     max-height: 230px;
     object-fit: contain;
+    width: 100%;
+    height: 100%;
 }
 
 .atacando1 {
@@ -125,4 +312,29 @@ button:hover {
 button:disabled {
     opacity: 0.5;
     cursor: not-allowed;
+}
+
+.status {
+    position: absolute;
+
+    top: 80px;
+
+    left: 5%;
+    right: 5%;
+
+    display: flex;
+    justify-content: space-between;
+
+    z-index: 20;
+}
+
+.status-box {
+    width: 35%;
+    text-align: center;
+
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+
+    text-shadow: 0 2px 5px black;
 }
