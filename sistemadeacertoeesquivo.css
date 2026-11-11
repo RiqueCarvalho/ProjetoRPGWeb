@@ -4,62 +4,22 @@
     padding: 0;
 }
 
-body {
-    margin: 0;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #100d20;
-    color: white;
-    font-family: Arial, sans-serif;
+html, body {
     width: 100%;
     height: 100%;
+    margin: 0;
+    padding: 0;
     overflow: hidden;
-}
-
-.titulo {
-    position: absolute;
-
-    top: 25px;
-    left: 50%;
-
-    transform: translateX(-50%);
-
+    background: #0d0a1a;
     color: white;
-    font-size: 32px;
-    font-weight: bold;
-
-    text-shadow: 0 3px 8px black;
-
-    z-index: 10;
+    font-family: Arial, sans-serif;
 }
 
-.heroi {
-    left: 12%;
-}
-
-.monstro {
-    right: 12%;
-}
-
-
+/* Arena ocupando a tela inteira */
 .arena {
-    width: 95%;
-    max-width: 850px;
-    padding: 20px;
-    text-align: center;
-    background: #211936;
-    border: 2px solid #8c52ff;
-    border-radius: 15px;
-    position: fixed;
-    top: 0;
-    left: 0;
     width: 100vw;
     height: 100vh;
-    margin: 0;
-    padding: 20px;
-    text-align: center;
+    position: relative;
     background-image: url("./Imagens/Cenários/arena.png.png");
     background-size: cover;
     background-position: center;
@@ -69,151 +29,189 @@ body {
     overflow: hidden;
 }
 
-.vidas {
+/* TÍTULO PRINCIPAL */
+.titulo {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    text-shadow: 0 3px 8px black;
+    z-index: 10;
+}
+
+/* CONTADOR DE MOEDAS */
+.moedas {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #ffd83d;
+    font-size: 20px;
+    font-weight: bold;
+    background: rgba(0, 0, 0, 0.55);
+    padding: 8px 16px;
+    border-radius: 15px;
+    border: 1px solid #ffd83d;
+    z-index: 40;
+}
+
+/* PAINEL DE HP */
+.status {
+    position: absolute;
+    top: 70px;
+    left: 10%;
+    right: 10%;
     display: flex;
     justify-content: space-between;
-    gap: 20px;
+    z-index: 20;
 }
 
-.vidas>div {
-    width: 45%;
-}
-
-.barra {
-    height: 18px;
-    background: #555;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.vida {
-    width: 100%;
-    height: 100%;
-    background: #39dc72;
-    transition: width 0.3s;
-}
-
-.campo {
-    height: 300px;
-    margin: 20px 0;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    overflow: hidden;
-    background:
-        linear-gradient(#17152b99, #17152b99),
-        url("arena.png.png") center/cover no-repeat;
-    border: 2px solid #6f49a8;
+.status-box {
+    width: 35%;
+    text-align: center;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-shadow: 0 2px 5px black;
+    background: rgba(0, 0, 0, 0.45);
+    padding: 10px;
     border-radius: 12px;
 }
 
-.personagem {
-    width: 35%;
-    transition: transform 0.25s;
-    position: absolute;
-
-    bottom: 12%;
-
-    width: 250px;
-    height: 350px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    z-index: 5;
-}
-
 .barra {
     width: 100%;
-    height: 25px;
-
-    margin-top: 8px;
-
+    height: 22px;
+    margin-top: 6px;
+    margin-bottom: 4px;
     background: #44151c;
-
     border: 2px solid white;
     border-radius: 20px;
-
     overflow: hidden;
 }
 
-/* BOTÕES */
+.hp {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #ff3030, #ffd52e, #40ed58);
+    transition: width 0.3s ease-in-out;
+}
+
+/* PERSONAGENS GRANDES E BEM POSICIONADOS */
+.personagem {
+    position: absolute;
+    bottom: 110px;
+    width: 300px;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    transition: transform 0.25s ease, filter 0.2s ease;
+}
+
+.heroi {
+    left: 14%;
+}
+
+.monstro {
+    right: 14%;
+}
+
+.personagem img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* ANIMAÇÕES VISUAIS */
+.atacando-heroi {
+    transform: translateX(120px) scale(1.08);
+}
+
+.atacando-monstro {
+    transform: translateX(-120px) scale(1.08);
+}
+
+.esquivando-heroi {
+    transform: translate(-40px, -20px) rotate(-10deg);
+}
+
+.dano {
+    filter: brightness(2) sepia(1) hue-rotate(-50deg) saturate(5);
+}
+
+/* BOTÕES ORGANIZADOS ABAIXO DOS PERSONAGENS */
 .botoes {
     position: absolute;
-
     bottom: 30px;
-
     left: 50%;
-
     transform: translateX(-50%);
-
     display: flex;
-    gap: 20px;
-
+    gap: 15px;
     z-index: 30;
 }
 
 button {
-    padding: 15px 30px;
-
+    padding: 14px 28px;
     border: none;
     border-radius: 12px;
-
-    background: #c35ee0;
-
+    background: #8c52ff;
     color: white;
-
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
-
     cursor: pointer;
-
-    box-shadow: 0 5px 0 #74358b;
+    box-shadow: 0 5px 0 #592cb5;
+    transition: background 0.2s, transform 0.1s;
 }
 
 button:hover {
-    background: #d978ef;
+    background: #a979ff;
 }
 
 button:active {
     transform: translateY(4px);
-    box-shadow: 0 1px 0 #74358b;
+    box-shadow: 0 1px 0 #592cb5;
 }
 
-/* MOEDAS */
-.moedas {
-    position: absolute;
-
-    top: 25px;
-    right: 30px;
-
-    color: #ffd83d;
-
-    font-size: 22px;
-    font-weight: bold;
-
-    background: rgba(0, 0, 0, .45);
-
-    padding: 10px 20px;
-
-    border-radius: 15px;
-
-    z-index: 40;
-}
-
-/* RESPONSIVO */
-@media (max-width: 700px) {
-
-    .titulo {
-        font-size: 22px;
+/* ADAPTAÇÃO PARA DISPOSITIVOS MÓVEIS OU TELAS PEQUENAS */
+@media (max-width: 768px) {
+    .personagem {
+        width: 180px;
+        height: 250px;
+        bottom: 90px;
     }
 
-    .personagem {
-        width: 160px;
-        height: 230px;
+    .heroi {
+        left: 5%;
+    }
 
-        bottom: 15%;
+    .monstro {
+        right: 5%;
+    }
+
+    button {
+        padding: 10px 14px;
+        font-size: 13px;
+    }
+}
+
+button:hover {
+    background: #a979ff;
+}
+
+button:active {
+    transform: translateY(4px);
+    box-shadow: 0 1px 0 #592cb5;
+}
+
+/* ADAPTAÇÃO PARA DISPOSITIVOS MÓVEIS OU TELAS PEQUENAS */
+@media (max-width: 768px) {
+    .personagem {
+        width: 170px;
+        height: 240px;
+        bottom: 100px;
     }
 
     .heroi {
@@ -224,117 +222,8 @@ button:active {
         right: 3%;
     }
 
-    .status-box {
-        width: 42%;
-        font-size: 15px;
-    }
-
-    .botoes {
-        gap: 8px;
-    }
-
     button {
-        padding: 10px 15px;
+        padding: 10px 16px;
         font-size: 14px;
     }
-}
-
-.hp {
-    width: 100%;
-    height: 100%;
-
-    background: linear-gradient(90deg,
-            #ff3030,
-            #ffd52e,
-            #40ed58);
-
-    transition: width 0.3s;
-}
-
-.personagem img {
-    width: 100%;
-    max-height: 230px;
-    object-fit: contain;
-    width: 100%;
-    height: 100%;
-}
-
-.atacando1 {
-    transform: translateX(65px) scale(1.08);
-}
-
-.atacando2 {
-    transform: translateX(-65px) scale(1.08);
-}
-
-.esquivando1 {
-    transform: translate(-25px, -35px) rotate(-8deg);
-}
-
-.esquivando2 {
-    transform: translate(25px, -35px) rotate(8deg);
-}
-
-.dano {
-    filter: brightness(2) sepia(1) saturate(5);
-}
-
-#mensagem {
-    min-height: 25px;
-    font-weight: bold;
-}
-
-.botoes {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin: 15px 0;
-}
-
-button {
-    padding: 12px 22px;
-    border: none;
-    border-radius: 8px;
-    background: #8c52ff;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #a979ff;
-}
-
-#reiniciar {
-    background: #444;
-}
-
-button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
-.status {
-    position: absolute;
-
-    top: 80px;
-
-    left: 5%;
-    right: 5%;
-
-    display: flex;
-    justify-content: space-between;
-
-    z-index: 20;
-}
-
-.status-box {
-    width: 35%;
-    text-align: center;
-
-    color: white;
-    font-size: 20px;
-    font-weight: bold;
-
-    text-shadow: 0 2px 5px black;
 }

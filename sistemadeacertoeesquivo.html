@@ -4,207 +4,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="sistemadeacertoeesquivo.css">
-
     <title>Arena de Batalha</title>
+    <link rel="stylesheet" href="sistemadeacertoeesquivo.css">
 </head>
 
 <body>
 
     <div class="arena">
 
+        <!-- TÍTULO -->
         <div class="titulo">
             ⚔️ Arena de Batalha
         </div>
 
-
         <!-- MOEDAS -->
-
         <div class="moedas">
             🪙 <span id="moedas">0</span>
         </div>
 
-
-        <!-- BARRAS DE VIDA -->
-
+        <!-- BARRAS DE VIDA E STATUS -->
         <div class="status">
-
             <div class="status-box">
-
                 Herói
-
                 <div class="barra">
-                    <div id="hpHeroi" class="hp">
-                    </div>
+                    <div id="hpHeroi" class="hp"></div>
                 </div>
-
-                <span id="textoHeroi">
-                    100 HP
-                </span>
-
+                <span id="textoHeroi">100 HP</span>
             </div>
-
 
             <div class="status-box">
-
                 Monstro
-
                 <div class="barra">
-                    <div id="hpMonstro" class="hp">
-                    </div>
+                    <div id="hpMonstro" class="hp"></div>
                 </div>
-
-                <span id="textoMonstro">
-                    100 HP
-                </span>
-
+                <span id="textoMonstro">100 HP</span>
             </div>
-
         </div>
 
-        <div class="personagem heroi">
-
-            <img src="./Imagens/Personagens/klatos.png">
-
+        <!-- PERSONAGENS -->
+        <div id="elHeroi" class="personagem heroi">
+            <img src="./Imagens/Personagens/klatos.png" alt="Herói">
         </div>
 
-        <div class="personagem monstro">
-
-            <img src="./Imagens/Elementos_gráficos/monstro.png.png">
-
+        <div id="elMonstro" class="personagem monstro">
+            <img src="./Imagens/Elementos_gráficos/monstro.png.png" alt="Monstro">
         </div>
 
+        <!-- CONTROLES / BOTÕES -->
         <div class="botoes">
-
-            <button id="btnAtacar" onclick="atacar()">
-                ⚔️ Atacar
-            </button>
-
-            <button id="btnEsquivar" onclick="esquivar()">
-                💨 Esquivar
-            </button>
-
-            <button id="btnPocao" onclick="pocao()">
-                🧪 Usar Poção
-            </button>
-
-            <button id="btnReiniciar" onclick="reiniciarBatalha()">
-                🔄 Reiniciar
-            </button>
-
+            <button id="btnAtacar" onclick="atacar()">⚔️ Atacar</button>
+            <button id="btnEsquivar" onclick="esquivar()">💨 Esquivar</button>
+            <button id="btnPocao" onclick="pocao()">🧪 Usar Poção</button>
+            <button id="btnReiniciar" onclick="reiniciarBatalha()">🔄 Reiniciar</button>
         </div>
 
     </div>
 
-
+    <!-- LÓGICA DO JOGO -->
     <script>
-
         let hpHeroi = 100;
         let hpMonstro = 100;
-
         let moedas = 0;
+        let esquivando = false;
 
+        const elHeroi = document.getElementById("elHeroi");
+        const elMonstro = document.getElementById("elMonstro");
 
         function atualizarTela() {
-
-            document.getElementById("hpHeroi").style.width =
-                hpHeroi + "%";
-
-            document.getElementById("hpMonstro").style.width =
-                hpMonstro + "%";
-
-            document.getElementById("textoHeroi").textContent =
-                hpHeroi + " HP";
-
-            document.getElementById("textoMonstro").textContent =
-                hpMonstro + " HP";
-
-            document.getElementById("moedas").textContent =
-                moedas;
-
+            document.getElementById("hpHeroi").style.width = hpHeroi + "%";
+            document.getElementById("hpMonstro").style.width = hpMonstro + "%";
+            document.getElementById("textoHeroi").textContent = hpHeroi + " HP";
+            document.getElementById("textoMonstro").textContent = hpMonstro + " HP";
+            document.getElementById("moedas").textContent = moedas;
         }
 
+        function contraAtaqueMonstro() {
+            setTimeout(() => {
+                if (hpMonstro <= 0) return;
+
+                // Animação de ataque do monstro
+                elMonstro.classList.add("atacando-monstro");
+                setTimeout(() => elMonstro.classList.remove("atacando-monstro"), 250);
+
+                if (esquivando) {
+                    alert("💨 Você esquivou do ataque do monstro!");
+                    esquivando = false;
+                } else {
+                    let danoMonstro = Math.floor(Math.random() * 15) + 5;
+                    hpHeroi -= danoMonstro;
+                    if (hpHeroi < 0) hpHeroi = 0;
+
+                    // Animação de dano no Herói
+                    elHeroi.classList.add("dano");
+                    setTimeout(() => elHeroi.classList.remove("dano"), 300);
+
+                    atualizarTela();
+
+                    if (hpHeroi === 0) {
+                        alert("💀 Você foi derrotado!");
+                    }
+                }
+            }, 600);
+        }
 
         function atacar() {
+            if (hpHeroi <= 0 || hpMonstro <= 0) return;
 
-            if (hpHeroi <= 0 || hpMonstro <= 0) {
-                return;
-            }
+            // Animação de ataque do herói
+            elHeroi.classList.add("atacando-heroi");
+            setTimeout(() => elHeroi.classList.remove("atacando-heroi"), 250);
 
-            /* dano do herói */
-
-            let dano =
-                Math.floor(Math.random() * 20) + 10;
-
+            let dano = Math.floor(Math.random() * 20) + 10;
             hpMonstro -= dano;
+            if (hpMonstro < 0) hpMonstro = 0;
 
-            if (hpMonstro < 0) {
-                hpMonstro = 0;
-            }
+            // Animação de dano no Monstro
+            elMonstro.classList.add("dano");
+            setTimeout(() => elMonstro.classList.remove("dano"), 300);
 
             atualizarTela();
 
-
-            /* monstro derrotado */
-
             if (hpMonstro === 0) {
-
                 moedas += 10;
-
-                alert(
-                    "🏆 Você venceu!\n" +
-                    "🪙 +10 moedas!"
-                );
-
                 atualizarTela();
-
+                setTimeout(() => alert("🏆 Você venceu!\n🪙 +10 moedas!"), 200);
                 return;
             }
 
+            contraAtaqueMonstro();
+        }
 
-            /* contra-ataque */
+        function esquivar() {
+            if (hpHeroi <= 0 || hpMonstro <= 0) return;
 
-            setTimeout(() => {
+            esquivando = true;
 
-                let danoMonstro =
-                    Math.floor(Math.random() * 15) + 5;
+            // Animação de esquiva
+            elHeroi.classList.add("esquivando-heroi");
+            setTimeout(() => elHeroi.classList.remove("esquivando-heroi"), 400);
 
-                hpHeroi -= danoMonstro;
-
-                if (hpHeroi < 0) {
-                    hpHeroi = 0;
-                }
-
-                atualizarTela();
-
-
-                if (hpHeroi === 0) {
-
-                    alert("💀 Você foi derrotado!");
-
-                }
-
-            }, 500);
-
+            contraAtaqueMonstro();
         }
 
         function pocao() {
+            if (hpHeroi <= 0 || hpHeroi >= 100) return;
 
-            if (hpHeroi <= 0) {
-                return;
-            }
-
-            hpHeroi += 20;
-
-            if (hpHeroi > 100) {
-                hpHeroi = 100;
-            }
+            hpHeroi += 25;
+            if (hpHeroi > 100) hpHeroi = 100;
 
             atualizarTela();
-
+            contraAtaqueMonstro();
         }
-        atualizarTela();
 
+        function reiniciarBatalha() {
+            hpHeroi = 100;
+            hpMonstro = 100;
+            esquivando = false;
+            atualizarTela();
+        }
+
+        atualizarTela();
     </script>
 
 </body>
