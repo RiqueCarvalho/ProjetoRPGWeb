@@ -1,0 +1,546 @@
+/* =====================================
+   CONFIGURAÇÕES GERAIS
+===================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+    background: #080706;
+    font-family: Georgia, "Times New Roman", serif;
+    color: #eee4e0;
+}
+
+
+/* =====================================
+   TELA PRINCIPAL
+===================================== */
+
+.tela-selecao {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+    min-height: 520px;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+
+/* =====================================
+   CENÁRIO MEDIEVAL
+===================================== */
+
+.cenario {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+
+    background-image:
+        url("./Imagens/Cenários/Altar medieval em pixel art.png");
+
+    background-position: calc(50% - 22px) center;
+    background-repeat: no-repeat;
+    background-size: 104% 104%;
+}
+
+
+/* =====================================
+   ESPAÇO DO PERSONAGEM
+===================================== */
+
+.personagem-slot {
+    position: absolute;
+
+    left: 3%;
+    bottom: 0;
+
+    width: 43%;
+    height: 82%;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    z-index: 1;
+    pointer-events: none;
+}
+
+
+/* FUTURA GIF DO RAGNAR */
+
+.personagem-gif {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+    object-position: center bottom;
+
+    filter:
+        drop-shadow(0 5px 12px rgba(0, 0, 0, 0.8));
+}
+
+
+/* =====================================
+   PAINEL DE INFORMAÇÕES
+===================================== */
+
+.painel-personagem {
+    position: absolute;
+
+    top: 50%;
+    right: 4%;
+
+    transform: translateY(-50%);
+
+    width: clamp(330px, 33vw, 480px);
+
+    /* Altura adaptável, limitada a 800px */
+    height: min(82vh, 800px);
+    min-height: 0;
+
+    padding: clamp(10px, 1vw, 20px);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background: rgba(5, 3, 17, 0.94);
+
+    border: 1px solid rgba(210, 204, 210, 0.85);
+    border-radius: clamp(22px, 2.5vw, 30px);
+
+    box-shadow:
+        0 0 18px rgba(0, 0, 0, 0.7),
+        inset 0 0 15px rgba(0, 0, 0, 0.35);
+
+    z-index: 3;
+}
+
+
+/* =====================================
+   ARTE DO PERSONAGEM
+===================================== */
+
+.retrato-container {
+    width: 80%;
+
+    aspect-ratio: 2.05 / 1;
+    height: auto;
+
+    flex-shrink: 0;
+
+    overflow: hidden;
+
+    /* Apenas os cantos arredondados */
+    border-radius: 14px;
+
+    /* Sem moldura, fundo ou sombra */
+    border: none;
+    background: transparent;
+    box-shadow: none;
+}
+
+.retrato {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    /* Exibe a arte inteira */
+    object-fit: contain;
+    object-position: center center;
+
+    /* Apenas cantos arredondados */
+    border: none;
+    border-radius: 14px;
+    outline: none;
+
+    background: transparent;
+}
+
+
+/* =====================================
+   NOME E DESCRIÇÃO
+===================================== */
+
+.informacoes {
+    width: 100%;
+
+    margin-top: clamp(7px, 0.8vw, 14px);
+
+    text-align: left;
+}
+
+.informacoes h1 {
+    font-size: clamp(19px, 1.75vw, 32px);
+
+    font-weight: bold;
+    line-height: 1.1;
+
+    letter-spacing: 0.2px;
+
+    color: #f0e4e2;
+
+    text-shadow: 1px 2px 3px #000;
+}
+
+.informacoes p {
+    margin-top: 3px;
+
+    font-size: clamp(17px, 1.6vw, 29px);
+
+    font-weight: 600;
+    line-height: 1.16;
+
+    color: #e4d9db;
+
+    text-shadow: 1px 2px 3px #000;
+}
+
+
+/* =====================================
+   BOTÕES DE OPÇÕES
+===================================== */
+
+.opcoes-personagem {
+    width: 100%;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    gap: 6px;
+
+    margin-top: clamp(7px, 1vh, 12px);
+}
+
+.opcao {
+    flex: 1;
+
+    min-width: 0;
+
+    /* Mantém o tamanho visual atual em telas grandes */
+    height: clamp(220px, 32vh, 270px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 0;
+
+    background: transparent;
+    border: none;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        filter 0.2s ease;
+}
+
+.opcao img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.opcao:hover {
+    transform: translateY(-5px) scale(1.06);
+
+    filter: brightness(1.25);
+}
+
+.opcao:active {
+    transform: scale(0.94);
+}
+
+
+/* =====================================
+   ATRIBUTOS
+===================================== */
+
+.atributos {
+    width: 100%;
+
+    margin-top: auto;
+    padding-top: 10px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 4px;
+
+    white-space: nowrap;
+
+    font-size: clamp(15px, 1.5vw, 27px);
+    font-weight: bold;
+
+    color: #f4eeee;
+
+    text-shadow: 2px 2px 3px #000;
+}
+
+
+/* =====================================
+   BOTÃO VOLTAR
+===================================== */
+
+.botao-voltar {
+    position: absolute;
+
+    left: 12px;
+    top: 42%;
+
+    width: clamp(44px, 5vw, 56px);
+    height: clamp(44px, 5vw, 56px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: #f3bd61;
+    font-size: clamp(28px, 2.8vw, 34px);
+
+    background:
+        linear-gradient(145deg, #6c3920, #1d100d);
+
+    border: 2px ridge #c08a42;
+    border-radius: 5px;
+
+    box-shadow:
+        0 0 8px #000,
+        inset 0 0 7px #000;
+
+    cursor: pointer;
+
+    z-index: 5;
+
+    transition: 0.2s ease;
+}
+
+.botao-voltar:hover {
+    transform: scale(1.08);
+    filter: brightness(1.3);
+}
+
+
+/* =====================================
+   BOTÃO ESCOLHER
+===================================== */
+
+.botao-escolher {
+    position: absolute;
+
+    left: 50%;
+    bottom: 5%;
+
+    transform: translateX(-50%);
+
+    width: clamp(180px, 20vw, 380px);
+    height: clamp(44px, 6vh, 62px);
+
+    color: #fff;
+
+    font-family: inherit;
+    font-size: clamp(21px, 2vw, 36px);
+    font-weight: bold;
+
+    background:
+        linear-gradient(90deg,
+            rgba(105, 105, 105, 0.9),
+            rgba(190, 160, 120, 0.95));
+
+    border: 2px solid #987c5c;
+    border-radius: 30px;
+
+    text-shadow: 1px 2px 3px #000;
+
+    box-shadow:
+        0 0 10px rgba(0, 0, 0, 0.7),
+        inset 0 0 8px rgba(255, 255, 255, 0.2);
+
+    cursor: pointer;
+
+    z-index: 4;
+
+    transition: 0.2s ease;
+}
+
+.botao-escolher:hover {
+    transform: translateX(-50%) scale(1.05);
+
+    filter: brightness(1.2);
+}
+
+.botao-escolher.selecionado {
+    background:
+        linear-gradient(90deg, #315f37, #6b9a48);
+
+    border-color: #a9cf77;
+}
+
+
+/* =====================================
+   MENSAGENS
+===================================== */
+
+.mensagem {
+    position: absolute;
+
+    left: 50%;
+    bottom: 12%;
+
+    transform: translateX(-50%);
+
+    padding: 10px 18px;
+
+    background: rgba(10, 8, 8, 0.95);
+
+    border: 1px solid #9c794a;
+    border-radius: 8px;
+
+    color: #f0d9a1;
+    font-size: 14px;
+
+    text-align: center;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: opacity 0.2s ease;
+
+    z-index: 10;
+}
+
+.mensagem.visivel {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* =====================================
+   RESPONSIVIDADE
+===================================== */
+
+@media (max-width: 700px) {
+
+    body {
+        overflow-y: auto;
+    }
+
+    .tela-selecao {
+        height: auto;
+        min-height: 900px;
+
+        padding: 20px 0;
+
+        overflow: hidden;
+    }
+
+    .cenario {
+        position: absolute;
+        inset: 0;
+
+        background-position: center center;
+        background-size: 100% 100%;
+    }
+
+    .personagem-slot {
+        left: 10%;
+        top: 0;
+        bottom: auto;
+
+        width: 80%;
+        height: 36%;
+    }
+
+    .painel-personagem {
+        position: relative;
+
+        top: auto;
+        right: auto;
+
+        transform: none;
+
+        width: min(90%, 420px);
+        height: auto;
+        min-height: 540px;
+
+        margin: 340px auto 85px;
+    }
+
+    .retrato-container {
+        width: 65%;
+    }
+
+    .informacoes h1 {
+        font-size: 22px;
+    }
+
+    .informacoes p {
+        font-size: 19px;
+    }
+
+    .opcao {
+        height: 115px;
+    }
+
+    .atributos {
+        font-size: 17px;
+    }
+
+    .botao-voltar {
+        top: 15px;
+        left: 15px;
+    }
+
+    .botao-escolher {
+        left: 50%;
+        bottom: 22px;
+
+        width: 190px;
+        height: 46px;
+
+        font-size: 21px;
+    }
+
+    .mensagem {
+        bottom: 5px;
+        width: 85%;
+    }
+}
+
+
+/* =====================================
+   REDUÇÃO DE MOVIMENTO
+===================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+    }
+
+}
