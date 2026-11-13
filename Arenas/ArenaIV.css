@@ -4,7 +4,8 @@
     padding: 0;
 }
 
-html, body {
+html,
+body {
     width: 100%;
     height: 100%;
     margin: 0;
@@ -20,7 +21,7 @@ html, body {
     width: 100vw;
     height: 100vh;
     position: relative;
-    background-image: url("./Imagens/Cenários/arena.png.png");
+    background-image: url("../Imagens/Cenários/ArenaIV.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -101,22 +102,22 @@ html, body {
 /* PERSONAGENS GRANDES E BEM POSICIONADOS */
 .personagem {
     position: absolute;
-    bottom: 110px;
-    width: 300px;
-    height: 400px;
+    bottom: 95px;
+    width: 450px;
+    height: 550px;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
     z-index: 5;
     transition: transform 0.25s ease, filter 0.2s ease;
 }
 
 .heroi {
-    left: 14%;
+    left: 10%;
 }
 
 .monstro {
-    right: 14%;
+    right: 10%;
 }
 
 .personagem img {
