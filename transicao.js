@@ -1,16 +1,20 @@
-sessionStorage.removeItem("transicaoAbrindo");
+const overlay = document.createElement("div");
+overlay.className = "transicao-bau";
+document.body.appendChild(overlay);
 
-overlay.classList.add("sem-transicao", "ativo");
-void overlay.offsetWidth; // força o navegador a aplicar o estado inicial
-overlay.classList.remove("sem-transicao");
+const DURACAO = 400;
 
-tocar(somAbrir, somFechar);
-requestAnimationFrame(() => overlay.classList.remove("ativo"));
+function entrar() {
+  sessionStorage.removeItem("transicaoAbrindo");
+  overlay.classList.add("sem-transicao", "ativo");
+  void overlay.offsetWidth;
+  overlay.classList.remove("sem-transicao");
+  requestAnimationFrame(() => overlay.classList.remove("ativo"));
+}
 
 function sair(acao) {
   if (overlay.classList.contains("ativo")) return; // evita clique duplo
   overlay.classList.add("ativo");
-  tocar(somFechar, somAbrir);
   sessionStorage.setItem("transicaoAbrindo", "1");
   setTimeout(acao, DURACAO + 100);
 }

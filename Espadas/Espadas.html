@@ -1,139 +1,138 @@
 <!doctype html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="preload" href="../Imagens/Fundp.png" as="image" />
-    <title>Espadas</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Metamorphous&family=Cinzel:wght@600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="Espadas.css" />
-    <link rel="stylesheet" href="../transicao.css" />
-    <style></style>
-  </head>
-  <body>
-    <div class="tela">
-      <div class="voltar" id="voltar" title="Voltar">&#8592;</div>
-      <h1 class="titulo">Espadas</h1>
 
-      <div class="saldo" title="Seu saldo">
-        <img id="saldoIcone" alt="Moedas" />
-        <span id="saldoValor">0</span>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preload" href="../Imagens/Cenários/Fundp.png" as="image" />
+  <title>Espadas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Metamorphous&family=Cinzel:wght@600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="Espadas.css" />
+  <link rel="stylesheet" href="../transicao.css" />
+  <style></style>
+</head>
 
-      <div class="palco">
-        <button class="seta esq" id="anterior" aria-label="Anterior"></button>
-        <div class="lista" id="lista"></div>
-        <button class="seta dir" id="proximo" aria-label="Próximo"></button>
-      </div>
+<body>
+  <div class="tela">
+    <div class="voltar" id="voltar" title="Voltar">&#8592;</div>
+    <h1 class="titulo">Espadas</h1>
+
+    <div class="saldo" title="Seu saldo">
+      <img id="saldoIcone" alt="Moedas" />
+      <span id="saldoValor">0</span>
     </div>
 
-    <div class="modal" id="modal">
-      <div class="caixa">
-        <p id="modalTexto"></p>
-        <div class="acoes">
-          <button id="modalComprar" class="btn-comprar">Comprar</button>
-          <button id="modalFechar" class="btn-cancelar">Cancelar</button>
-        </div>
+    <div class="palco">
+      <button class="seta esq" id="anterior" aria-label="Anterior"></button>
+      <div class="lista" id="lista"></div>
+      <button class="seta dir" id="proximo" aria-label="Próximo"></button>
+    </div>
+  </div>
+
+  <div class="modal" id="modal">
+    <div class="caixa">
+      <p id="modalTexto"></p>
+      <div class="acoes">
+        <button id="modalComprar" class="btn-comprar">Comprar</button>
+        <button id="modalFechar" class="btn-cancelar">Cancelar</button>
       </div>
     </div>
+  </div>
 
-    <script src="../saldo.js"></script>
-    <script src="../transicao.js"></script>
-    <script>
-      /* =====================================================
-   CONFIGURAÇÃO — edite aqui para trocar as imagens
-   =====================================================
-   imagem : arte da armadura (PNG com fundo transparente)
-   painel : imagem pronta da parte de baixo do card (nome, nível,
-            classe, descrição e preço). Se deixar vazio ("") o
-            painel é montado com texto usando os campos abaixo.
-   cor    : cor da borda do card (e do título, se usar texto)
-   Os campos icone, nivel, classe, preco e desc só são usados
-   quando "painel" estiver vazio.
+  <script src="../saldo.js"></script>
+  <script src="../transicao.js"></script>
+  <script>
+    /* =====================================================
+ CONFIGURAÇÃO — edite aqui para trocar as imagens
+ =====================================================
+ imagem : arte da armadura (PNG com fundo transparente)
+ painel : imagem pronta da parte de baixo do card (nome, nível,
+          classe, descrição e preço). Se deixar vazio ("") o
+          painel é montado com texto usando os campos abaixo.
+ cor    : cor da borda do card (e do título, se usar texto)
+ Os campos icone, nivel, classe, preco e desc só são usados
+ quando "painel" estiver vazio.
 */
-      const ICONE_NIVEL = "imagens/icone-nivel.png"; // ícone ao lado de "Nível / Classe"
-      let SALDO = window.SaldoLoja.ler(); // saldo compartilhado entre todas as telas
-      const ICONE_MOEDA = "./imagens/moeda.png"; // imagem da moeda (se não existir, usa uma moeda dourada em CSS)
-      const POR_PAGINA = 6; // quantos cards aparecem por vez
+    const ICONE_NIVEL = "imagens/icone-nivel.png"; // ícone ao lado de "Nível / Classe"
+    let SALDO = window.SaldoLoja.ler(); // saldo compartilhado entre todas as telas
+    const POR_PAGINA = 6; // quantos cards aparecem por vez
 
-      const armaduras = [
-        {
-          nome: "Espada de Fogo",
-          imagem: "./Imagens/Espada de fogo.png",
-          painel: "./imagens/Espada de fogo banner.png",
-          icone: "imagens/icone-fogo.png",
-          cor: "#f08a1c",
-          preco: 22000,
-        },
-        {
-          nome: "Espada de Gelo",
-          imagem: "./imagens/Espada de gelo.png",
-          painel: "./imagens/Espada de gelo banner.png",
-          icone: "imagens/icone-gelo.png",
-          cor: "#009FFF",
-          preco: 15000,
-        },
-        {
-          nome: "Espada da Selva",
-          imagem: "./imagens/Espada da selva.png",
-          painel: "./imagens/Espada da selva banner.png",
-          icone: "imagens/icone-caos.png",
-          cor: "#007500",
-          preco: 13500,
-        },
-        {
-          nome: "Espada Sombria",
-          imagem: "./imagens/Espada sombria.png",
-          painel: "./imagens/Espada sombria banner.png",
-          icone: "imagens/icone-paladino.png",
-          cor: "#3D0000",
-          preco: 20000,
-        },
-        {
-          nome: "Espada Real",
-          imagem: "./Imagens/Espada real.png",
-          painel: "./imagens/Espada real banner.png",
-          icone: "imagens/icone-fogo.png",
-          cor: "#0097c5",
-          preco: 4000,
-        },
-        {
-          nome: "Espada Real nivel 2",
-          imagem: "./imagens/Espada Real nivel 2.png",
-          painel: "./imagens/Espada real nivel 2 banner.png",
-          icone: "imagens/icone-mago.png",
-          cor: "#F2B600",
-          preco: 18000,
-        },
-        // Adicione mais armaduras aqui — as setas aparecem automaticamente.
-      ];
+    const armaduras = [
+      {
+        nome: "Espada de Fogo",
+        imagem: "../Imagens/Elementos_gráficos/Espada de fogo.png",
+        painel: "../Imagens/Elementos_gráficos/Espada de fogo banner.png",
+        icone: "imagens/icone-fogo.png",
+        cor: "#f08a1c",
+        preco: 22000,
+      },
+      {
+        nome: "Espada de Gelo",
+        imagem: "../Imagens/Elementos_gráficos/Espada de gelo.png",
+        painel: "../Imagens/Elementos_gráficos/Espada de gelo banner.png",
+        icone: "imagens/icone-gelo.png",
+        cor: "#009FFF",
+        preco: 15000,
+      },
+      {
+        nome: "Espada da Selva",
+        imagem: "../Imagens/Elementos_gráficos/Espada da selva.png",
+        painel: "../Imagens/Elementos_gráficos/Espada da selva banner.png",
+        icone: "imagens/icone-caos.png",
+        cor: "#007500",
+        preco: 13500,
+      },
+      {
+        nome: "Espada Sombria",
+        imagem: "../Imagens/Elementos_gráficos/Espada sombria.png",
+        painel: "../Imagens/Elementos_gráficos/Espada sombria banner.png",
+        icone: "imagens/icone-paladino.png",
+        cor: "#3D0000",
+        preco: 20000,
+      },
+      {
+        nome: "Espada Real",
+        imagem: "../Imagens/Elementos_gráficos/Espada real.png",
+        painel: "../Imagens/Elementos_gráficos/Espada real banner.png",
+        icone: "imagens/icone-fogo.png",
+        cor: "#0097c5",
+        preco: 4000,
+      },
+      {
+        nome: "Espada Real nivel 2",
+        imagem: "../Imagens/Elementos_gráficos/Espada Real nivel 2.png",
+        painel: "../Imagens/Elementos_gráficos/Espada Real nivel 2 banner.png",
+        icone: "imagens/icone-mago.png",
+        cor: "#F2B600",
+        preco: 18000,
+      },
+      // Adicione mais armaduras aqui — as setas aparecem automaticamente.
+    ];
 
-      /* ===================== LÓGICA ===================== */
-      const lista = document.getElementById("lista");
-      const btnAnt = document.getElementById("anterior");
-      const btnProx = document.getElementById("proximo");
-      let inicio = 0;
+    /* ===================== LÓGICA ===================== */
+    const lista = document.getElementById("lista");
+    const btnAnt = document.getElementById("anterior");
+    const btnProx = document.getElementById("proximo");
+    let inicio = 0;
 
-      const fmt = (n) => n.toLocaleString("pt-BR");
+    const fmt = (n) => n.toLocaleString("pt-BR");
 
-      function criarCard(a) {
-        const el = document.createElement("article");
-        el.className = "card";
-        el.style.setProperty("--cor", a.cor);
-        const arte = `<div class="arte"><img src="${a.imagem}" alt="${a.nome}"></div>`;
-        if (a.painel) {
-          el.innerHTML =
-            arte +
-            `<img class="painel" src="${a.painel}" alt="${a.nome} - detalhes">`;
-          el.addEventListener("click", () => comprar(a));
-          return el;
-        }
+    function criarCard(a) {
+      const el = document.createElement("article");
+      el.className = "card";
+      el.style.setProperty("--cor", a.cor);
+      const arte = `<div class="arte"><img src="${a.imagem}" alt="${a.nome}"></div>`;
+      if (a.painel) {
         el.innerHTML =
           arte +
-          `
+          `<img class="painel" src="${a.painel}" alt="${a.nome} - detalhes">`;
+        el.addEventListener("click", () => comprar(a));
+        return el;
+      }
+      el.innerHTML =
+        arte +
+        `
     <div class="nome"><img src="${a.icone}" alt="" onerror="this.style.visibility='hidden'">${a.nome}</div>
     <div class="info">
       <div class="meta">
@@ -143,91 +142,89 @@
       <p class="desc">${a.desc}</p>
       <div class="preco"><span class="moeda"></span>Preço: ${fmt(a.preco)}</div>
     </div>`;
-        el.addEventListener("click", () => comprar(a));
-        return el;
-      }
+      el.addEventListener("click", () => comprar(a));
+      return el;
+    }
 
-      function render() {
-        lista.innerHTML = "";
-        armaduras
-          .slice(inicio, inicio + POR_PAGINA)
-          .forEach((a) => lista.appendChild(criarCard(a)));
-        btnAnt.disabled = inicio === 0;
-        btnProx.disabled = inicio + POR_PAGINA >= armaduras.length;
-      }
+    function render() {
+      lista.innerHTML = "";
+      armaduras
+        .slice(inicio, inicio + POR_PAGINA)
+        .forEach((a) => lista.appendChild(criarCard(a)));
+      btnAnt.disabled = inicio === 0;
+      btnProx.disabled = inicio + POR_PAGINA >= armaduras.length;
+    }
 
-      btnAnt.onclick = () => {
-        inicio = Math.max(0, inicio - 1);
-        render();
-      };
-      btnProx.onclick = () => {
-        inicio = Math.min(armaduras.length - POR_PAGINA, inicio + 1);
-        render();
-      };
-
-      /* Ações — conecte ao seu jogo aqui */
-      let armaduraSelecionada = null;
-
-      /* Saldo: atualiza o número na tela. Chame atualizarSaldo() sempre que SALDO mudar. */
-      function atualizarSaldo() {
-        SALDO = window.SaldoLoja.ler();
-        document.getElementById("saldoValor").textContent = fmt(SALDO);
-      }
-      function iniciarIconeMoeda() {
-        const img = document.getElementById("saldoIcone");
-        img.onerror = () => {
-          const s = document.createElement("span");
-          s.className = "moeda";
-          img.replaceWith(s);
-        };
-        img.src = ICONE_MOEDA;
-      }
-
-      function comprar(a) {
-        armaduraSelecionada = a;
-        document.getElementById("modalTexto").textContent =
-          `Comprar ${a.nome} por ${fmt(a.preco)} moedas?`;
-        document.getElementById("modalComprar").style.display = "";
-        document.getElementById("modal").classList.add("aberto");
-      }
-
-      function fecharModal() {
-        document.getElementById("modal").classList.remove("aberto");
-        armaduraSelecionada = null;
-      }
-
-      /* Chamada quando o jogador clica em "Comprar". Retorne true se a compra deu certo.
-   Coloque aqui o resto da sua lógica (ex.: guardar a armadura no inventário). */
-      function confirmarCompra(a) {
-        const saldoAtual = window.SaldoLoja.ler();
-        if (saldoAtual < a.preco) return false;
-        SALDO = window.SaldoLoja.salvar(saldoAtual - a.preco);
-        atualizarSaldo();
-        // exemplo: inventario.push(a.nome);
-        return true;
-      }
-
-      document.getElementById("modalComprar").onclick = () => {
-        if (!armaduraSelecionada) return;
-        if (confirmarCompra(armaduraSelecionada)) {
-          fecharModal();
-        } else {
-          document.getElementById("modalTexto").textContent =
-            "Saldo insuficiente de moedas!";
-          document.getElementById("modalComprar").style.display = "none";
-        }
-      };
-      document.getElementById("modalFechar").onclick = fecharModal;
-      document.getElementById("voltar").onclick = () =>
-        window.transicaoVoltar();
-
-      atualizarSaldo();
-      iniciarIconeMoeda();
+    btnAnt.onclick = () => {
+      inicio = Math.max(0, inicio - 1);
       render();
-      window.addEventListener("saldoAtualizado", (evento) => {
-        SALDO = evento.detail;
-        document.getElementById("saldoValor").textContent = fmt(SALDO);
-      });
-    </script>
-  </body>
+    };
+    btnProx.onclick = () => {
+      inicio = Math.min(armaduras.length - POR_PAGINA, inicio + 1);
+      render();
+    };
+
+    /* Ações — conecte ao seu jogo aqui */
+    let armaduraSelecionada = null;
+
+    /* Saldo: atualiza o número na tela. Chame atualizarSaldo() sempre que SALDO mudar. */
+    function atualizarSaldo() {
+      SALDO = window.SaldoLoja.ler();
+      document.getElementById("saldoValor").textContent = fmt(SALDO);
+    }
+    function iniciarIconeMoeda() {
+      const img = document.getElementById("saldoIcone");
+      const moeda = document.createElement("span");
+      moeda.className = "moeda";
+      img.replaceWith(moeda);
+    }
+
+    function comprar(a) {
+      armaduraSelecionada = a;
+      document.getElementById("modalTexto").textContent =
+        `Comprar ${a.nome} por ${fmt(a.preco)} moedas?`;
+      document.getElementById("modalComprar").style.display = "";
+      document.getElementById("modal").classList.add("aberto");
+    }
+
+    function fecharModal() {
+      document.getElementById("modal").classList.remove("aberto");
+      armaduraSelecionada = null;
+    }
+
+    /* Chamada quando o jogador clica em "Comprar". Retorne true se a compra deu certo.
+ Coloque aqui o resto da sua lógica (ex.: guardar a armadura no inventário). */
+    function confirmarCompra(a) {
+      const saldoAtual = window.SaldoLoja.ler();
+      if (saldoAtual < a.preco) return false;
+      SALDO = window.SaldoLoja.salvar(saldoAtual - a.preco);
+      atualizarSaldo();
+      // exemplo: inventario.push(a.nome);
+      return true;
+    }
+
+    document.getElementById("modalComprar").onclick = () => {
+      if (!armaduraSelecionada) return;
+      if (confirmarCompra(armaduraSelecionada)) {
+        fecharModal();
+      } else {
+        document.getElementById("modalTexto").textContent =
+          "Saldo insuficiente de moedas!";
+        document.getElementById("modalComprar").style.display = "none";
+      }
+    };
+    document.getElementById("modalFechar").onclick = fecharModal;
+    document.getElementById("voltar").onclick = () =>
+      window.transicaoVoltar();
+
+    atualizarSaldo();
+    iniciarIconeMoeda();
+    render();
+    window.addEventListener("saldoAtualizado", (evento) => {
+      SALDO = evento.detail;
+      document.getElementById("saldoValor").textContent = fmt(SALDO);
+    });
+  </script>
+</body>
+
 </html>

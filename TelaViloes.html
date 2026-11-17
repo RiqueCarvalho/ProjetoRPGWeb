@@ -1,79 +1,122 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TelaMonstros - The Last Kingdom</title>
-    <link rel="stylesheet" href="TelaViloes.css" />
-    <!-- Fontes Fantasy -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Metamorphous&display=swap"
-      rel="stylesheet"
-    />
-    <!-- jQuery CDN -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  </head>
-  <body>
-    <div class="screen-container">
-      <!-- Botão de Voltar (Canto Superior Esquerdo) -->
-      <button class="btn-back" title="Voltar">
-        <span>&#10140;</span>
-      </button>
 
-      <!-- Setas de Navegação das Laterais -->
-      <button class="nav-arrow prev" id="btnPrev">&#10094;</button>
-      <button class="nav-arrow next" id="btnNext">&#10095;</button>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#08090d">
 
-      <!-- Container Central do Carrossel -->
-      <div class="carousel-wrapper">
-        <div class="carousel-track" id="carouselTrack">
-          <!-- Monstro 1: Cavaleiro Espectral (Verde) -->
-          <div
-            class="character-card"
-            data-id="1"
-            data-name="Cavaleiro Espectral"
-          >
-            <div class="character-box">
-              <img
-                src="monstro_espectral.png"
-                alt="Cavaleiro Espectral"
-                class="character-img"
-              />
-            </div>
-            <button class="btn-select">Selecionar</button>
-          </div>
+  <title>Seleção de Vilões</title>
 
-          <!-- Monstro 2: Bárbaro do Norte (Centro / Ativo) -->
-          <div
-            class="character-card active"
-            data-id="2"
-            data-name="Bárbaro do Norte"
-          >
-            <div class="character-box">
-              <img
-                src="monstro_barbaro.png"
-                alt="Bárbaro do Norte"
-                class="character-img"
-              />
-            </div>
-            <button class="btn-select">Selecionar</button>
-          </div>
+  <link rel="stylesheet" href="./TelaViloes.css">
+  <script src="./TelaViloes.js" defer></script>
+</head>
 
-          <!-- Monstro 3: Lorde Infernal (Vermelho) -->
-          <div class="character-card" data-id="3" data-name="Lorde Infernal">
-            <div class="character-box">
-              <img
-                src="monstro_infernal.png"
-                alt="Lorde Infernal"
-                class="character-img"
-              />
-            </div>
-            <button class="btn-select">Selecionar</button>
-          </div>
+<body>
+
+  <main class="villain-screen" aria-label="Tela de seleção de personagens">
+
+    <!-- Imagem de fundo -->
+    <img class="scene-background" src="./Imagens/Cenários/cenario_mostro1.png" alt="" aria-hidden="true"
+      draggable="false">
+
+    <div class="scene-shading" aria-hidden="true"></div>
+
+    <!-- Botão voltar -->
+    <button class="back-button" id="backButton" type="button" aria-label="Voltar" title="Voltar">
+      <img src="./Imagens/Elementos_gráficos/WhatsApp Image 2026-10-28 at 11.26.43.jpeg" alt="" class="back-button-image" draggable="false">
+
+      <span class="visually-hidden">Voltar</span>
+    </button>
+
+    <!-- Aviso de imagens não encontradas -->
+    <p class="asset-warning" id="assetWarning" role="status" aria-live="polite" hidden></p>
+
+    <!-- Área de seleção dos personagens -->
+    <section class="character-selection" aria-label="Escolha seu personagem">
+
+      <!-- Cavaleiro Espectral -->
+      <article class="character-card spectral" data-character-id="ferrado" data-character-name="Cavaleiro Espectral">
+
+        <div class="character-aura" aria-hidden="true"></div>
+
+        <div class="character-visual">
+
+          <img class="character-image" src="./Imagens/Personagens/ferrado.png" alt="Cavaleiro Espectral"
+            draggable="false">
+
         </div>
-      </div>
-    </div>
 
-    <script src="TelaViloes.js"></script>
-  </body>
+        <div class="character-details">
+
+          <h2 class="character-name">
+            Cavaleiro Espectral
+          </h2>
+
+          <button class="select-button" type="button" aria-pressed="false">
+            <span>Selecionar</span>
+          </button>
+
+        </div>
+
+      </article>
+
+
+      <!-- Bárbaro do Norte -->
+      <article class="character-card barbarian" data-character-id="klatos" data-character-name="Bárbaro do Norte">
+
+        <div class="character-aura" aria-hidden="true"></div>
+
+        <div class="character-visual">
+
+          <img class="character-image" src="./Imagens/Personagens/klatos.png" alt="Bárbaro do Norte" draggable="false">
+
+        </div>
+
+        <div class="character-details">
+
+          <h2 class="character-name">
+            Bárbaro do Norte
+          </h2>
+
+          <button class="select-button" type="button" aria-pressed="false">
+            <span>Selecionar</span>
+          </button>
+
+        </div>
+
+      </article>
+
+
+      <!-- Lorde Infernal -->
+      <article class="character-card infernal" data-character-id="eocao1" data-character-name="Lorde Infernal">
+
+        <div class="character-aura" aria-hidden="true"></div>
+
+        <div class="character-visual">
+
+          <img class="character-image" src="./Imagens/Personagens/EoCão1.png" alt="Lorde Infernal" draggable="false">
+
+        </div>
+
+        <div class="character-details">
+
+          <h2 class="character-name">
+            Lorde Infernal
+          </h2>
+
+          <button class="select-button" type="button" aria-pressed="false">
+            <span>Selecionar</span>
+          </button>
+
+        </div>
+
+      </article>
+
+    </section>
+
+  </main>
+
+</body>
+
 </html>

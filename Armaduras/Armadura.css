@@ -1,44 +1,52 @@
 :root {
-  --fundo: url("./Imagens/Fundp.png"); /* TROQUE AQUI a imagem de fundo */
+  --fundo: url("../Imagens/Cenários/Fundp.png");
 }
+
 * {
   box-sizing: border-box;
   margin: 0;
 }
+
 html,
 body {
   height: 100%;
 }
+
 @keyframes entrarTela {
   from {
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
+
 @keyframes sairTela {
   from {
     opacity: 1;
     transform: translateY(0);
   }
+
   to {
     opacity: 0;
     transform: translateY(-10px);
   }
 }
+
 html {
-  background: #1a1008 url("../Imagens/Fundp.png") center / cover fixed no-repeat;
+  background: #1a1008 url("../Imagens/Cenários/Fundp.png") center / cover fixed no-repeat;
 }
+
 body {
   font-family: "Cinzel", serif;
   color: #e8dcc0;
-  background: transparent url("../Imagens/Fundp.png") center / cover fixed
-    no-repeat;
+  background: transparent url("../Imagens/Cenários/Fundp.png") center / cover fixed no-repeat;
   overflow: hidden;
 }
+
 body::before {
   content: "";
   position: fixed;
@@ -55,6 +63,7 @@ body::before {
   align-items: center;
   animation: entrarTela 0.35s ease-out both;
 }
+
 .tela.saindo {
   animation: sairTela 0.25s ease-in both;
   pointer-events: none;
@@ -109,6 +118,7 @@ body::before {
   color: #ffe38a;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6);
 }
+
 .saldo img,
 .saldo .moeda {
   width: 30px;
@@ -136,16 +146,20 @@ body::before {
   opacity: 0.85;
   cursor: pointer;
 }
+
 .seta:hover {
   opacity: 1;
 }
+
 .seta:disabled {
   opacity: 0.25;
   cursor: default;
 }
+
 .seta.esq {
   clip-path: polygon(100% 0, 0 50%, 100% 100%);
 }
+
 .seta.dir {
   clip-path: polygon(0 0, 100% 50%, 0 100%);
 }
@@ -170,12 +184,14 @@ body::before {
     transform 0.2s,
     box-shadow 0.2s;
 }
+
 .card:hover {
   transform: translateY(-6px);
   box-shadow:
     0 0 18px var(--cor),
     0 10px 24px rgba(0, 0, 0, 0.6);
 }
+
 .card.selecionado {
   box-shadow: 0 0 22px var(--cor);
 }
@@ -186,6 +202,7 @@ body::before {
   place-items: center;
   background: radial-gradient(#141a30, #05060c);
 }
+
 .card .arte img {
   max-width: 92%;
   max-height: 92%;
@@ -211,6 +228,7 @@ body::before {
   color: var(--cor);
   text-transform: uppercase;
 }
+
 .nome img {
   width: 24px;
   height: 24px;
@@ -224,6 +242,7 @@ body::before {
   line-height: 1.35;
   text-align: center;
 }
+
 .meta {
   display: flex;
   align-items: center;
@@ -234,11 +253,13 @@ body::before {
   border-bottom: 1px solid #5a4a30;
   margin-bottom: 6px;
 }
+
 .meta img {
   width: 22px;
   height: 22px;
   image-rendering: pixelated;
 }
+
 .desc {
   min-height: 54px;
   font-family: sans-serif;
@@ -260,6 +281,7 @@ body::before {
   font-size: 11px;
   color: #fff;
 }
+
 .moeda {
   width: 16px;
   height: 16px;
@@ -275,9 +297,11 @@ body::before {
   display: none;
   place-items: center;
 }
+
 .modal.aberto {
   display: grid;
 }
+
 .modal .caixa {
   background: #0a0d1a;
   border: 2px solid #cfc7b0;
@@ -286,12 +310,14 @@ body::before {
   text-align: center;
   font-size: 18px;
 }
+
 .modal .acoes {
   display: flex;
   gap: 12px;
   justify-content: center;
   margin-top: 18px;
 }
+
 .modal button {
   padding: 8px 22px;
   font: inherit;
@@ -307,9 +333,11 @@ body::before {
   border-color: #5fc45f;
   color: #d8ffd8;
 }
+
 .modal .btn-comprar:hover {
   background: #2a7a2e;
 }
+
 .modal .btn-cancelar:hover {
   background: #6a2a20;
 }
@@ -318,6 +346,7 @@ body::before {
   body {
     overflow: auto;
   }
+
   .lista {
     gap: 16px;
   }

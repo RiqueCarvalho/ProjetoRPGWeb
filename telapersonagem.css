@@ -1,0 +1,472 @@
+/* CONFIGURAÇÕES GERAIS */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background: #05040a;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  overflow: hidden;
+  font-family: Georgia, serif;
+}
+
+/* TELA DO JOGO */
+
+.game-screen {
+  position: relative;
+
+  width: min(100vw, 150vh);
+  aspect-ratio: 3 / 2;
+
+  overflow: hidden;
+  isolation: isolate;
+
+  background: #080b20;
+}
+
+/* FUNDO ORIGINAL */
+
+.background {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: fill;
+
+  z-index: -3;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* BOTÃO VOLTAR */
+
+.back-button {
+  position: absolute;
+
+  top: 3%;
+  left: 3%;
+
+  width: 5.5%;
+  aspect-ratio: 1;
+
+  z-index: 10;
+
+  border: 2px solid #d7a65b;
+  border-radius: 10px;
+
+  background:
+      linear-gradient(
+          145deg,
+          #885b30,
+          #432819 60%,
+          #25160f
+      );
+
+  box-shadow:
+      0 4px 8px #000c,
+      inset 0 0 8px #f1c47766,
+      inset 0 0 0 3px #58351e;
+
+  cursor: pointer;
+
+  transition: .25s ease;
+}
+
+.back-button:hover {
+  transform: scale(1.08);
+  filter: brightness(1.35);
+}
+
+/* SETA DO BOTÃO */
+
+.back-arrow {
+  position: absolute;
+
+  width: 38%;
+  height: 38%;
+
+  left: 36%;
+  top: 31%;
+
+  border-left: 4px solid #f6d99e;
+  border-bottom: 4px solid #f6d99e;
+
+  transform: rotate(45deg);
+}
+
+.back-arrow::after {
+  content: "";
+
+  position: absolute;
+
+  width: 165%;
+  height: 4px;
+
+  background: #f6d99e;
+
+  left: -5%;
+  top: 80%;
+
+  transform: rotate(-45deg);
+}
+
+/* =================================
+ EFEITO DE NUVENS
+================================= */
+
+.clouds {
+  position: absolute;
+
+  left: -35%;
+  width: 170%;
+  height: 24%;
+
+  pointer-events: none;
+
+  z-index: 1;
+
+  opacity: .13;
+
+  background:
+      radial-gradient(
+          ellipse at 20% 50%,
+          #c4d9ff 0%,
+          transparent 35%
+      ),
+      radial-gradient(
+          ellipse at 55% 40%,
+          #9eb9ee 0%,
+          transparent 40%
+      ),
+      radial-gradient(
+          ellipse at 85% 60%,
+          #c4d9ff 0%,
+          transparent 35%
+      );
+
+  filter: blur(13px);
+}
+
+.clouds-one {
+  top: 30%;
+  animation: moveClouds 45s linear infinite;
+}
+
+.clouds-two {
+  top: 48%;
+
+  opacity: .08;
+
+  transform: scale(1.2);
+
+  animation: moveClouds 65s linear infinite reverse;
+}
+
+@keyframes moveClouds {
+
+  from {
+      translate: -10% 0;
+  }
+
+  to {
+      translate: 20% 0;
+  }
+
+}
+
+/* =================================
+ BRILHO DOS PERSONAGENS
+================================= */
+
+.character-glow {
+  position: absolute;
+
+  z-index: 2;
+
+  pointer-events: none;
+
+  opacity: 0;
+
+  transition:
+      opacity .35s ease,
+      transform .35s ease;
+
+  background:
+      radial-gradient(
+          ellipse at center,
+          #ffdc783d 0%,
+          #e8a83c20 38%,
+          transparent 72%
+      );
+
+  filter: blur(9px);
+}
+
+/* BRILHO DO ARQUEIRO */
+
+.glow-one {
+  left: 0%;
+  top: 28%;
+
+  width: 26%;
+  height: 53%;
+}
+
+/* BRILHO DO CAVALEIRO */
+
+.glow-two {
+  left: 34%;
+  top: 28%;
+
+  width: 28%;
+  height: 53%;
+}
+
+/* BRILHO DO GUERREIRO */
+
+.glow-three {
+  right: 0%;
+  top: 27%;
+
+  width: 27%;
+  height: 54%;
+}
+
+/* PERSONAGEM SELECIONADO */
+
+.character-glow.active {
+  opacity: 1;
+
+  transform: scale(1.05);
+
+  animation: goldenGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes goldenGlow {
+
+  from {
+      filter: blur(8px);
+      opacity: .65;
+  }
+
+  to {
+      filter: blur(15px);
+      opacity: 1;
+  }
+
+}
+
+/* =================================
+ BOTÕES DE SELEÇÃO
+================================= */
+
+.selection-buttons {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 5;
+
+  pointer-events: none;
+}
+
+.select-button {
+  position: absolute;
+
+  top: 86%;
+
+  width: 20%;
+  height: 7.5%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-evenly;
+
+  gap: 5px;
+
+  padding: 0 8px;
+
+  border: 3px solid #a77a47;
+  border-radius: 40px;
+
+  background:
+      linear-gradient(
+          180deg,
+          #b4adb0,
+          #858087 55%,
+          #625c66
+      );
+
+  color: #fff;
+
+  font-family: Georgia, serif;
+  font-weight: bold;
+
+  font-size: clamp(12px, 1.7vw, 25px);
+
+  text-shadow:
+      1px 2px 3px #25202a,
+      0 0 4px #333;
+
+  box-shadow:
+      0 5px 0 #352016,
+      0 7px 12px #0009,
+      inset 0 2px 4px #ffffff88,
+      inset 0 -3px 5px #40333b88;
+
+  cursor: pointer;
+
+  pointer-events: auto;
+
+  white-space: nowrap;
+
+  transition: .25s ease;
+}
+
+/* POSIÇÃO DOS TRÊS BOTÕES */
+
+/* ABAIXO DO PEDESTAL ESQUERDO */
+
+.select-button:nth-child(1) {
+  left: 1.7%;
+}
+
+/* ABAIXO DO PEDESTAL CENTRAL */
+
+.select-button:nth-child(2) {
+  left: 36.9%;
+}
+
+/* ABAIXO DO PEDESTAL DIREITO */
+
+.select-button:nth-child(3) {
+  left: 72.9%;
+}
+
+/* DETALHES DOURADOS */
+
+.diamond {
+  width: 7px;
+  height: 7px;
+
+  flex-shrink: 0;
+
+  background: #f3d18b;
+
+  border: 1px solid #835a2e;
+
+  transform: rotate(45deg);
+
+  box-shadow: 0 0 5px #0008;
+}
+
+/* EFEITO AO PASSAR O MOUSE */
+
+.select-button:hover {
+  transform: translateY(-4px);
+
+  filter: brightness(1.2);
+
+  border-color: #f2ce8b;
+
+  box-shadow:
+      0 7px 0 #352016,
+      0 0 12px #e4b05d88,
+      inset 0 2px 4px #ffffff99;
+}
+
+/* BOTÃO SELECIONADO */
+
+.select-button.active {
+
+  background:
+      linear-gradient(
+          180deg,
+          #e0c17d,
+          #aa793f 60%,
+          #79502b
+      );
+
+  border-color: #ffe1a0;
+
+  box-shadow:
+      0 5px 0 #352016,
+      0 0 12px #f0bd60,
+      0 0 22px #dca34c88,
+      inset 0 2px 5px #ffffffaa;
+}
+
+.select-button.active .diamond {
+  background: #fff0b5;
+  box-shadow: 0 0 8px #ffe1a0;
+}
+
+/* TEXTO DE SELEÇÃO */
+
+.selection-message {
+  position: absolute;
+
+  bottom: 1.2%;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  color: #ffe0a0;
+
+  font-size: clamp(10px, 1vw, 15px);
+
+  text-shadow: 0 2px 5px #000;
+
+  z-index: 6;
+
+  pointer-events: none;
+}
+
+/* =================================
+ RESPONSIVIDADE
+================================= */
+
+@media (max-width: 650px) {
+
+  .back-button {
+      min-width: 27px;
+      border-width: 1px;
+      border-radius: 6px;
+  }
+
+  .back-arrow {
+      border-width: 3px;
+  }
+
+  .back-arrow::after {
+      height: 3px;
+  }
+
+  .select-button {
+      height: 7%;
+      width: 21%;
+
+      font-size: clamp(8px, 2vw, 13px);
+
+      border-width: 2px;
+      padding: 0 3px;
+      gap: 3px;
+  }
+
+  .diamond {
+      width: 4px;
+      height: 4px;
+  }
+
+}

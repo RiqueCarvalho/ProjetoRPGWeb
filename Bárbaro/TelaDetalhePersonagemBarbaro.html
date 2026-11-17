@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Detalhes de Seleção do Bárbaro</title>
+
+    <link rel="stylesheet" href="TelaDetalhePersonagemBarbaro.css">
+    <script src="TelaDetalhePersonagemBarbaro.js" defer></script>
+</head>
+
+<body>
+
+    <main class="tela-selecao">
+
+        <!-- CENÁRIO MEDIEVAL -->
+        <div class="cenario"></div>
+
+        <!--
+            ESPAÇO RESERVADO PARA A GIF DO RAGNAR.
+
+            Por enquanto, permanece vazio e transparente.
+            Quando tiver a GIF, coloque uma imagem aqui:
+
+            <img
+                src="./Imagens/Elementos_gráficos/Ragnar.gif"
+                alt="Ragnar animado"
+                class="personagem-gif"
+            >
+        -->
+
+        <div class="personagem-slot"></div>
+
+
+        <!-- BOTÃO VOLTAR -->
+        <button class="botao-voltar" id="botaoVoltar" aria-label="Voltar">
+            <span>←</span>
+        </button>
+
+
+        <!-- PAINEL DE INFORMAÇÕES -->
+        <aside class="painel-personagem">
+
+            <!-- RETRATO -->
+            <div class="retrato-container">
+
+                <img class="retrato" src="./Barbaro.jpeg"
+                    alt="Retrato de Ragnar">
+
+            </div>
+
+
+            <!-- NOME E DESCRIÇÃO -->
+            <div class="informacoes">
+
+                <h1>Ragnar, o Carniceiro</h1>
+
+                <p>
+                    Um guerreiro brutal que domina o campo de batalha
+                    com seu machado colossal. Sua força destrói tudo
+                    em seu caminho.
+                </p>
+
+            </div>
+
+
+            <!-- BOTÕES DE OPÇÕES -->
+            <div class="opcoes-personagem">
+
+                <button class="opcao" data-menu="habilidades" aria-label="Árvore de habilidades">
+                    <img src="./Imagens/Elementos_gráficos/arvore de abilidade.png" alt="Árvore de habilidades">
+                </button>
+
+
+                <button class="opcao" data-menu="armas" aria-label="Mudar arma">
+                    <img src="./Imagens/Elementos_gráficos/troca de arma.png" alt="Mudar arma">
+                </button>
+
+
+                <button class="opcao" data-menu="estilos" aria-label="Trocar estilo">
+                    <img src="./Imagens/Elementos_gráficos/troca de skim.png" alt="Trocar estilo">
+                </button>
+
+            </div>
+
+
+            <!-- ATRIBUTOS -->
+            <div class="atributos">
+
+                <span>Atk: 120</span>
+
+                <span>Def: 150</span>
+
+                <span>Vida: 2500</span>
+
+            </div>
+
+        </aside>
+
+
+        <!-- BOTÃO ESCOLHER -->
+        <button class="botao-escolher" id="botaoEscolher">
+            Escolher
+        </button>
+
+
+        <!-- MENSAGENS -->
+        <div class="mensagem" id="mensagem" aria-live="polite"></div>
+
+    </main>
+
+</body>
+
+</html>
