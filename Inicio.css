@@ -1,0 +1,170 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Montserrat:wght@400;600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #0b0c10;
+  font-family: "Montserrat", sans-serif;
+  color: #f4e8d1;
+}
+
+.tela-press-start {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* Fundo escuro com gradiente radial (você pode adicionar uma imagem de castelo aqui depois) */
+  background: radial-gradient(circle at center, #1f2430 0%, #090a0f 100%);
+  cursor: pointer;
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+
+/* Efeito de fade-out quando o jogador aperta uma tecla */
+.tela-press-start.iniciando {
+  opacity: 0;
+  transform: scale(1.05);
+}
+
+.sombra {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle,
+    transparent 40%,
+    rgba(0, 0, 0, 0.85) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.conteudo-central {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rem;
+}
+
+/* Estilização do Título */
+.titulo-jogo h1 {
+  font-family: "Cinzel", serif;
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: 4px;
+  color: #f8f1e5;
+  text-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.9),
+    0 0 30px rgba(212, 175, 55, 0.3);
+  margin: 12px 0;
+}
+
+.titulo-jogo h1 span {
+  color: #d4af37; /* Dourado medieval */
+  text-shadow: 0 0 25px rgba(212, 175, 55, 0.6);
+}
+
+.ornamento {
+  display: block;
+  font-size: 1.1rem;
+  color: #d4af37;
+  letter-spacing: 3px;
+  opacity: 0.85;
+}
+
+/* Texto "Pressione qualquer tecla" */
+.area-acao {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.texto-piscante {
+  font-family: "Cinzel", serif;
+  font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-shadow: 0 0 12px rgba(212, 175, 55, 0.8);
+  animation: pulsar 2s infinite ease-in-out;
+}
+
+.dica-mobile {
+  font-size: 0.8rem;
+  color: #9ba3b0;
+  letter-spacing: 1px;
+}
+
+/* Animação suave de pulsar */
+@keyframes pulsar {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.25;
+    transform: scale(0.98);
+  }
+}
+
+/* Partículas brilhantes flutuando no fundo */
+.particulas {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.brilho {
+  position: absolute;
+  bottom: -10px;
+  width: 4px;
+  height: 4px;
+  background: #d4af37;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #d4af37;
+  animation: subir linear infinite;
+}
+
+@keyframes subir {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-105vh) scale(0.3);
+    opacity: 0;
+  }
+}
+
+.rodape {
+  position: absolute;
+  bottom: 20px;
+  z-index: 2;
+  font-size: 0.8rem;
+  color: rgba(244, 232, 209, 0.4);
+  letter-spacing: 1px;
+}
