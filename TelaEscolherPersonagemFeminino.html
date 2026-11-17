@@ -4,13 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Seleção de Personagem - RPG</title>
-    <link rel="stylesheet" href="HeroiFeminino.css" />
+    <link rel="stylesheet" href="TelaEscolherPersonagemFeminino.css" />
   </head>
+
   <body>
     <div class="container-selecao">
       <!-- Botão de Voltar -->
-      <button class="btn-voltar" onclick="voltar()">
-        <img src="./Imagens/Elementos_gráficos/WhatsApp Image 2026-10-28 at 11.26.43.jpeg" alt="Voltar" />
+      <button type="button" class="btn-voltar" onclick="voltar()">
+        <img src="Seta.png" alt="Voltar" />
       </button>
 
       <!-- Container Flexbox dos Personagens -->
@@ -18,11 +19,12 @@
         <!-- Personagem 1: Alquimista -->
         <div class="coluna-personagem">
           <img
-            src="./Imagens/Elementos_gráficos/WhatsApp Image 2026-11-03 at 10.08.11.jpeg"
+            src="Alquimista.png"
             alt="Alquimista"
             class="sprite-heroi alquimista-img"
           />
           <button
+            type="button"
             class="btn-selecionar"
             onclick="selecionarPersonagem('Alquimista')"
           >
@@ -34,6 +36,7 @@
         <div class="coluna-personagem">
           <img src="Bruxa.png" alt="Bruxa" class="sprite-heroi bruxa-img" />
           <button
+            type="button"
             class="btn-selecionar"
             onclick="selecionarPersonagem('Bruxa')"
           >
@@ -44,11 +47,12 @@
         <!-- Personagem 3: Atiradora -->
         <div class="coluna-personagem">
           <img
-            src="./"
+            src="Atiradora.png"
             alt="Atiradora"
             class="sprite-heroi atiradora-img"
           />
           <button
+            type="button"
             class="btn-selecionar"
             onclick="selecionarPersonagem('Atiradora')"
           >
@@ -58,6 +62,6 @@
       </div>
     </div>
 
-    <script src="HeroiFeminino.js"></script>
+    <script src="TelaEscolherPersonagemFeminino.js"></script>
   </body>
 </html>
