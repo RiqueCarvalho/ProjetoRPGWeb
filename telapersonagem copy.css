@@ -1,0 +1,551 @@
+/* =====================================
+   CONFIGURAÇÕES GERAIS
+===================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: #050611;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+/* =====================================
+ TELA PRINCIPAL - 100% DA TELA
+===================================== */
+
+.game-screen {
+  position: fixed;
+  inset: 0;
+
+  width: 100vw;
+  height: 100vh;
+  height: 100svh;
+
+  overflow: hidden;
+  background: #050611;
+}
+
+/* =====================================
+ CENÁRIO E IMAGEM FIXA
+===================================== */
+
+.stage {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+  isolation: isolate;
+
+  background: #080d24;
+}
+
+.scene-image {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  z-index: 1;
+
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Escurecimento cinematográfico discreto */
+
+.stage::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+      to bottom,
+      rgba(3, 5, 20, 0.10),
+      transparent 40%,
+      rgba(3, 4, 15, 0.18)
+  );
+
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* =====================================
+ NUVENS DISTANTES
+===================================== */
+
+.cloud-layer {
+  position: absolute;
+
+  left: -25%;
+  width: 150%;
+  height: 38%;
+
+  pointer-events: none;
+  z-index: 2;
+
+  background-repeat: no-repeat;
+
+  mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      black 18%,
+      black 68%,
+      transparent 100%
+  );
+
+  -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      black 18%,
+      black 68%,
+      transparent 100%
+  );
+}
+
+.clouds-far {
+  top: 0;
+
+  opacity: 0.25;
+  filter: blur(5px);
+
+  background-image:
+
+      radial-gradient(
+          ellipse 12% 30% at 10% 65%,
+          rgba(105, 150, 255, 0.32),
+          transparent 75%
+      ),
+
+      radial-gradient(
+          ellipse 15% 34% at 30% 55%,
+          rgba(76, 125, 235, 0.28),
+          transparent 75%
+      ),
+
+      radial-gradient(
+          ellipse 13% 28% at 52% 65%,
+          rgba(100, 145, 255, 0.25),
+          transparent 75%
+      ),
+
+      radial-gradient(
+          ellipse 17% 35% at 75% 55%,
+          rgba(74, 120, 230, 0.28),
+          transparent 75%
+      ),
+
+      radial-gradient(
+          ellipse 12% 30% at 95% 65%,
+          rgba(100, 145, 255, 0.24),
+          transparent 75%
+      );
+
+  animation: cloudsFar 100s ease-in-out infinite alternate;
+}
+
+/* =====================================
+ NUVENS MAIS PRÓXIMAS
+===================================== */
+
+.clouds-near {
+  top: 9%;
+
+  opacity: 0.14;
+  filter: blur(9px);
+
+  background-image:
+
+      radial-gradient(
+          ellipse 17% 35% at 15% 65%,
+          rgba(110, 160, 255, 0.3),
+          transparent 75%
+      ),
+
+      radial-gradient(
+          ellipse 20% 40% at 45% 60%,
+          rgba(65, 115, 225, 0.3),
+          transparent 75%
+      ),
+
+      radial-gradient(
+          ellipse 18% 35% at 80% 65%,
+          rgba(110, 155, 255, 0.25),
+          transparent 75%
+      );
+
+  animation: cloudsNear 140s ease-in-out infinite alternate;
+}
+
+@keyframes cloudsFar {
+  from {
+      transform: translateX(-4%);
+  }
+
+  to {
+      transform: translateX(4%);
+  }
+}
+
+@keyframes cloudsNear {
+  from {
+      transform: translateX(5%);
+  }
+
+  to {
+      transform: translateX(-5%);
+  }
+}
+
+/* =====================================
+ NÉVOA MÁGICA
+===================================== */
+
+.horizon-mist {
+  position: absolute;
+
+  top: 30%;
+  left: -10%;
+
+  width: 120%;
+  height: 22%;
+
+  z-index: 2;
+  pointer-events: none;
+
+  background: radial-gradient(
+      ellipse at center,
+      rgba(85, 130, 220, 0.13),
+      transparent 70%
+  );
+
+  filter: blur(18px);
+
+  animation: mistMovement 45s ease-in-out infinite alternate;
+}
+
+@keyframes mistMovement {
+  from {
+      transform: translateX(-3%);
+      opacity: 0.5;
+  }
+
+  to {
+      transform: translateX(3%);
+      opacity: 0.9;
+  }
+}
+
+/* =====================================
+ BRILHO DOS PEDESTAIS
+===================================== */
+
+.pedestal-glows {
+  position: absolute;
+  inset: 0;
+
+  z-index: 3;
+  pointer-events: none;
+}
+
+.pedestal-glow {
+  position: absolute;
+
+  top: 76%;
+
+  width: 23%;
+  height: 17%;
+
+  border-radius: 50%;
+
+  transform: translateX(-50%);
+
+  background: radial-gradient(
+      ellipse,
+      rgba(255, 194, 75, 0.4) 0%,
+      rgba(255, 160, 40, 0.17) 38%,
+      transparent 72%
+  );
+
+  filter: blur(12px);
+
+  opacity: 0;
+
+  transition: opacity 0.5s ease;
+}
+
+.pedestal-glow[data-glow="0"] {
+  left: 22%;
+}
+
+.pedestal-glow[data-glow="1"] {
+  left: 50%;
+}
+
+.pedestal-glow[data-glow="2"] {
+  left: 78%;
+}
+
+.pedestal-glow.is-active {
+  opacity: 1;
+
+  animation: pedestalPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes pedestalPulse {
+  0%, 100% {
+      filter: blur(12px);
+      opacity: 0.65;
+  }
+
+  50% {
+      filter: blur(17px);
+      opacity: 1;
+  }
+}
+
+/* =====================================
+ BOTÃO VOLTAR
+===================================== */
+
+.back-button {
+  position: absolute;
+
+  top: 3.5%;
+  left: 2.5%;
+
+  width: clamp(38px, 4.5vw, 60px);
+  height: clamp(38px, 4.5vw, 60px);
+
+  display: grid;
+  place-items: center;
+
+  border: 2px solid #bd934d;
+  border-radius: 13px;
+
+  color: #ffe5a4;
+
+  background: linear-gradient(
+      145deg,
+      #60421e,
+      #291c17
+  );
+
+  box-shadow:
+      0 0 12px rgba(255, 188, 78, 0.2),
+      inset 0 0 10px rgba(255, 210, 130, 0.13),
+      0 5px 12px rgba(0, 0, 0, 0.55);
+
+  cursor: pointer;
+
+  z-index: 10;
+
+  transition: all 0.3s ease;
+}
+
+.back-button svg {
+  width: 58%;
+  height: 58%;
+}
+
+.back-button:hover {
+  transform: translateY(-3px);
+
+  background: linear-gradient(
+      145deg,
+      #89612c,
+      #382319
+  );
+
+  box-shadow:
+      0 0 22px rgba(255, 193, 90, 0.65),
+      inset 0 0 12px rgba(255, 220, 160, 0.2);
+}
+
+.back-button:active {
+  transform: scale(0.92);
+}
+
+/* =====================================
+ BOTÕES DE SELEÇÃO
+===================================== */
+
+.character-buttons {
+  position: absolute;
+  inset: 0;
+
+  z-index: 8;
+  pointer-events: none;
+}
+
+.select-button {
+  position: absolute;
+
+  bottom: 6%;
+
+  width: clamp(100px, 17%, 235px);
+  height: clamp(38px, 5.5vw, 57px);
+
+  transform: translateX(-50%);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 2px solid #b18a4b;
+  border-radius: 40px;
+
+  background: linear-gradient(
+      180deg,
+      #665f61,
+      #302a32
+  );
+
+  color: #fff0d0;
+
+  font-family: Georgia, serif;
+  font-size: clamp(10px, 1.25vw, 17px);
+  font-weight: bold;
+
+  text-shadow: 1px 2px 3px #000;
+
+  box-shadow:
+      0 5px 0 #18131b,
+      0 7px 13px rgba(0, 0, 0, 0.6),
+      inset 0 1px 5px rgba(255, 255, 255, 0.2);
+
+  cursor: pointer;
+  pointer-events: auto;
+
+  transition: all 0.3s ease;
+}
+
+/* Posição dos três personagens */
+
+.select-button:nth-child(1) {
+  left: 22%;
+}
+
+.select-button:nth-child(2) {
+  left: 50%;
+}
+
+.select-button:nth-child(3) {
+  left: 78%;
+}
+
+/* Efeito ao passar o mouse */
+
+.select-button:hover {
+  transform: translate(-50%, -5px);
+
+  border-color: #f5cf83;
+
+  background: linear-gradient(
+      180deg,
+      #85714d,
+      #493a2d
+  );
+
+  box-shadow:
+      0 5px 0 #21170f,
+      0 0 20px rgba(255, 197, 91, 0.5),
+      inset 0 0 12px rgba(255, 230, 170, 0.2);
+}
+
+/* Personagem selecionado */
+
+.select-button.is-selected {
+  border: 2px solid #f0c878;
+
+  color: #fff5d8;
+
+  background: linear-gradient(
+      180deg,
+      #a47b39,
+      #59401f
+  );
+
+  box-shadow:
+      0 5px 0 #392410,
+      0 0 17px rgba(255, 195, 80, 0.55),
+      inset 0 0 12px rgba(255, 236, 177, 0.3);
+}
+
+.select-button.is-selected:hover {
+  background: linear-gradient(
+      180deg,
+      #c19449,
+      #715025
+  );
+
+  box-shadow:
+      0 5px 0 #392410,
+      0 0 25px rgba(255, 206, 105, 0.8);
+}
+
+.select-button:active {
+  transform: translate(-50%, 1px);
+}
+
+/* =====================================
+ RESPONSIVIDADE
+===================================== */
+
+@media (max-width: 600px) {
+
+  .select-button {
+      width: 29%;
+      min-width: 0;
+      height: 34px;
+
+      font-size: 10px;
+      padding: 3px;
+  }
+
+  .back-button {
+      border-radius: 9px;
+  }
+
+  .clouds-far {
+      opacity: 0.2;
+  }
+
+  .clouds-near {
+      opacity: 0.1;
+  }
+}
+
+/* =====================================
+ ACESSIBILIDADE
+===================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .cloud-layer,
+  .horizon-mist,
+  .pedestal-glow.is-active {
+      animation: none;
+  }
+
+  * {
+      transition-duration: 0.01ms !important;
+  }
+}
