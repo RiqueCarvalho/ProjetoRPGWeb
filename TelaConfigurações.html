@@ -9,88 +9,89 @@
 </head>
 
 <body>
-    <button class="btn-voltar" onclick="window.location.href = 'telainicial.html'">
+    <!-- Botão Voltar Estilizado -->
+    <button class="btn-voltar" onclick="window.location.href = 'telainicial.html'" title="Voltar ao Menu">
         <img src="./Imagens/Elementos_gráficos/WhatsApp Image 2026-10-28 at 11.26.43.jpeg" alt="Voltar" />
     </button>
-    <main class="game-screen">
 
+    <main class="game-screen">
         <div class="background"></div>
         <div class="dark-overlay"></div>
-        <img class="logo" src="./Imagens/Elementos_gráficos/logo.png">
+
+        <!-- Ornaments decorativos de topo -->
+        <img class="logo" src="./Imagens/Elementos_gráficos/logo.png" alt="Logo The Last Kingdom">
 
         <section class="settings-panel">
+            <div class="panel-header">
+                <span class="ornamento">✦ ━━━━━━━━━ ✦</span>
+                <h1>Configurações</h1>
+                <span class="ornamento">━━━━━━━━━ ⚔ ━━━━━━━━━</span>
+            </div>
 
-            <h1>Configurações</h1>
+            <!-- Grade de Configurações Principais -->
+            <div class="settings-grid">
 
-            <div class="settings-grid top-grid">
-                <div class="setting">
-                    <h2>SFX</h2>
+                <!-- SFX -->
+                <div class="setting-card">
+                    <div class="setting-info">
+                        <h2>Efeitos Sonoros</h2>
+                        <p>Ativar ou desativar os sons de batalha e interface</p>
+                    </div>
                     <button class="gold-button toggle" data-setting="sfx">
                         Desligado
                     </button>
                 </div>
 
-                <div class="setting">
-                    <h2>Música</h2>
+                <!-- Música -->
+                <div class="setting-card">
+                    <div class="setting-info">
+                        <h2>Trilha Sonora</h2>
+                        <p>Imersão musical épica do reino</p>
+                    </div>
                     <button class="gold-button toggle" data-setting="music">
                         Desligado
                     </button>
                 </div>
-            </div>
 
-            <div class="middle-row">
-                <div></div>
-
-                <button class="gold-button about-button" id="aboutButton">
-                    Sobre
-                </button>
-
-                <label class="fullscreen-label">
-                    <input type="checkbox" id="fullscreen">
-                    <span>Tela Cheia</span>
-                </label>
-            </div>
-
-            <div class="settings-grid lower-grid">
-                <div class="setting">
-                    <h2>Brilho</h2>
+                <!-- Brilho -->
+                <div class="setting-card">
+                    <div class="setting-info">
+                        <h2>Luminosidade</h2>
+                        <p>Ajuste visual do ambiente de jogo</p>
+                    </div>
                     <button class="gold-button" id="brightnessButton">
                         Claro
                     </button>
                 </div>
 
-                <div class="setting credits-setting">
-                    <div class="credits-spacer"></div>
-                    <button class="gold-button" id="creditsButton">
-                        Créditos
-                    </button>
+                <!-- Tela Cheia -->
+                <div class="setting-card fullscreen-card">
+                    <div class="setting-info">
+                        <h2>Modo de Exibição</h2>
+                        <p>Expandir o reino para a tela inteira</p>
+                    </div>
+                    <label class="fullscreen-switch">
+                        <input type="checkbox" id="fullscreen">
+                        <span class="slider"></span>
+                        <span class="fullscreen-text">Tela Cheia</span>
+                    </label>
                 </div>
+
             </div>
 
+            <!-- Botões de Ação Inferiores -->
             <div class="bottom-buttons">
-                <button class="action-button" id="cancelButton">
+                <button class="action-button cancel-btn" id="cancelButton">
                     Cancelar
                 </button>
 
-                <button class="action-button" id="saveButton">
-                    Salvar
+                <button class="action-button save-btn" id="saveButton">
+                    Salvar Alterações
                 </button>
             </div>
-
         </section>
 
-        <div class="modal hidden" id="infoModal">
-            <div class="modal-content">
-                <h2 id="modalTitle">Sobre</h2>
-                <p id="modalText"></p>
-                <button class="gold-button" id="closeModal">
-                    Voltar
-                </button>
-            </div>
-        </div>
-
         <div class="message hidden" id="message"></div>
-
     </main>
 
     <script src="TelaConfigurações.js"></script>

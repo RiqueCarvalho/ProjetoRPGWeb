@@ -1,61 +1,86 @@
 const telaInicial = document.getElementById("telaInicial");
-const textoStart = document.getElementById("textoStart");
+const secaoPressStart = document.getElementById("secaoPressStart");
+const secaoNome = document.getElementById("secaoNome");
+const inputNome = document.getElementById("inputNome");
+const btnConfirmarNome = document.getElementById("btnConfirmarNome");
 const containerParticulas = document.getElementById("particulas");
 
-// Defina aqui para qual arquivo o jogo deve ir após pressionar a tecla
-const proximaTela = "TelaInicial.html";
+let transicaoAtiva = false;
 
-// Cria o elemento de áudio (substitua 'transforme.mp3' pelo nome exato do seu arquivo de som)
-const somTransformacao = new Audio("Arrival to Earth (Film Version) - Transformers (The Expanded Score).mp3");
-somTransformacao.volume = 0.7; // Volume de 0 a 1
+// Função chamada quando o usuário pressiona qualquer tecla ou clica na tela inicial
+function mostrarTelaNome(evento) {
+  if (transicaoAtiva) return;
 
-let jogoIniciado = false;
+  // Evita conflito se clicar dentro do formulário de nome antes da hora
+  if (evento.target.closest('#secaoNome')) return;
 
-function iniciarJogo() {
-  if (jogoIniciado) return;
-  jogoIniciado = true;
+  transicaoAtiva = true;
 
-  // Feedback visual imediato
-  textoStart.style.animation = "none";
-  textoStart.textContent = "Entrando no reino...";
-  textoStart.style.color = "#d4af37";
-
-  // Toca o áudio dos Transformers no momento do clique/tecla
-  somTransformacao.play().catch((error) => {
-    console.log(
-      "O navegador impediu o autoplay do som até haver interação, mas o clique liberou:",
-      error,
-    );
-  });
-
-  // Aplica o efeito de transição suave
-  telaInicial.classList.add("iniciando");
-
-  // Aguarda o som tocar um pouco e o fade-out terminar (800ms) antes de mudar de página
+  // Transição suave ocultando o "Press Start" e mostrando o campo de nome
+  secaoPressStart.style.opacity = "0";
   setTimeout(() => {
-    window.location.href = proximaTela;
+    secaoPressStart.classList.add("oculto");
+    secaoNome.classList.remove("oculto");
+    secaoNome.style.opacity = "1";
+
+    // Foca automaticamente no campo de texto para digitar
+    inputNome.focus();
+  }, 400);
+
+  // Remove os ouvintes antigos da tela inicial
+  document.removeEventListener("keydown", lidarComTecla);
+  telaInicial.removeEventListener("click", mostrarTelaNome);
+}
+
+function lidarComTecla(evento) {
+  if (evento.key === "F5" || evento.key === "F12") return;
+  mostrarTelaNome(evento);
+}
+
+// Função para salvar o apelido e ir para a tela de Boas-Vindas
+function salvarEAvancar() {
+  let nomeJogador = inputNome.value.trim();
+
+  if (nomeJogador === "") {
+    nomeJogador = "Guerreiro Anônimo";
+  }
+
+  // Salva o nome na memória do navegador
+  localStorage.setItem("jogadorNome", nomeJogador);
+
+  // Efeito visual de saída e redirecionamento para a tela de Boas-Vindas
+  telaInicial.style.opacity = "0";
+  setTimeout(() => {
+    window.location.href = "BoasVindas.html";
   }, 800);
 }
 
-// Detecta qualquer tecla pressionada no teclado
-document.addEventListener("keydown", (evento) => {
-  if (evento.key === "F5" || evento.key === "F12") return;
-  iniciarJogo();
+// Eventos de clique/tecla iniciais
+document.addEventListener("keydown", lidarComTecla);
+telaInicial.addEventListener("click", mostrarTelaNome);
+
+// Evento ao clicar no botão de confirmar nome
+btnConfirmarNome.addEventListener("click", (e) => {
+  e.stopPropagation();
+  salvarEAvancar();
 });
 
-// Detecta clique do mouse ou toque na tela
-telaInicial.addEventListener("click", iniciarJogo);
+// Evento ao apertar "Enter" dentro do campo de texto
+inputNome.addEventListener("keydown", (e) => {
+  e.stopPropagation();
+  if (e.key === "Enter") {
+    salvarEAvancar();
+  }
+});
 
-// Gera partículas douradas flutuando no fundo
+// Geração de partículas flutuantes douradas no fundo
 function criarParticulas() {
   for (let i = 0; i < 25; i++) {
     const particula = document.createElement("div");
     particula.classList.add("brilho");
-
     particula.style.left = `${Math.random() * 100}vw`;
     particula.style.animationDuration = `${4 + Math.random() * 6}s`;
     particula.style.animationDelay = `${Math.random() * 5}s`;
-
     containerParticulas.appendChild(particula);
   }
 }

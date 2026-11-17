@@ -22,37 +22,41 @@ const toggleButtons = document.querySelectorAll(".toggle");
 const brightnessButton = document.getElementById("brightnessButton");
 const fullscreenCheckbox = document.getElementById("fullscreen");
 const darkOverlay = document.querySelector(".dark-overlay");
-
-const modal = document.getElementById("infoModal");
-const modalTitle = document.getElementById("modalTitle");
-const modalText = document.getElementById("modalText");
 const message = document.getElementById("message");
 
 let messageTimeout;
 
 function renderSettings() {
+    // Atualiza os botões de ligar/desligar (SFX e Música)
     toggleButtons.forEach(button => {
         const key = button.dataset.setting;
         button.textContent = settings[key] ? "Ligado" : "Desligado";
         button.setAttribute("aria-pressed", settings[key]);
     });
 
-    brightnessButton.textContent = settings.brightness;
+    // Atualiza o texto do botão de brilho
+    if (brightnessButton) {
+        brightnessButton.textContent = settings.brightness;
+    }
 
-    fullscreenCheckbox.checked =
-        Boolean(document.fullscreenElement);
+    // Sincroniza o switch de tela cheia
+    if (fullscreenCheckbox) {
+        fullscreenCheckbox.checked = Boolean(document.fullscreenElement);
+    }
 
+    // Aplica a opacidade de brilho no overlay escuro
     const brightness = {
-        Claro: 0.28,
-        Normal: 0.48,
-        Escuro: 0.68
+        Claro: 0.15,
+        Normal: 0.40,
+        Escuro: 0.65
     };
 
-    darkOverlay.style.background =
-        `rgba(0, 0, 0, ${brightness[settings.brightness] ?? 0.28})`;
+    if (darkOverlay) {
+        darkOverlay.style.background = `rgba(5, 6, 13, ${brightness[settings.brightness] ?? 0.15})`;
+    }
 }
 
-// SFX e música: alterna entre ligado e desligado.
+// SFX e Música: alterna entre ligado e desligado.
 toggleButtons.forEach(button => {
     button.addEventListener("click", () => {
         const key = button.dataset.setting;
@@ -61,69 +65,46 @@ toggleButtons.forEach(button => {
     });
 });
 
-// Alterna o brilho.
-brightnessButton.addEventListener("click", () => {
-    const levels = ["Claro", "Normal", "Escuro"];
-    const index = levels.indexOf(settings.brightness);
+// Alterna o brilho (Claro -> Normal -> Escuro).
+if (brightnessButton) {
+    brightnessButton.addEventListener("click", () => {
+        const levels = ["Claro", "Normal", "Escuro"];
+        const index = levels.indexOf(settings.brightness);
 
-    settings.brightness = levels[(index + 1) % levels.length];
+        settings.brightness = levels[(index + 1) % levels.length];
 
-    renderSettings();
-});
+        renderSettings();
+    });
+}
 
-// Tela cheia.
-fullscreenCheckbox.addEventListener("change", async () => {
-    try {
-        if (fullscreenCheckbox.checked) {
-            await document.documentElement.requestFullscreen();
-        } else if (document.fullscreenElement) {
-            await document.exitFullscreen();
+// Tela cheia via switch.
+if (fullscreenCheckbox) {
+    fullscreenCheckbox.addEventListener("change", async () => {
+        try {
+            if (fullscreenCheckbox.checked) {
+                await document.documentElement.requestFullscreen();
+            } else if (document.fullscreenElement) {
+                await document.exitFullscreen();
+            }
+        } catch (error) {
+            showMessage("Tela cheia indisponível neste navegador.");
         }
-    } catch (error) {
-        showMessage("Tela cheia indisponível neste navegador.");
-    }
 
-    renderSettings();
-});
+        renderSettings();
+    });
+}
 
 document.addEventListener("fullscreenchange", () => {
     settings.fullscreen = Boolean(document.fullscreenElement);
+    if (fullscreenCheckbox) {
+        fullscreenCheckbox.checked = settings.fullscreen;
+    }
     renderSettings();
 });
 
-// Janelas Sobre e Créditos.
-function openModal(title, text) {
-    modalTitle.textContent = title;
-    modalText.textContent = text;
-    modal.classList.remove("hidden");
-}
-
-document.getElementById("aboutButton").addEventListener("click", () => {
-    openModal(
-        "Sobre",
-        "The Last Kingdom\n\nConfigurações do jogo."
-    );
-});
-
-document.getElementById("creditsButton").addEventListener("click", () => {
-    openModal(
-        "Créditos",
-        "Desenvolvimento: Time terceiro DS\nArte: De algum canto ai\nObrigado por jogar!"
-    );
-});
-
-document.getElementById("closeModal").addEventListener("click", () => {
-    modal.classList.add("hidden");
-});
-
-modal.addEventListener("click", event => {
-    if (event.target === modal) {
-        modal.classList.add("hidden");
-    }
-});
-
-// Mensagens.
+// Sistema de mensagens flutuantes de feedback.
 function showMessage(text) {
+    if (!message) return;
     message.textContent = text;
     message.classList.remove("hidden");
 
@@ -134,37 +115,44 @@ function showMessage(text) {
     }, 2200);
 }
 
-// Salvar configurações.
-document.getElementById("saveButton").addEventListener("click", () => {
-    try {
-        localStorage.setItem(
-            "lastKingdomSettings",
-            JSON.stringify(settings)
-        );
+// Salvar configurações no localStorage.
+const saveButton = document.getElementById("saveButton");
+if (saveButton) {
+    saveButton.addEventListener("click", () => {
+        try {
+            localStorage.setItem(
+                "lastKingdomSettings",
+                JSON.stringify(settings)
+            );
 
-        originalSettings = { ...settings };
-        showMessage("Configurações salvas!");
-    } catch (error) {
-        showMessage("Erro ao salvar configurações.");
-    }
-});
-
-// Cancelar alterações e voltar ao último estado salvo.
-document.getElementById("cancelButton").addEventListener("click", async () => {
-    settings = { ...originalSettings };
-
-    try {
-        if (settings.fullscreen && !document.fullscreenElement) {
-            await document.documentElement.requestFullscreen();
-        } else if (!settings.fullscreen && document.fullscreenElement) {
-            await document.exitFullscreen();
+            originalSettings = { ...settings };
+            showMessage("Configurações salvas com sucesso!");
+        } catch (error) {
+            showMessage("Erro ao salvar configurações.");
         }
-    } catch (error) {
-        console.warn("Não foi possível restaurar a tela cheia.");
-    }
+    });
+}
 
-    renderSettings();
-});
+// Cancelar alterações e restaurar o último estado salvo.
+const cancelButton = document.getElementById("cancelButton");
+if (cancelButton) {
+    cancelButton.addEventListener("click", async () => {
+        settings = { ...originalSettings };
 
-// Inicialização.
+        try {
+            if (settings.fullscreen && !document.fullscreenElement) {
+                await document.documentElement.requestFullscreen();
+            } else if (!settings.fullscreen && document.fullscreenElement) {
+                await document.exitFullscreen();
+            }
+        } catch (error) {
+            console.warn("Não foi possível restaurar a tela cheia.");
+        }
+
+        renderSettings();
+        showMessage("Alterações descartadas.");
+    });
+}
+
+// Inicialização da tela ao carregar
 renderSettings();

@@ -1,52 +1,47 @@
 <!doctype html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Last Kingdom</title>
-    <link rel="stylesheet" href="TelaInicial.css" />
-  </head>
-  <body>
-    <main class="tela-inicial">
-      <section class="menu">
-        <img
-          src="./Imagens/Elementos_gráficos/logo.png"
-          alt="The Last Kingdom"
-          class="logo"
-        />
-        <nav class="botoes-menu">
-          <!-- Voltamos para <button> para manter o design perfeito do seu CSS -->
-          <button
-            id="novoJogo"
-            class="botao"
-            onclick="window.location.href = 'Carregamento.html'"
-          >
-            <span>⚔️</span>
-            <span>Novo Jogo</span>
-          </button>
-          <button
-            id="creditos"
-            class="botao"
-            onclick="window.location.href = 'Telacréditos.html'"
-          >
-            <span>🪙</span>
-            <span>Créditos</span>
-          </button>
-          <button
-            id="configuracoes"
-            class="botao"
-            onclick="window.location.href = 'TelaConfigurações.html'"
-          >
-            <span>⚙️</span>
-            <span>Configurações</span>
-          </button>
-        </nav>
-      </section>
-      <img
-        src="./Imagens/Elementos_gráficos/cavaleiro.png"
-        alt="Cavaleiro medieval"
-        class="cavaleiro"
-      />
-    </main>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Last Kingdom</title>
+  <link rel="stylesheet" href="TelaInicial.css" />
+</head>
+
+<body>
+  <main class="tela-inicial">
+    <!-- Exibição personalizada do nome do jogador -->
+    <div class="saudacao-jogador">
+      <span>Guerreiro(a):</span> <strong id="nomeJogadorExibido">Aventureiro</strong>
+    </div>
+
+    <section class="menu">
+      <img src="./Imagens/Elementos_gráficos/logo.png" alt="The Last Kingdom" class="logo" />
+      <nav class="botoes-menu">
+        <button id="novoJogo" class="botao" onclick="window.location.href = 'Carregamento.html'">
+          <span>⚔️</span>
+          <span>Novo Jogo</span>
+        </button>
+        <button id="creditos" class="botao" onclick="window.location.href = 'Telacréditos.html'">
+          <span>🪙</span>
+          <span>Créditos</span>
+        </button>
+        <button id="configuracoes" class="botao" onclick="window.location.href = 'TelaConfigurações.html'">
+          <span>⚙️</span>
+          <span>Configurações</span>
+        </button>
+      </nav>
+    </section>
+    <img src="./Imagens/Elementos_gráficos/cavaleiro.png" alt="Cavaleiro medieval" class="cavaleiro" />
+  </main>
+
+  <!-- Script para carregar o nome sincronizado -->
+  <script>
+    const spanNome = document.getElementById("nomeJogadorExibido");
+    // Pega o nome salvo no localStorage ou usa um padrão se não encontrar
+    const nomeSalvo = localStorage.getItem("jogadorNome") || "Aventureiro";
+    spanNome.textContent = nomeSalvo;
+  </script>
+</body>
+
 </html>

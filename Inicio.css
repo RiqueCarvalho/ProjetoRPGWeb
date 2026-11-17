@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Montserrat:wght@400;600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Montserrat:wght@400;600&display=swap');
 
 * {
   margin: 0;
@@ -13,7 +13,7 @@ html {
   height: 100%;
   overflow: hidden;
   background-color: #0b0c10;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   color: #f4e8d1;
 }
 
@@ -25,28 +25,15 @@ html {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* Fundo escuro com gradiente radial (você pode adicionar uma imagem de castelo aqui depois) */
   background: radial-gradient(circle at center, #1f2430 0%, #090a0f 100%);
   cursor: pointer;
-  transition:
-    opacity 0.8s ease,
-    transform 0.8s ease;
-}
-
-/* Efeito de fade-out quando o jogador aperta uma tecla */
-.tela-press-start.iniciando {
-  opacity: 0;
-  transform: scale(1.05);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
 .sombra {
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-    circle,
-    transparent 40%,
-    rgba(0, 0, 0, 0.85) 100%
-  );
+  background: radial-gradient(circle, transparent 40%, rgba(0, 0, 0, 0.85) 100%);
   pointer-events: none;
   z-index: 1;
 }
@@ -58,25 +45,31 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4rem;
+  gap: 3rem;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Classe utilitária para ocultar elementos */
+.oculto {
+  display: none !important;
+  opacity: 0;
+  transform: scale(0.95);
 }
 
 /* Estilização do Título */
 .titulo-jogo h1 {
-  font-family: "Cinzel", serif;
-  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-family: 'Cinzel', serif;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
   font-weight: 800;
   line-height: 1.05;
   letter-spacing: 4px;
   color: #f8f1e5;
-  text-shadow:
-    0 4px 20px rgba(0, 0, 0, 0.9),
-    0 0 30px rgba(212, 175, 55, 0.3);
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9), 0 0 30px rgba(212, 175, 55, 0.3);
   margin: 12px 0;
 }
 
 .titulo-jogo h1 span {
-  color: #d4af37; /* Dourado medieval */
+  color: #d4af37;
   text-shadow: 0 0 25px rgba(212, 175, 55, 0.6);
 }
 
@@ -88,7 +81,6 @@ html {
   opacity: 0.85;
 }
 
-/* Texto "Pressione qualquer tecla" */
 .area-acao {
   display: flex;
   flex-direction: column;
@@ -97,7 +89,7 @@ html {
 }
 
 .texto-piscante {
-  font-family: "Cinzel", serif;
+  font-family: 'Cinzel', serif;
   font-size: clamp(1.1rem, 2.2vw, 1.5rem);
   font-weight: 600;
   letter-spacing: 3px;
@@ -113,20 +105,80 @@ html {
   letter-spacing: 1px;
 }
 
-/* Animação suave de pulsar */
 @keyframes pulsar {
+
   0%,
   100% {
     opacity: 1;
     transform: scale(1);
   }
+
   50% {
     opacity: 0.25;
     transform: scale(0.98);
   }
 }
 
-/* Partículas brilhantes flutuando no fundo */
+/* Estilos da área de formulário de nome */
+.area-formulario {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  cursor: default;
+  /* Volta o cursor normal ao digitar */
+}
+
+.subtitulo-nome {
+  font-family: 'Cinzel', serif;
+  font-size: 1.1rem;
+  color: #d4af37;
+  letter-spacing: 1px;
+}
+
+#inputNome {
+  background: rgba(15, 18, 25, 0.8);
+  border: 2px solid rgba(212, 175, 55, 0.5);
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-size: 1.2rem;
+  font-family: 'Montserrat', sans-serif;
+  color: #f4e8d1;
+  text-align: center;
+  outline: none;
+  width: 280px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+#inputNome:focus {
+  border-color: #d4af37;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+}
+
+.botao-entrar {
+  font-family: 'Cinzel', serif;
+  background: linear-gradient(135deg, #d4af37, #aa8c2c);
+  color: #0b0c10;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 28px;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+.botao-entrar:hover {
+  background: linear-gradient(135deg, #e6c555, #d4af37);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+}
+
+/* Partículas */
 .particulas {
   position: absolute;
   inset: 0;
@@ -151,9 +203,11 @@ html {
     transform: translateY(0) scale(1);
     opacity: 0;
   }
+
   20% {
     opacity: 0.8;
   }
+
   100% {
     transform: translateY(-105vh) scale(0.3);
     opacity: 0;

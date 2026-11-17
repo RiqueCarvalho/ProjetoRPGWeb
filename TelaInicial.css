@@ -26,12 +26,10 @@ body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: linear-gradient(
-    90deg,
-    rgba(4, 7, 15, 0.35) 0%,
-    rgba(4, 7, 15, 0.12) 55%,
-    rgba(4, 7, 15, 0.05) 100%
-  );
+  background: linear-gradient(90deg,
+      rgba(4, 7, 15, 0.35) 0%,
+      rgba(4, 7, 15, 0.12) 55%,
+      rgba(4, 7, 15, 0.05) 100%);
   pointer-events: none;
   z-index: 0;
 }
@@ -223,12 +221,45 @@ body::before {
     font-size: 11px;
   }
 }
+
 .botao {
-  text-decoration: none; /* Remove sublinhados indesejados */
-  display: inline-flex; /* Garante que o link se comporte como um bloco/botão */
-  align-items: center; /* Alinha o emoji e o texto verticalmente */
-  justify-content: center; /* Centraliza o conteúdo */
+  text-decoration: none;
+  /* Remove sublinhados indesejados */
+  display: inline-flex;
+  /* Garante que o link se comporte como um bloco/botão */
+  align-items: center;
+  /* Alinha o emoji e o texto verticalmente */
+  justify-content: center;
+  /* Centraliza o conteúdo */
 
   /* Caso eles tenham sumido por causa da cor do texto padrão do navegador: */
-  color: inherit; /* Faz o link herdar a cor de texto que você já tinha definido */
+  color: inherit;
+  /* Faz o link herdar a cor de texto que você já tinha definido */
+}
+
+/* Estilo para centralizar a saudação do jogador no meio da tela */
+.saudacao-jogador {
+  position: absolute;
+  top: 5%;
+  /* Posiciona verticalmente na parte superior/central */
+  left: 50%;
+  transform: translateX(-50%);
+  /* Garante o alinhamento perfeito no eixo X */
+  z-index: 10;
+  font-family: 'Cinzel', serif;
+  font-size: 1.1rem;
+  color: #f4e8d1;
+  background: rgba(11, 12, 16, 0.85);
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  padding: 10px 22px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7), 0 0 10px rgba(212, 175, 55, 0.2);
+  letter-spacing: 1.5px;
+  text-align: center;
+}
+
+.saudacao-jogador strong {
+  color: #d4af37;
+  /* Dourado medieval do tema */
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
 }
