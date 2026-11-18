@@ -24,6 +24,17 @@ const backButton = document.getElementById("backButton");
 
 
 // =====================================
+// ROTAS DOS PERSONAGENS
+// =====================================
+
+const characterRoutes = [
+    "./Arqueiro/Arqueiro.html",
+    "./Cavaleiro/Cavaleiro.html",
+    "./GiganteGuerreiro/GiganteGuerreiro.html"
+];
+
+
+// =====================================
 // SELEÇÃO DE PERSONAGENS
 // =====================================
 
@@ -40,7 +51,7 @@ function selectCharacter(index) {
         );
 
         button.textContent = selected
-            ? "◆ Selecionado ◆"
+            ? "◆ Selecionar ◆"
             : "Selecionar";
 
         button.setAttribute(
@@ -69,6 +80,15 @@ selectButtons.forEach((button, index) => {
     button.addEventListener("click", () => {
 
         selectCharacter(index);
+
+        const destination = characterRoutes[index];
+
+        if (destination) {
+            // Aguarda 350ms para mostrar o brilho no pedestal antes de abrir a tela
+            setTimeout(() => {
+                window.location.href = destination;
+            }, 350);
+        }
 
     });
 
@@ -105,9 +125,11 @@ backgroundInput.addEventListener("change", (event) => {
     // Atualiza o cenário principal
     sceneImage.src = imageURL;
 
-    // Atualiza o fundo desfocado
-    blurredBackground.style.backgroundImage =
-        `url("${imageURL}")`;
+    // Atualiza o fundo desfocado (caso exista no HTML)
+    if (blurredBackground) {
+        blurredBackground.style.backgroundImage =
+            `url("${imageURL}")`;
+    }
 
 });
 
@@ -117,16 +139,5 @@ backgroundInput.addEventListener("change", (event) => {
 // =====================================
 
 backButton.addEventListener("click", () => {
-
-    if (window.history.length > 1) {
-
-        window.history.back();
-
-    } else {
-
-        // Altere para o nome da sua tela anterior
-        window.location.href = "menu.html";
-
-    }
-
+    window.location.href = "TelaInicial3.html";
 });
