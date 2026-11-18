@@ -101,14 +101,14 @@ body {
     position: absolute;
 
     top: 50%;
-    right: 4%;
+    right: 2%;
 
     transform: translateY(-50%);
 
     width: clamp(330px, 33vw, 480px);
 
     /* Altura adaptável, limitada a 800px */
-    height: min(82vh, 800px);
+    height: min(90vh, 800px);
     min-height: 0;
 
     padding: clamp(10px, 1vw, 20px);
@@ -224,7 +224,7 @@ body {
 
     gap: 6px;
 
-    margin-top: clamp(7px, 1vh, 12px);
+    margin-top: clamp(7px, 1vh, 11px);
 }
 
 .opcao {
@@ -233,7 +233,7 @@ body {
     min-width: 0;
 
     /* Mantém o tamanho visual atual em telas grandes */
-    height: clamp(220px, 32vh, 270px);
+    height: clamp(22px, 30vh, 270px);
 
     display: flex;
     justify-content: center;
@@ -282,7 +282,7 @@ body {
     width: 100%;
 
     margin-top: auto;
-    padding-top: 10px;
+    padding-top: 1px;
 
     display: flex;
     justify-content: space-between;
