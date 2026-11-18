@@ -8,6 +8,6 @@ botaoVoltar.addEventListener("click", () => {
 });
 
 // Botão escolher
-botaoEscolher.addEventListener("click", () => {
-    alert("Morgana selecionada! Sua aventura está prestes a começar.");
-});
+setTimeout(() => {
+    window.location.href = "Carregamento.html";
+}, 800);

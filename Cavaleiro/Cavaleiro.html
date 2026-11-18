@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>The Last Kingdom - O Cavaleiro</title>
+
+    <link rel="stylesheet" href="Cavaleiro.css">
+</head>
+
+<body>
+
+    <main class="tela-personagem">
+
+        <div class="fundo-cenario"></div>
+
+        <!-- Botão voltar -->
+        <button class="botao-voltar" onclick="window.location.href='../TelaEscolherPersonagemMasculino.html'"
+            aria-label="Voltar">
+            <img src="botão voltar.png" alt="Voltar">
+        </button>
+
+        <!-- Conteúdo principal -->
+        <section class="conteudo">
+
+            <!-- Personagem e cenário -->
+            <div class="area-personagem">
+
+                <img src="Cavaleiro na Cripta Dourada.png" alt="O Cavaleiro no cenário medieval"
+                    class="imagem-personagem">
+
+                <h1 class="nome-personagem">
+                    ✦ O CAVALEIRO ✦
+                </h1>
+
+                <button class="botao-escolher" id="escolher" onclick="window.location.href='../Carregamento3.html'">
+                    ESCOLHER
+                </button>
+
+            </div>
+
+            <!-- Painel de informações -->
+            <aside class="painel">
+
+                <!-- Imagem da história -->
+                <div class="imagem-historia">
+                    <img src="MiniaturaCavaleiro.jpg" alt="O Cavaleiro preparado para a batalha">
+                </div>
+
+                <!-- Descrição -->
+                <div class="historia">
+                    <p>
+                        Um poderoso cavaleiro e defensor do reino,
+                        conhecido por sua coragem, resistência e
+                        habilidade com a espada. Utiliza uma armadura
+                        pesada e uma lâmina lendária para proteger
+                        seus aliados e enfrentar os inimigos na linha
+                        de frente. Sua determinação e força fazem dele
+                        um guerreiro essencial em qualquer batalha.
+                    </p>
+                </div>
+
+                <!-- Habilidade especial -->
+                <div class="habilidade-especial">
+
+                    <h2>✧ HABILIDADE ESPECIAL ✧</h2>
+
+                    <div class="habilidade-card">
+
+                        <div class="icone-habilidade">
+                            ⚔️
+                        </div>
+
+                        <div class="descricao-habilidade">
+
+                            <h3>Golpe Devastador</h3>
+
+                            <p>
+                                Concentra toda sua força na espada
+                                e desfere um poderoso golpe contra
+                                os inimigos próximos, causando
+                                grande quantidade de dano e
+                                podendo atordoá-los.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Atributos -->
+                <div class="atributos">
+
+                    <div class="atributo">
+                        <span>⚔ Atk:</span>
+
+                        <div class="barra">
+                            <div class="ataque"></div>
+                        </div>
+
+                        <span>80</span>
+                    </div>
+
+                    <div class="atributo">
+                        <span>♧ Def:</span>
+
+                        <div class="barra">
+                            <div class="defesa"></div>
+                        </div>
+
+                        <span>95</span>
+                    </div>
+
+                    <div class="atributo">
+                        <span>♥ Vida:</span>
+
+                        <div class="barra">
+                            <div class="vida"></div>
+                        </div>
+
+                        <span>100</span>
+                    </div>
+
+                </div>
+
+            </aside>
+
+        </section>
+
+    </main>
+
+    <script src="Cavaleiro.js"></script>
+
+</body>
+
+</html>

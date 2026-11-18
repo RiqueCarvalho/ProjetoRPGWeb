@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>The Last Kingdom - O Arqueiro</title>
+
+    <link rel="stylesheet" href="Arqueiro.css">
+</head>
+
+<body>
+
+    <main class="tela-personagem">
+
+        <div class="fundo-cenario"></div>
+
+        <!-- Botão voltar -->
+        <button class="botao-voltar" onclick="window.location.href='../TelaEscolherPersonagemMasculino.html'"
+            aria-label="Voltar">
+            <img src="botão voltar.png" alt="Voltar">
+        </button>
+
+        <!-- Conteúdo principal -->
+        <section class="conteudo">
+
+            <!-- Personagem e cenário -->
+            <div class="area-personagem">
+
+                <img src="Arqueiro Verde na Cripta Dourada.png" alt="O Arqueiro no cenário medieval"
+                    class="imagem-personagem">
+
+                <h1 class="nome-personagem">
+                    ✦ O ARQUEIRO ✦
+                </h1>
+
+                <button class="botao-escolher" id="escolher" onclick="window.location.href='../Carregamento2.html'">
+                    ESCOLHER
+                </button>
+
+            </div>
+
+            <!-- Painel de informações -->
+            <aside class="painel">
+
+                <!-- Imagem da história -->
+                <div class="imagem-historia">
+                    <img src="ArqueiroMiniatura.jpg" alt="O Arqueiro preparado para a batalha">
+                </div>
+
+                <!-- Descrição -->
+                <div class="historia">
+                    <p>
+                        Um habilidoso arqueiro e caçador, especialista
+                        em ataques à distância. Utiliza seu arco
+                        místico e flechas encantadas para eliminar
+                        inimigos antes mesmo que consigam se aproximar.
+                        Sua agilidade e precisão fazem dele um
+                        adversário mortal no campo de batalha.
+                    </p>
+                </div>
+
+                <!-- Habilidade especial -->
+                <div class="habilidade-especial">
+
+                    <h2>✧ HABILIDADE ESPECIAL ✧</h2>
+
+                    <div class="habilidade-card">
+
+                        <div class="icone-habilidade">
+                            🏹
+                        </div>
+
+                        <div class="descricao-habilidade">
+
+                            <h3>Flecha Perfurante</h3>
+
+                            <p>
+                                Dispara uma flecha carregada com
+                                energia mágica, capaz de atravessar
+                                vários inimigos e causar grande
+                                quantidade de dano.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Atributos -->
+                <div class="atributos">
+
+                    <div class="atributo">
+                        <span>⚔ Atk:</span>
+
+                        <div class="barra">
+                            <div class="ataque"></div>
+                        </div>
+
+                        <span>90</span>
+                    </div>
+
+                    <div class="atributo">
+                        <span>♧ Def:</span>
+
+                        <div class="barra">
+                            <div class="defesa"></div>
+                        </div>
+
+                        <span>45</span>
+                    </div>
+
+                    <div class="atributo">
+                        <span>♥ Vida:</span>
+
+                        <div class="barra">
+                            <div class="vida"></div>
+                        </div>
+
+                        <span>65</span>
+                    </div>
+
+                </div>
+
+            </aside>
+
+        </section>
+
+    </main>
+
+    <script src="Arqueiro.js"></script>
+
+</body>
+
+</html>
