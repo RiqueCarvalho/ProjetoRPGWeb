@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#08090d">
+
+    <title>Inventário - The Last Kingdom</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Metamorphous&family=Cinzel:wght@600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="Inventario.css">
+</head>
+
+<body>
+
+    <main class="tela-inventario">
+
+        <div class="sombra"></div>
+
+        <header class="cabecalho">
+            <button class="voltar" id="btnVoltar">← Voltar</button>
+
+            <div class="titulo-area">
+                <span class="ornamento">✦ ━━━━━━━━━ ✦</span>
+                <h1>INVENTÁRIO</h1>
+                <p>Os tesouros conquistados em sua jornada</p>
+            </div>
+
+            <div class="contador">
+                <span>Itens adquiridos</span>
+                <strong id="totalItens">0</strong>
+            </div>
+        </header>
+
+        <nav class="filtros">
+            <button class="filtro ativo" data-categoria="todos">Todos</button>
+            <button class="filtro" data-categoria="Espadas">Espadas</button>
+            <button class="filtro" data-categoria="Escudos">Escudos</button>
+            <button class="filtro" data-categoria="Armaduras">Armaduras</button>
+            <button class="filtro" data-categoria="Poções">Poções</button>
+        </nav>
+
+        <section class="area-itens">
+
+            <div class="grade-itens" id="gradeItens"></div>
+
+            <div class="inventario-vazio" id="inventarioVazio" hidden>
+                <div class="icone-vazio">⚔</div>
+                <h2>Seu inventário está vazio</h2>
+                <p>Visite o mercado e adquira seus primeiros equipamentos.</p>
+                <button id="btnLoja">Visitar mercado</button>
+            </div>
+
+        </section>
+
+        <footer class="rodape">
+            <p>THE LAST KINGDOM • Inventário do Guerreiro</p>
+        </footer>
+
+    </main>
+
+    <script src="./inventario.js"></script>
+    <script src="./Inventario.js"></script>
+
+</body>
+
+</html>

@@ -34,6 +34,80 @@ body::before {
   z-index: 0;
 }
 
+.botao-inventario {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  padding: 13px 25px;
+
+  color: #f4e8d1;
+  background: linear-gradient(135deg, #292017, #100d09);
+
+  border: 1px solid #d4af37;
+  border-radius: 6px;
+
+  font-family: 'Cinzel', serif;
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 2px;
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.botao-inventario {
+  position: fixed;
+  top: 20px;
+  right: 25px;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  padding: 12px 22px;
+
+  color: #f4e8d1;
+  background: linear-gradient(135deg, #292017, #100d09);
+
+  border: 1px solid #d4af37;
+  border-radius: 6px;
+
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 2px;
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.botao-inventario:hover {
+  color: #100d09;
+  background: linear-gradient(135deg, #e6c555, #aa8428);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+  transform: translateY(-3px);
+}
+
+@media (max-width: 600px) {
+  .botao-inventario {
+    top: 12px;
+    right: 12px;
+    padding: 9px 13px;
+    font-size: 11px;
+  }
+}
+
+.botao-inventario:hover {
+  color: #100d09;
+  background: linear-gradient(135deg, #e6c555, #aa8428);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+  transform: translateY(-3px);
+}
+
 .btn-voltar {
   position: absolute;
   top: 30px;

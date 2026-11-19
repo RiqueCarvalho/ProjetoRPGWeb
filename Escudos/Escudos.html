@@ -207,10 +207,20 @@
  Coloque aqui o resto da sua lógica (ex.: guardar a armadura no inventário). */
     function confirmarCompra(a) {
       const saldoAtual = window.SaldoLoja.ler();
+
       if (saldoAtual < a.preco) return false;
+
+      window.InventarioLoja.adicionar({
+        nome: a.nome,
+        categoria: "Escudos",
+        imagem: a.imagem,
+        preco: a.preco
+      });
+
       SALDO = window.SaldoLoja.salvar(saldoAtual - a.preco);
+
       atualizarSaldo();
-      // exemplo: inventario.push(a.nome);
+
       return true;
     }
 
@@ -236,6 +246,8 @@
       document.getElementById("saldoValor").textContent = fmt(SALDO);
     });
   </script>
+
+  <script src="../inventario.js"></script>
 </body>
 
 </html>

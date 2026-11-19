@@ -215,7 +215,14 @@
 
     /* Chamada quando a compra dá certo. Coloque aqui sua lógica (ex.: inventario.push(p.nome)). */
     function aoComprar(p) {
-      console.log("Comprou:", p.nome, "por", p.preco);
+      window.InventarioLoja.adicionar({
+        nome: p.nome,
+        categoria: "Poções",
+        imagem: p.imagem,
+        preco: p.preco
+      });
+
+      console.log("Item adicionado ao inventário:", p.nome);
     }
 
     document.getElementById("comprar").onclick = () => {
@@ -245,6 +252,7 @@
       document.getElementById("saldoValor").textContent = fmt(evento.detail);
     });
   </script>
+  <script src="../inventario.js"></script>
 </body>
 
 </html>
