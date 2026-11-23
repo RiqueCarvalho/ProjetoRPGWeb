@@ -12,7 +12,6 @@ let levels = {
     blood: 0,
     stamina: 0,
     berserk: 0,
-    warcry: 0,
     legend: 0
 };
 
@@ -74,16 +73,10 @@ const skills = {
         requires: ["fury", "brutal"]
     },
 
-    warcry: {
-        name: "Grito de Guerra",
-        desc: "A força de vontade de Ragnar inspira temor e determinação.",
-        requires: ["intimidate", "blood"]
-    },
-
     legend: {
         name: "Lenda do Carniceiro",
         desc: "O auge do caminho de Ragnar: reúne força, resistência e domínio.",
-        requires: ["berserk", "warcry"]
+        requires: ["berserk", "stamina"]
     }
 
 };
