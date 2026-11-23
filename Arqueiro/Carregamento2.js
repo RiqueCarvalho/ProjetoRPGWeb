@@ -1,3 +1,4 @@
+
 const progresso = document.getElementById("progresso");
 const mago = document.getElementById("mago");
 const areaBarra = document.getElementById("areaBarra");
@@ -10,8 +11,9 @@ let inicio = null;
 let concluido = false;
 
 function animarCarregamento(tempo) {
+
     if (!progresso || !mago || !areaBarra || !barra || !texto) {
-        console.error("Confira os elementos do Carregamento.html.");
+        console.error("Confira os elementos do Carregamento2.html.");
         return;
     }
 
@@ -31,15 +33,18 @@ function animarCarregamento(tempo) {
 
     const posicao = Math.max(
         0,
-        Math.min(centro - larguraMago / 2, larguraBarra - larguraMago),
+        Math.min(centro - larguraMago / 2, larguraBarra - larguraMago)
     );
 
     mago.style.left = `${posicao}px`;
 
     // Finaliza o carregamento
     if (porcentagem < 1) {
+
         requestAnimationFrame(animarCarregamento);
+
     } else if (!concluido) {
+
         concluido = true;
 
         mago.src = "../Imagens/Elementos_gráficos/mago-sorrindo.png";
@@ -48,7 +53,7 @@ function animarCarregamento(tempo) {
         texto.textContent = "A jornada começa agora...";
 
         setTimeout(() => {
-            window.location.href = "../Arenas/ArenaI.html";
+            window.location.href = "../the-last-kingdom-com-creditos.html";
         }, 1000);
     }
 }

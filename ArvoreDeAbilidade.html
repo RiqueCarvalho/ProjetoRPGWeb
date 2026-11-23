@@ -1,134 +1,135 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Árvore de Habilidades - Ragnar</title>
-
+    <link rel="icon" href="./favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="./favicon.ico" />
     <link rel="stylesheet" href="ArvoreDeAbilidade.css">
 </head>
 
 <body>
 
-<div class="container">
+    <div class="container">
 
-    <header class="header">
+        <header class="header">
 
-        <button class="back" onclick="voltar()">
-            ← Voltar
-        </button>
+            <button class="back" onclick="voltar()">
+                ← Voltar
+            </button>
 
-        <div class="heading">
-            <h1>Árvore de Habilidades</h1>
-            <div class="subtitle">O LEGADO DE RAGNAR</div>
-        </div>
-
-        <div class="xp-box">
-            <strong id="xp">0 XP</strong>
-
-            <div class="progress">
-                <div class="progress-bar" id="progress"></div>
+            <div class="heading">
+                <h1>Árvore de Habilidades</h1>
+                <div class="subtitle">O LEGADO DE RAGNAR</div>
             </div>
-        </div>
 
-    </header>
+            <div class="xp-box">
+                <strong id="xp">0 XP</strong>
 
-    <section class="tree-container">
+                <div class="progress">
+                    <div class="progress-bar" id="progress"></div>
+                </div>
+            </div>
 
-        <div class="runes"></div>
+        </header>
 
-        <svg class="connections"
-             viewBox="0 0 1000 620"
-             preserveAspectRatio="none">
+        <section class="tree-container">
 
-            <line x1="500" y1="310" x2="270" y2="167"/>
-            <line x1="500" y1="310" x2="270" y2="453"/>
-            <line x1="500" y1="310" x2="120" y2="242"/>
-            <line x1="500" y1="310" x2="120" y2="378"/>
-            <line x1="500" y1="310" x2="500" y2="565"/>
-            <line x1="500" y1="310" x2="730" y2="242"/>
-            <line x1="500" y1="310" x2="730" y2="453"/>
-            <line x1="500" y1="310" x2="880" y2="167"/>
-            <line x1="500" y1="310" x2="880" y2="378"/>
-            <line x1="500" y1="310" x2="880" y2="565"/>
+            <div class="runes"></div>
 
-        </svg>
+            <svg class="connections" viewBox="0 0 1000 620" preserveAspectRatio="none">
 
-        <button class="node core" data-id="core">
-            <span class="symbol">ᛟ</span>
-            <span class="rank">RAGNAR</span>
-        </button>
+                <line x1="500" y1="310" x2="270" y2="167" />
+                <line x1="500" y1="310" x2="270" y2="453" />
+                <line x1="500" y1="310" x2="120" y2="242" />
+                <line x1="500" y1="310" x2="120" y2="378" />
+                <line x1="500" y1="310" x2="500" y2="565" />
+                <line x1="500" y1="310" x2="730" y2="242" />
+                <line x1="500" y1="310" x2="730" y2="453" />
+                <line x1="500" y1="310" x2="880" y2="167" />
+                <line x1="500" y1="310" x2="880" y2="378" />
+                <line x1="500" y1="310" x2="880" y2="565" />
 
-        <button class="node available" data-id="brutal">
-            <span class="symbol">⚒</span>
-            <span class="rank">0/3</span>
-        </button>
+            </svg>
 
-        <button class="node available" data-id="iron">
-            <span class="symbol">♜</span>
-            <span class="rank">0/3</span>
-        </button>
+            <button class="node core" data-id="core">
+                <span class="symbol">ᛟ</span>
+                <span class="rank">RAGNAR</span>
+            </button>
 
-        <button class="node locked" data-id="axe">
-            <span class="symbol">⚔</span>
-            <span class="rank">0/3</span>
-        </button>
+            <button class="node available" data-id="brutal">
+                <span class="symbol">⚒</span>
+                <span class="rank">0/3</span>
+            </button>
 
-        <button class="node locked" data-id="intimidate">
-            <span class="symbol">♛</span>
-            <span class="rank">0/3</span>
-        </button>
+            <button class="node available" data-id="iron">
+                <span class="symbol">♜</span>
+                <span class="rank">0/3</span>
+            </button>
 
-        <button class="node available" data-id="fury">
-            <span class="symbol">ϟ</span>
-            <span class="rank">0/3</span>
-        </button>
+            <button class="node locked" data-id="axe">
+                <span class="symbol">⚔</span>
+                <span class="rank">0/3</span>
+            </button>
 
-        <button class="node available" data-id="blood">
-            <span class="symbol">♥</span>
-            <span class="rank">0/3</span>
-        </button>
+            <button class="node locked" data-id="intimidate">
+                <span class="symbol">♛</span>
+                <span class="rank">0/3</span>
+            </button>
 
-        <button class="node locked" data-id="stamina">
-            <span class="symbol">♧</span>
-            <span class="rank">0/3</span>
-        </button>
+            <button class="node available" data-id="fury">
+                <span class="symbol">ϟ</span>
+                <span class="rank">0/3</span>
+            </button>
 
-        <button class="node locked" data-id="berserk">
-            <span class="symbol">✹</span>
-            <span class="rank">0/3</span>
-        </button>
+            <button class="node available" data-id="blood">
+                <span class="symbol">♥</span>
+                <span class="rank">0/3</span>
+            </button>
 
-        <button class="node locked" data-id="legend">
-            <span class="symbol">♛</span>
-            <span class="rank">0/3</span>
-        </button>
+            <button class="node locked" data-id="stamina">
+                <span class="symbol">♧</span>
+                <span class="rank">0/3</span>
+            </button>
 
-    </section>
+            <button class="node locked" data-id="berserk">
+                <span class="symbol">✹</span>
+                <span class="rank">0/3</span>
+            </button>
 
-    <section class="details">
+            <button class="node locked" data-id="legend">
+                <span class="symbol">♛</span>
+                <span class="rank">0/3</span>
+            </button>
 
-        <h2 id="skill-name">Essência de Ragnar</h2>
+        </section>
 
-        <p id="skill-desc">
-            Selecione uma habilidade para conhecer seus poderes.
+        <section class="details">
+
+            <h2 id="skill-name">Essência de Ragnar</h2>
+
+            <p id="skill-desc">
+                Selecione uma habilidade para conhecer seus poderes.
+            </p>
+
+            <button class="upgrade" id="upgrade" disabled>
+                Necessário: 1.000 XP
+            </button>
+
+        </section>
+
+        <p class="note">
+            Cada melhoria custa 1.000 XP.
+            Ganhe experiência avançando no jogo.
         </p>
 
-        <button class="upgrade" id="upgrade" disabled>
-            Necessário: 1.000 XP
-        </button>
+    </div>
 
-    </section>
-
-    <p class="note">
-        Cada melhoria custa 1.000 XP.
-        Ganhe experiência avançando no jogo.
-    </p>
-
-</div>
-
-<script src="ArvoreDeAbilidade.js"></script>
+    <script src="ArvoreDeAbilidade.js"></script>
 
 </body>
+
 </html>
