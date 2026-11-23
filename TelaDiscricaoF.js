@@ -1,19 +1,29 @@
 
-const botaoVoltar = document.getElementById("voltar");
-const botaoEscolher = document.getElementById("escolher");
-const botoesHabilidades = document.querySelectorAll(".habilidade");
+document.addEventListener("DOMContentLoaded", () => {
 
-botaoVoltar.addEventListener("click", () => {
-    window.history.back();
-});
+    const botaoEscolher = document.getElementById("escolher");
 
-botoesHabilidades.forEach((botao) => {
-    botao.addEventListener("click", () => {
-        const habilidade = botao.dataset.info;
-        alert(habilidade + " — em breve!");
-    });
-});
+    // Botão escolher personagem
+    if (botaoEscolher) {
 
-botaoEscolher.addEventListener("click", () => {
-    alert("Personagem selecionada! Sua aventura está prestes a começar.");
+        botaoEscolher.addEventListener("click", () => {
+
+            // Salva a personagem escolhida
+            localStorage.setItem("personagemSelecionado", "A Alquimista");
+
+            // Efeito de transição
+            document.body.style.transition = "opacity 0.8s ease";
+            document.body.style.opacity = "0";
+
+            // Redireciona para o carregamento 7
+            setTimeout(() => {
+                window.location.href = "Carregamento7.html";
+            }, 800);
+
+        });
+
+    } else {
+        console.error("Botão ESCOLHER não encontrado!");
+    }
+
 });

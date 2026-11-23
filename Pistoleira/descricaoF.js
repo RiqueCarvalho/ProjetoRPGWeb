@@ -9,5 +9,17 @@ botaoVoltar.addEventListener("click", () => {
 
 // Botão escolher
 botaoEscolher.addEventListener("click", () => {
-    alert("Pistoleira selecionada! Sua aventura está prestes a começar.");
+
+    // Salva a personagem escolhida
+    localStorage.setItem("personagemSelecionado", "Morgana");
+
+    // Efeito de transição
+    document.body.style.transition = "opacity 0.8s ease";
+    document.body.style.opacity = "0";
+
+    // Redireciona para a tela de carregamento 5
+    setTimeout(() => {
+        window.location.href = "Carregamento6.html";
+    }, 800);
+
 });
