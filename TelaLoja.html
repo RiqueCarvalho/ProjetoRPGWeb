@@ -4,108 +4,341 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="preload" href="./Imagens/Cenários/Fundp.png" as="image" />
-  <title>Loja</title>
-  <link rel="icon" href="./favicon.ico" sizes="any" />
-  <link rel="apple-touch-icon" href="./favicon.ico" />
-  <link href="https://fonts.googleapis.com/css2?family=Metamorphous&family=Cinzel:wght@600;700&display=swap"
-    rel="stylesheet" />
+  <link rel="preload" href="./Imagens/Cen%C3%A1rios/Fundp.png" as="image" />
+  <title>Loja do Ferreiro</title>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="TelaLoja.css" />
   <link rel="stylesheet" href="transicao.css" />
 </head>
 
 <body>
   <div class="tela">
-    <div class="voltar" id="voltar" title="Voltar">&#8592;</div>
+    <header class="cabecalho">
+      <button class="moldura voltar" id="voltar" type="button" aria-label="Voltar">
+        <span class="seta-voltar" aria-hidden="true">←</span>
+        <span>Voltar</span>
+      </button>
 
-    <div class="saldo" title="Seu saldo">
-      <img id="saldoIcone" alt="Moedas" />
-      <span><span id="saldoValor">0</span> Moedas</span>
-    </div>
+      <h1>Loja do Ferreiro</h1>
 
-    <div class="palco">
-      <div class="lista" id="lista"></div>
-    </div>
+      <div class="moldura saldo" title="Seu saldo">
+        <span class="moeda" aria-hidden="true"></span>
+        <span class="saldo-texto">
+          <strong id="saldoValor"></strong>
+          <span>Moedas</span>
+        </span>
+      </div>
+    </header>
+
+    <nav class="modos" role="group" aria-label="Modo da loja">
+      <button class="modo ativo" id="modoComprar" type="button" aria-pressed="true">
+        Comprar
+      </button>
+      <button class="modo" id="modoVender" type="button" aria-pressed="false">
+        Vender
+      </button>
+    </nav>
+
+    <main class="palco">
+      <div class="lista" id="lista" aria-label="Categorias da loja"></div>
+    </main>
+
+    <footer class="rodape">
+      <button class="moldura botao-inventario" id="inventario" type="button">
+        <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <path d="M5 8h22v4H5zm2 6h18v13H7zm4 3v6h3v-6zm7 0v6h3v-6z" />
+        </svg>
+        <span>Inventário</span>
+      </button>
+      <!-- Exibido apenas ao abrir TelaLoja.html?debug=1. -->
+      <button class="moldura" id="debugReset" type="button" hidden>Resetar estado</button>
+    </footer>
   </div>
 
-  <script src="./saldo.js"></script>
+  <dialog class="dialogo moldura" id="dialogo" aria-labelledby="dialogoTitulo">
+    <h2 id="dialogoTitulo">Aviso</h2>
+    <p id="dialogoTexto" role="status"></p>
+    <div class="inventario-lista" id="inventarioLista" aria-label="Itens no inventário" hidden></div>
+    <button class="moldura botao-fechar" id="fecharDialogo" type="button">Entendi</button>
+  </dialog>
+
+  <script src="estado.js"></script>
   <script src="./transicao.js"></script>
   <script>
-    /* =====================================================
- CONFIGURAÇÃO — edite aqui para trocar as imagens
- =====================================================
- nome   : texto que aparece embaixo do card
- imagem : imagem do item (PNG com fundo transparente)
- link   : página que abre ao clicar no card
- Para adicionar outra categoria, copie uma linha e mude os valores.
-*/
-    const categorias = [
+    const categoriasTela = [
       {
         nome: "Espadas",
-        imagem: "./Imagens/Elementos_gráficos/Espada da selva.png",
-        link: "./Espadas/Espadas.html", // Caminho com 'E' maiúsculo confomre a pasta
+        imagem: "./Imagens/Elementos_gráficos/Espada sombria.png",
+        link: "./Espadas/Espadas.html",
+        descricao: "Armas para cada batalha",
+        // Compensa as margens transparentes para equilibrar a altura visível dos PNGs.
+        escalaIcone: 0.86,
       },
       {
         nome: "Poções",
         imagem: "./Imagens/Elementos_gráficos/Poção de defesa.png",
         link: "./Poções/Pocoes.html",
+        descricao: "Elixires para a jornada",
+        escalaIcone: 0.92,
       },
       {
         nome: "Escudos",
         imagem: "./Imagens/Elementos_gráficos/Escudo com espinhos.png",
-        link: "./Escudos/Escudos.html", // Caminho com 'E' maiúsculo conforme a pasta
+        link: "./Escudos/Escudos.html",
+        descricao: "Defesa para cada batalha",
+        escalaIcone: 0.83,
       },
       {
         nome: "Armaduras",
         imagem: "./Imagens/Elementos_gráficos/Armadura do caos.png",
         link: "./Armaduras/Armadura.html",
+        descricao: "Proteção para heróis",
+        escalaIcone: 0.88,
       },
     ];
 
-    /* ===================== LÓGICA ===================== */
     const lista = document.getElementById("lista");
-    const fmt = (n) => Number(n).toLocaleString("pt-BR");
-
-    /* O saldo é lido do navegador (localStorage, chave "saldo"),
- assim as outras telas da loja podem usar o mesmo valor. */
-    function lerSaldo() {
-      return window.SaldoLoja.ler();
-    }
+    const saldoValor = document.getElementById("saldoValor");
+    const dialogo = document.getElementById("dialogo");
+    const dialogoTexto = document.getElementById("dialogoTexto");
+    const fmt = (numero) => Number(numero).toLocaleString("pt-BR");
+    let modoAtual = "comprar";
+    let inventarioParaVenda = false;
+    let categoriaInventario = null;
 
     function atualizarSaldo() {
-      document.getElementById("saldoValor").textContent = fmt(lerSaldo());
+      saldoValor.textContent = fmt(Jogo.getMoedas());
     }
 
-    function iniciarIconeMoeda() {
-      const img = document.getElementById("saldoIcone");
-      const moeda = document.createElement("span");
-      moeda.className = "moeda";
-      img.replaceWith(moeda);
+    function abrirAviso(mensagem) {
+      document.getElementById("dialogoTitulo").textContent = "Aviso";
+      dialogoTexto.hidden = false;
+      document.getElementById("inventarioLista").hidden = true;
+      dialogoTexto.textContent = mensagem;
+      dialogo.showModal();
     }
 
-    function criarCard(c) {
-      const el = document.createElement("article");
-      el.className = "card";
-      el.innerHTML = `
-    <div class="arte"><img src="${c.imagem}" alt="${c.nome}"></div>
-    <div class="nome">${c.nome}</div>`;
-      el.addEventListener("click", () => navegar(c.link));
-      return el;
+    function renderizarInventario(paraVenda = inventarioParaVenda, categoriaFiltro = categoriaInventario) {
+      inventarioParaVenda = paraVenda;
+      categoriaInventario = categoriaFiltro;
+      const listaInventario = document.getElementById("inventarioLista");
+      listaInventario.replaceChildren();
+
+      const estadoInventario = Jogo.getInventario();
+      const itens = Object.entries(estadoInventario)
+        .map(([id, quantidade]) => ({ ...Jogo.getItem(id), id, quantidade }))
+        .filter((item) => item.id && (!categoriaFiltro || item.categoria === categoriaFiltro));
+      const total = itens.reduce((soma, item) => soma + item.quantidade, 0);
+      const rotuloQuantidade = total === 1 ? "item" : "itens";
+      document.getElementById("dialogoTitulo").textContent =
+        paraVenda
+          ? `${categoriaFiltro ? `Vender ${categoriaFiltro}` : "Vender itens"} (${fmt(total)} ${rotuloQuantidade})`
+          : `Inventário (${fmt(total)} ${rotuloQuantidade})`;
+      dialogoTexto.hidden = itens.length > 0 && !paraVenda;
+      dialogoTexto.textContent = itens.length === 0
+        ? paraVenda
+          ? categoriaFiltro
+            ? `Você não possui itens de ${categoriaFiltro} para vender.`
+            : "Você não possui itens para vender."
+          : "Inventário vazio."
+        : paraVenda
+          ? `Cada unidade rende ${Math.floor(Jogo.PRECO_REVENDA * 100)}% do preço.`
+          : "Itens, quantidades e equipamentos do personagem.";
+      listaInventario.hidden = itens.length === 0;
+
+      itens.forEach((item) => {
+        const linha = document.createElement("article");
+        linha.className = paraVenda
+          ? "item-inventario vendendo"
+          : "item-inventario";
+
+        const imagem = document.createElement("img");
+        imagem.src = Jogo.getIcone(item.id);
+        imagem.alt = "";
+        imagem.onerror = () => imagem.remove();
+
+        const detalhes = document.createElement("span");
+        detalhes.className = "item-inventario-detalhes";
+        const nome = document.createElement("strong");
+        nome.textContent = item.nome;
+        const categoria = document.createElement("small");
+        categoria.textContent =
+          `${item.categoria} · ${fmt(item.preco)} moedas cada`;
+        detalhes.append(nome, categoria);
+
+        const acoes = document.createElement("div");
+        acoes.className = "item-inventario-acoes";
+        const quantidade = document.createElement("strong");
+        quantidade.className = "item-inventario-quantidade";
+        quantidade.textContent = `x${fmt(item.quantidade)}`;
+        acoes.appendChild(quantidade);
+
+        if (paraVenda) {
+          const valorRevenda =
+            Math.floor(item.preco * Jogo.PRECO_REVENDA);
+          const botaoVenda = document.createElement("button");
+          botaoVenda.className = "botao-vender-item";
+          botaoVenda.type = "button";
+          botaoVenda.setAttribute(
+            "aria-label",
+            `Vender uma unidade de ${item.nome} por ${fmt(valorRevenda)} moedas`,
+          );
+          const textoVenda = document.createElement("span");
+          textoVenda.textContent = "Vender 1";
+          const valorVenda = document.createElement("small");
+          valorVenda.textContent = `+${fmt(valorRevenda)} moedas`;
+          botaoVenda.append(textoVenda, valorVenda);
+          botaoVenda.addEventListener("click", () => {
+            try {
+              const resultado = Jogo.vender(item.id, 1);
+              if (!resultado.ok) {
+                renderizarInventario(inventarioParaVenda, categoriaInventario);
+                dialogoTexto.hidden = false;
+                dialogoTexto.textContent = resultado.motivo;
+                return;
+              }
+
+              dialogoTexto.hidden = false;
+              dialogoTexto.textContent =
+                `Você vendeu 1 ${item.nome} e recebeu ${fmt(resultado.valor)} moedas.`;
+            } catch (erro) {
+              console.error("Falha ao vender item do inventário.", erro);
+              dialogoTexto.hidden = false;
+              dialogoTexto.textContent = erro instanceof Error
+                ? `Não foi possível concluir a venda: ${erro.message}`
+                : "Não foi possível concluir a venda devido a um erro inesperado.";
+            }
+          });
+          acoes.appendChild(botaoVenda);
+        } else if (item.slot) {
+          const estado = Jogo.getEstado();
+          const equipado = estado.equipados[item.slot] === item.id;
+          const botaoEquipar = document.createElement("button");
+          botaoEquipar.className = "botao-vender-item";
+          botaoEquipar.type = "button";
+          botaoEquipar.textContent = equipado ? "Desequipar" : "Equipar";
+          botaoEquipar.addEventListener("click", () => {
+            const resultado = equipado
+              ? Jogo.desequipar(item.slot)
+              : Jogo.equipar(item.id);
+            dialogoTexto.hidden = false;
+            dialogoTexto.textContent = resultado.ok
+              ? (equipado ? "Item desequipado." : "Item equipado.")
+              : resultado.motivo;
+            renderizarInventario(false, categoriaInventario);
+          });
+          acoes.appendChild(botaoEquipar);
+          if (equipado) {
+            const selo = document.createElement("small");
+            selo.textContent = "Equipado";
+            acoes.appendChild(selo);
+          }
+        } else if (item.consumivel) {
+          const botaoUsar = document.createElement("button");
+          botaoUsar.className = "botao-vender-item";
+          botaoUsar.type = "button";
+          botaoUsar.textContent = "Usar";
+          botaoUsar.addEventListener("click", () => {
+            const resultado = Jogo.usarItem(item.id);
+            dialogoTexto.hidden = false;
+            dialogoTexto.textContent = resultado.ok
+              ? `Você usou ${item.nome}.`
+              : resultado.motivo;
+            renderizarInventario(false, categoriaInventario);
+          });
+          acoes.appendChild(botaoUsar);
+        }
+
+        linha.append(imagem, detalhes, acoes);
+        listaInventario.appendChild(linha);
+      });
     }
 
-    categorias.forEach((c) => lista.appendChild(criarCard(c)));
-
-    function navegar(url) {
-      window.transicaoNavegar(url);
+    function abrirInventario(paraVenda = false, categoriaFiltro = null) {
+      try {
+        renderizarInventario(paraVenda, categoriaFiltro);
+        dialogo.showModal();
+      } catch (erro) {
+        console.error("Falha ao carregar o inventário.", erro);
+        abrirAviso("Não foi possível carregar o inventário. Verifique os dados salvos.");
+      }
     }
 
-    document.getElementById("voltar").onclick = () =>
-      window.transicaoVoltar();
+    function criarCard(categoria) {
+      const card = document.createElement("button");
+      card.className = "card moldura";
+      card.type = "button";
+      card.style.setProperty("--escala-icone", categoria.escalaIcone);
+      const itensCategoria = Object.values(Jogo.catalogo).filter((item) => item.categoria === categoria.nome);
+      const quantidadeItens = itensCategoria.length;
+      const precoMinimo = Math.min(...itensCategoria.map((item) => item.preco));
+      card.setAttribute(
+        "aria-label",
+        `${categoria.nome}, ${quantidadeItens} itens, a partir de ${fmt(precoMinimo)} moedas`,
+      );
+
+      const badge = categoria.novo
+        ? '<span class="badge-novo">Novo</span>'
+        : "";
+
+      card.innerHTML = `
+        ${badge}
+        <span class="arte">
+          <img src="${categoria.imagem}" alt="" />
+        </span>
+        <span class="nome">${categoria.nome}</span>
+        <span class="descricao">${categoria.descricao}</span>
+        <span class="detalhes">
+          <span>${quantidadeItens} itens</span>
+          <span>a partir de ${fmt(precoMinimo)} moedas</span>
+        </span>`;
+
+      card.addEventListener("click", () => {
+        if (modoAtual === "vender") {
+          abrirInventario(true, categoria.nome);
+          return;
+        }
+
+        window.transicaoNavegar(categoria.link);
+      });
+
+      return card;
+    }
+
+    function definirModo(modo) {
+      modoAtual = modo;
+      const comprar = modo === "comprar";
+      document.getElementById("modoComprar").classList.toggle("ativo", comprar);
+      document.getElementById("modoComprar").setAttribute("aria-pressed", String(comprar));
+      document.getElementById("modoVender").classList.toggle("ativo", !comprar);
+      document.getElementById("modoVender").setAttribute("aria-pressed", String(!comprar));
+    }
+
+    categoriasTela.forEach((categoria) => lista.appendChild(criarCard(categoria)));
+
+    document.getElementById("modoComprar").addEventListener("click", () => definirModo("comprar"));
+    document.getElementById("modoVender").addEventListener("click", () => {
+      definirModo("vender");
+      abrirInventario(true);
+    });
+    document.getElementById("inventario").addEventListener("click", () => {
+      abrirInventario(modoAtual === "vender");
+    });
+    document.getElementById("fecharDialogo").addEventListener("click", () => dialogo.close());
+    document.getElementById("voltar").addEventListener("click", () => window.transicaoVoltar());
+    const debugReset = document.getElementById("debugReset");
+    debugReset.hidden = new URLSearchParams(location.search).get("debug") !== "1";
+    debugReset.addEventListener("click", () => {
+      const resultado = Jogo.resetar();
+      abrirAviso(resultado.ok ? "Estado do jogo resetado." : resultado.motivo);
+    });
 
     atualizarSaldo();
-    iniciarIconeMoeda();
-    window.addEventListener("saldoAtualizado", (evento) => {
-      document.getElementById("saldoValor").textContent = fmt(evento.detail);
+    window.addEventListener("estado-mudou", () => {
+      atualizarSaldo();
+      if (dialogo.open && !document.getElementById("inventarioLista").hidden) {
+        renderizarInventario(inventarioParaVenda, categoriaInventario);
+      }
     });
   </script>
 </body>

@@ -4,23 +4,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="preload" href="../Imagens/Cenários/Fundp.png" as="image" />
+  <link rel="preload" href="../Imagens/Cen%C3%A1rios/Fundp.png" as="image" />
   <title>Espadas</title>
-  <link href="https://fonts.googleapis.com/css2?family=Metamorphous&family=Cinzel:wght@600;700&display=swap"
-    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="Espadas.css" />
+  <link rel="stylesheet" href="../EstiloLojaCategorias.css" />
   <link rel="stylesheet" href="../transicao.css" />
   <style></style>
 </head>
 
-<body>
+<body class="tela-categoria tela-categoria--grade tela-categoria--grade-6">
   <div class="tela">
-    <div class="voltar" id="voltar" title="Voltar">&#8592;</div>
+    <button class="moldura voltar" id="voltar" type="button" aria-label="Voltar">
+      <span class="seta-voltar" aria-hidden="true">←</span>
+      <span>Voltar</span>
+    </button>
     <h1 class="titulo">Espadas</h1>
 
-    <div class="saldo" title="Seu saldo">
+    <div class="moldura saldo" title="Seu saldo">
       <img id="saldoIcone" alt="Moedas" />
-      <span id="saldoValor">0</span>
+      <span class="saldo-texto">
+        <strong id="saldoValor"></strong>
+        <span>Moedas</span>
+      </span>
     </div>
 
     <div class="palco">
@@ -40,75 +46,30 @@
     </div>
   </div>
 
-  <script src="../saldo.js"></script>
+  <script src="../estado.js"></script>
   <script src="../transicao.js"></script>
   <script>
     /* =====================================================
- CONFIGURAÇÃO — edite aqui para trocar as imagens
+ APRESENTAÇÃO — os dados dos itens são lidos do catálogo em estado.js
  =====================================================
- imagem : arte da armadura (PNG com fundo transparente)
+ imagem : arte do item (PNG com fundo transparente)
  painel : imagem pronta da parte de baixo do card (nome, nível,
-          classe, descrição e preço). Se deixar vazio ("") o
-          painel é montado com texto usando os campos abaixo.
- cor    : cor da borda do card (e do título, se usar texto)
- Os campos icone, nivel, classe, preco e desc só são usados
- quando "painel" estiver vazio.
+          classe e descrição).
+ cor    : cor da borda do card.
 */
-    const ICONE_NIVEL = "imagens/icone-nivel.png"; // ícone ao lado de "Nível / Classe"
-    let SALDO = window.SaldoLoja.ler(); // saldo compartilhado entre todas as telas
     const POR_PAGINA = 6; // quantos cards aparecem por vez
 
-    const armaduras = [
-      {
-        nome: "Espada de Fogo",
-        imagem: "../Imagens/Elementos_gráficos/Espada de fogo.png",
-        painel: "../Imagens/Elementos_gráficos/Espada de fogo banner.png",
-        icone: "imagens/icone-fogo.png",
-        cor: "#f08a1c",
-        preco: 22000,
-      },
-      {
-        nome: "Espada de Gelo",
-        imagem: "../Imagens/Elementos_gráficos/Espada de gelo.png",
-        painel: "../Imagens/Elementos_gráficos/Espada de gelo banner.png",
-        icone: "imagens/icone-gelo.png",
-        cor: "#009FFF",
-        preco: 15000,
-      },
-      {
-        nome: "Espada da Selva",
-        imagem: "../Imagens/Elementos_gráficos/Espada da selva.png",
-        painel: "../Imagens/Elementos_gráficos/Espada da selva banner.png",
-        icone: "imagens/icone-caos.png",
-        cor: "#007500",
-        preco: 13500,
-      },
-      {
-        nome: "Espada Sombria",
-        imagem: "../Imagens/Elementos_gráficos/Espada sombria.png",
-        painel: "../Imagens/Elementos_gráficos/Espada sombria banner.png",
-        icone: "imagens/icone-paladino.png",
-        cor: "#3D0000",
-        preco: 20000,
-      },
-      {
-        nome: "Espada Real",
-        imagem: "../Imagens/Elementos_gráficos/Espada real.png",
-        painel: "../Imagens/Elementos_gráficos/Espada real banner.png",
-        icone: "imagens/icone-fogo.png",
-        cor: "#0097c5",
-        preco: 4000,
-      },
-      {
-        nome: "Espada Real nivel 2",
-        imagem: "../Imagens/Elementos_gráficos/Espada Real nivel 2.png",
-        painel: "../Imagens/Elementos_gráficos/Espada Real nivel 2 banner.png",
-        icone: "imagens/icone-mago.png",
-        cor: "#F2B600",
-        preco: 18000,
-      },
-      // Adicione mais armaduras aqui — as setas aparecem automaticamente.
-    ];
+    const apresentacao = {
+      espada_fogo: ["../Imagens/Elementos_gráficos/Espada de fogo banner.png", "#f08a1c"],
+      espada_gelo: ["../Imagens/Elementos_gráficos/Espada de gelo banner.png", "#009FFF"],
+      espada_selva: ["../Imagens/Elementos_gráficos/Espada da selva banner.png", "#007500"],
+      espada_sombria: ["../Imagens/Elementos_gráficos/Espada sombria banner.png", "#3D0000"],
+      espada_real: ["../Imagens/Elementos_gráficos/Espada real banner.png", "#0097c5"],
+      espada_real_nivel_2: ["../Imagens/Elementos_gráficos/Espada Real nivel 2 banner.png", "#F2B600"],
+    };
+    const itensLoja = Object.values(Jogo.catalogo)
+      .filter((item) => item.categoria === "Espadas")
+      .map((item) => ({ ...item, imagem: Jogo.getIcone(item.id), painel: apresentacao[item.id][0], cor: apresentacao[item.id][1] }));
 
     /* ===================== LÓGICA ===================== */
     const lista = document.getElementById("lista");
@@ -122,37 +83,21 @@
       const el = document.createElement("article");
       el.className = "card";
       el.style.setProperty("--cor", a.cor);
-      const arte = `<div class="arte"><img src="${a.imagem}" alt="${a.nome}"></div>`;
-      if (a.painel) {
-        el.innerHTML =
-          arte +
-          `<img class="painel" src="${a.painel}" alt="${a.nome} - detalhes">`;
-        el.addEventListener("click", () => comprar(a));
-        return el;
-      }
-      el.innerHTML =
-        arte +
-        `
-    <div class="nome"><img src="${a.icone}" alt="" onerror="this.style.visibility='hidden'">${a.nome}</div>
-    <div class="info">
-      <div class="meta">
-        <img src="${ICONE_NIVEL}" alt="" onerror="this.style.visibility='hidden'">
-        <div>Nível: ${a.nivel}<br>Classe: ${a.classe}</div>
-      </div>
-      <p class="desc">${a.desc}</p>
-      <div class="preco"><span class="moeda"></span>Preço: ${fmt(a.preco)}</div>
-    </div>`;
+      el.innerHTML = `
+        <div class="arte"><img src="${a.imagem}" alt="${a.nome}"></div>
+        <img class="painel" src="${a.painel}" alt="${a.nome} - detalhes">
+        <span class="card-estado">${a.nome} · ${fmt(a.preco)} moedas · Você tem: ${fmt(Jogo.getQuantidade(a.id))}</span>`;
       el.addEventListener("click", () => comprar(a));
       return el;
     }
 
     function render() {
       lista.innerHTML = "";
-      armaduras
+      itensLoja
         .slice(inicio, inicio + POR_PAGINA)
         .forEach((a) => lista.appendChild(criarCard(a)));
       btnAnt.disabled = inicio === 0;
-      btnProx.disabled = inicio + POR_PAGINA >= armaduras.length;
+      btnProx.disabled = inicio + POR_PAGINA >= itensLoja.length;
     }
 
     btnAnt.onclick = () => {
@@ -160,17 +105,15 @@
       render();
     };
     btnProx.onclick = () => {
-      inicio = Math.min(armaduras.length - POR_PAGINA, inicio + 1);
+      inicio = Math.min(itensLoja.length - POR_PAGINA, inicio + 1);
       render();
     };
 
-    /* Ações — conecte ao seu jogo aqui */
+    /* Ações de compra delegadas ao estado global. */
     let armaduraSelecionada = null;
 
-    /* Saldo: atualiza o número na tela. Chame atualizarSaldo() sempre que SALDO mudar. */
     function atualizarSaldo() {
-      SALDO = window.SaldoLoja.ler();
-      document.getElementById("saldoValor").textContent = fmt(SALDO);
+      document.getElementById("saldoValor").textContent = fmt(Jogo.getMoedas());
     }
     function iniciarIconeMoeda() {
       const img = document.getElementById("saldoIcone");
@@ -192,35 +135,29 @@
       armaduraSelecionada = null;
     }
 
-    /* Chamada quando o jogador clica em "Comprar". Retorne true se a compra deu certo.
- Coloque aqui o resto da sua lógica (ex.: guardar a armadura no inventário). */
+    /* Compra via catálogo único e estado compartilhado. */
     function confirmarCompra(a) {
-      const saldoAtual = window.SaldoLoja.ler();
-
-      if (saldoAtual < a.preco) return false;
-
-      // Registra a compra no inventário.
-      window.InventarioLoja.adicionar({
-        nome: a.nome,
-        categoria: "Espadas",
-        imagem: a.imagem,
-        preco: a.preco
-      });
-
-      SALDO = window.SaldoLoja.salvar(saldoAtual - a.preco);
-
-      atualizarSaldo();
-
+      const resultado = Jogo.comprar(a.id, 1);
+      if (!resultado.ok) {
+        document.getElementById("modalTexto").textContent = resultado.motivo;
+        document.getElementById("modalComprar").style.display = "none";
+        return false;
+      }
       return true;
     }
 
     document.getElementById("modalComprar").onclick = () => {
       if (!armaduraSelecionada) return;
-      if (confirmarCompra(armaduraSelecionada)) {
-        fecharModal();
-      } else {
+      try {
+        if (confirmarCompra(armaduraSelecionada)) {
+          document.getElementById("modalTexto").textContent = "Comprado!";
+          document.getElementById("modalComprar").style.display = "none";
+          setTimeout(fecharModal, 900);
+        }
+      } catch (erro) {
+        console.error("Não foi possível registrar a compra da espada.", erro);
         document.getElementById("modalTexto").textContent =
-          "Saldo insuficiente de moedas!";
+          "Não foi possível registrar a compra. Tente novamente.";
         document.getElementById("modalComprar").style.display = "none";
       }
     };
@@ -231,13 +168,8 @@
     atualizarSaldo();
     iniciarIconeMoeda();
     render();
-    window.addEventListener("saldoAtualizado", (evento) => {
-      SALDO = evento.detail;
-      document.getElementById("saldoValor").textContent = fmt(SALDO);
-    });
+    window.addEventListener("estado-mudou", () => { atualizarSaldo(); render(); });
   </script>
-
-  <script src="../inventario.js"></script>
 </body>
 
 </html>

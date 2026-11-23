@@ -4,21 +4,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="preload" href="../Imagens/Cenários/Fundp.png" as="image" />
+  <link rel="preload" href="../Imagens/Cen%C3%A1rios/Fundp.png" as="image" />
   <title>Poções</title>
-  <link href="https://fonts.googleapis.com/css2?family=Metamorphous&family=Cinzel:wght@600;700&display=swap"
-    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="Pocoes.css" />
+  <link rel="stylesheet" href="../EstiloLojaCategorias.css" />
   <link rel="stylesheet" href="../transicao.css" />
 </head>
 
-<body>
+<body class="tela-categoria tela-categoria--pocoes">
   <div class="tela">
-    <div class="voltar" id="voltar" title="Voltar">&#8592;</div>
+    <button class="moldura voltar" id="voltar" type="button" aria-label="Voltar">
+      <span class="seta-voltar" aria-hidden="true">←</span>
+      <span>Voltar</span>
+    </button>
 
-    <div class="saldo" title="Seu saldo">
+    <h1 class="titulo-categoria">Poções</h1>
+
+    <div class="moldura saldo" title="Seu saldo">
       <img id="saldoIcone" alt="Moedas" />
-      <span><span id="saldoValor">0</span> Moedas</span>
+      <span class="saldo-texto">
+        <strong id="saldoValor"></strong>
+        <span>Moedas</span>
+      </span>
     </div>
 
     <div class="palco">
@@ -43,82 +51,48 @@
         </div>
         <hr />
         <p class="desc" id="pDesc"></p>
-        <button class="comprar" id="comprar">Comprar</button>
+        <!-- Seletor de quantidade e saldo no painel -->
+        <div class="quantidade" aria-label="Quantidade">
+          <button type="button" id="diminuir" aria-label="Diminuir quantidade">−</button>
+          <span id="quantidade">1</span>
+          <button type="button" id="aumentar" aria-label="Aumentar quantidade">+</button>
+        </div>
+        <p class="saldo-painel" id="saldoPainel">Você tem: moedas</p>
+        <p class="total" id="total"></p>
+        <p class="aviso-moedas" id="avisoMoedas" aria-live="polite"></p>
+        <button class="comprar" id="comprar" type="button">Comprar</button>
       </div>
     </div>
   </div>
 
   <div class="aviso" id="aviso"></div>
 
-  <script src="../saldo.js"></script>
+  <script src="../estado.js"></script>
   <script src="../transicao.js"></script>
   <script>
-    /* =====================================================
- CONFIGURAÇÃO — edite aqui para trocar as imagens
- =====================================================
- nome        : nome da poção
- imagem      : imagem pequena da lista (e do painel, se não houver imagemGrande)
- imagemGrande: (opcional) imagem maior para o painel da direita
- preco       : preço em moedas
- efeito      : texto do efeito. Use <b>número</b> para destacar em dourado
- efeitoIcone : (opcional) ícone ao lado do efeito (se vazio, usa um coração)
- desc        : descrição
- Para adicionar outra poção, copie um bloco { ... } e mude os valores.
-*/
-
-    const pocoes = [
-      {
-        nome: "Poção de Cura",
-        imagem: "../Imagens/Elementos_gráficos/Poção de cura.png",
-        imagemGrande: "../Imagens/Elementos_gráficos/Poção de cura banner.png",
-        preco: 50,
-        efeito: "Restaura <b>50</b> pontos de vida.",
-        efeitoIcone: "",
-        desc: "Uma poção simples feita com ervas medicinais. Cura ferimentos leves e recupera a vitalidade.",
-      },
-      {
-        nome: "Poção de Força",
-        imagem: "../Imagens/Elementos_gráficos/Poção de força.png",
-        imagemGrande: "../Imagens/Elementos_gráficos/Poção de força banner.png",
-        preco: 80,
-        efeito: "Aumenta o dano em <b>20%</b> por 60 segundos.",
-        efeitoIcone: "",
-        desc: "Um elixir escuro que enche os músculos de poder. Os golpes ficam mais pesados por um tempo.",
-      },
-      {
-        nome: "Poção de Agilidade",
-        imagem: "../Imagens/Elementos_gráficos/Poção de agilidade.png",
-        imagemGrande: "../Imagens/Elementos_gráficos/Poção de agilidade banner.png",
-        preco: 80,
-        efeito: "Aumenta a velocidade em <b>25%</b> por 60 segundos.",
-        efeitoIcone: "",
-        desc: "Líquido azul e leve que faz os pés parecerem não tocar o chão.",
-      },
-      {
-        nome: "Poção de Defesa",
-        imagem: "../Imagens/Elementos_gráficos/Poção de defesa.png",
-        imagemGrande: "../Imagens/Elementos_gráficos/Poção de defesa banner.png",
-        preco: 10,
-        efeito: "Restaura <b>5</b> pontos de vida.",
-        efeitoIcone: "",
-        desc: "Uma poção que aumenta a defesa do usuário por um 60 segundos.",
-      },
-      {
-        nome: "Cerveja",
-        imagem: "../Imagens/Elementos_gráficos/Cerveja.png",
-        imagemGrande: "../Imagens/Elementos_gráficos/Cerveja banner.png",
-        preco: 10,
-        efeito: "Restaura <b>5</b> pontos de vida.",
-        efeitoIcone: "",
-        desc: "Gelada e refrescante. Diminui seus pontos de defesa, mas aumenta o dano de ataque.",
-      },
-    ];
+    /* A lista e os dados de catálogo vêm agora do estado central. */
+    const banners = {
+      pocao_cura: "../Imagens/Elementos_gráficos/Poção de cura banner.png",
+      pocao_forca: "../Imagens/Elementos_gráficos/Poção de força banner.png",
+      pocao_agilidade: "../Imagens/Elementos_gráficos/Poção de agilidade banner.png",
+      pocao_defesa: "../Imagens/Elementos_gráficos/Poção de defesa banner.png",
+      cerveja: "../Imagens/Elementos_gráficos/Cerveja banner.png",
+    };
+    const pocoes = Object.values(Jogo.catalogo)
+      .filter((item) => item.categoria === "Poções")
+      .map((item) => ({
+        ...item,
+        imagem: Jogo.getIcone(item.id),
+        imagemGrande: banners[item.id],
+        tipoEfeito: item.efeito,
+        efeito: item.efeitoTexto,
+        desc: item.descricao,
+      }));
 
     /* ===================== SALDO ===================== */
-    /* O saldo fica no localStorage (chave "saldo"), igual na tela principal da loja. */
+    /* O saldo é sempre consultado na fonte central Jogo. */
     const fmt = (n) => Number(n).toLocaleString("pt-BR");
-    const lerSaldo = () => window.SaldoLoja.ler();
-    const salvarSaldo = (v) => window.SaldoLoja.salvar(v);
+    const lerSaldo = () => Jogo.getMoedas();
     function atualizarSaldo() {
       document.getElementById("saldoValor").textContent = fmt(lerSaldo());
     }
@@ -139,13 +113,21 @@
     const btnSobe = document.getElementById("sobe");
     const btnDesce = document.getElementById("desce");
     let atual = 0;
+    let quantidade = 1;
 
     function montarLista() {
       lista.innerHTML = "";
       pocoes.forEach((p, i) => {
         const el = document.createElement("div");
         el.className = "item";
-        el.innerHTML = `<img src="${p.imagem}" alt=""><span>${p.nome}</span>`;
+        el.dataset.id = p.id;
+        el.innerHTML = `
+          <img src="${p.imagem}" alt="">
+          <span class="item-nome">
+            <span>${p.nome}</span>
+            <small class="quantidade-item">Você tem: ${fmt(Jogo.getQuantidade(p.id))}</small>
+          </span>
+          <span class="item-preco"><span class="moeda"></span><strong>${fmt(p.preco)}</strong></span>`;
         el.querySelector("img").onerror = (e) =>
           (e.target.style.visibility = "hidden");
         el.onclick = () => selecionar(i);
@@ -155,6 +137,8 @@
 
     function selecionar(i) {
       atual = i;
+      quantidade = 1;
+      document.getElementById("quantidade").textContent = quantidade;
       const p = pocoes[i];
       [...lista.children].forEach((el, j) =>
         el.classList.toggle("ativo", j === i),
@@ -172,21 +156,12 @@
       document.getElementById("pNome").textContent = p.nome;
       document.getElementById("pPreco").textContent =
         `${fmt(p.preco)} Moedas`;
-      document.getElementById("pEfeito").innerHTML = p.efeito;
+      document.getElementById("pEfeito").textContent = p.efeito;
       document.getElementById("pDesc").textContent = p.desc;
 
       const box = document.getElementById("pEfeitoIcone");
-      box.innerHTML = "";
-      if (p.efeitoIcone) {
-        const im = document.createElement("img");
-        im.onerror = () => {
-          box.innerHTML = '<span class="coracao">&#10084;</span>';
-        };
-        im.src = p.efeitoIcone;
-        box.appendChild(im);
-      } else {
-        box.innerHTML = '<span class="coracao">&#10084;</span>';
-      }
+      box.innerHTML = `<span class="icone-efeito">${iconePorTipo(p.tipoEfeito)}</span>`;
+      atualizarTotal();
     }
 
     /* Setas da lista */
@@ -203,6 +178,45 @@
     lista.addEventListener("scroll", atualizarSetas);
     window.addEventListener("resize", atualizarSetas);
 
+    /* ===================== QUANTIDADE E TOTAL ===================== */
+    function iconePorTipo(tipo) {
+      return {
+        cura: "♥",
+        dano: "⚔",
+        agilidade: "⚡",
+        defesa: "🛡",
+        cerveja: "🍺",
+      }[tipo] || "★";
+    }
+
+    function atualizarTotal() {
+      const p = pocoes[atual];
+      const saldo = lerSaldo();
+      const total = p.preco * quantidade;
+      const totalEl = document.getElementById("total");
+      const aviso = document.getElementById("avisoMoedas");
+      const comprar = document.getElementById("comprar");
+
+      totalEl.textContent = `Total: ${fmt(total)} moedas`;
+      document.getElementById("saldoPainel").textContent =
+        `Você tem: ${fmt(saldo)} moedas`;
+      const insuficiente = total > saldo;
+      totalEl.classList.toggle("insuficiente", insuficiente);
+      aviso.textContent = insuficiente ? "Moedas insuficientes" : "";
+      comprar.disabled = insuficiente;
+    }
+
+    document.getElementById("diminuir").onclick = () => {
+      quantidade = Math.max(1, quantidade - 1);
+      document.getElementById("quantidade").textContent = quantidade;
+      atualizarTotal();
+    };
+    document.getElementById("aumentar").onclick = () => {
+      quantidade = Math.min(99, quantidade + 1);
+      document.getElementById("quantidade").textContent = quantidade;
+      atualizarTotal();
+    };
+
     /* ===================== COMPRA ===================== */
     let timerAviso;
     function avisar(texto, tipo) {
@@ -213,29 +227,37 @@
       timerAviso = setTimeout(() => a.classList.remove("mostra"), 2200);
     }
 
-    /* Chamada quando a compra dá certo. Coloque aqui sua lógica (ex.: inventario.push(p.nome)). */
+    /* Feedback de compra após a gravação no estado central. */
     function aoComprar(p) {
-      window.InventarioLoja.adicionar({
-        nome: p.nome,
-        categoria: "Poções",
-        imagem: p.imagem,
-        preco: p.preco
-      });
-
-      console.log("Item adicionado ao inventário:", p.nome);
+      console.log("Comprou:", p.nome, "por", p.preco);
     }
 
     document.getElementById("comprar").onclick = () => {
       const p = pocoes[atual];
-      const saldo = lerSaldo();
-      if (saldo < p.preco) {
-        avisar("Saldo insuficiente de moedas!", "erro");
+      if (p.preco * quantidade > lerSaldo()) {
+        atualizarTotal();
         return;
       }
-      salvarSaldo(saldo - p.preco);
-      atualizarSaldo();
+      try {
+        const resultado = Jogo.comprar(p.id, quantidade);
+        if (!resultado.ok) {
+          avisar(resultado.motivo, "erro");
+          return;
+        }
+      } catch (erro) {
+        console.error("Não foi possível registrar a compra da poção.", erro);
+        avisar("Não foi possível registrar a compra. Tente novamente.", "erro");
+        atualizarTotal();
+        return;
+      }
       aoComprar(p);
-      avisar(`Você comprou ${p.nome}!`, "ok");
+      const botao = document.getElementById("comprar");
+      botao.classList.add("comprado");
+      setTimeout(() => botao.classList.remove("comprado"), 700);
+      avisar(`Comprado! ${quantidade}x ${p.nome}`, "ok");
+      quantidade = 1;
+      document.getElementById("quantidade").textContent = quantidade;
+      atualizarTotal();
     };
 
     document.getElementById("voltar").onclick = () =>
@@ -244,15 +266,24 @@
     /* ===================== INÍCIO ===================== */
     montarLista();
     selecionar(0);
-    atualizarSaldo();
     usarMoedaCss(document.getElementById("saldoIcone"));
     usarMoedaCss(document.getElementById("pMoeda"));
     atualizarSetas();
-    window.addEventListener("saldoAtualizado", (evento) => {
-      document.getElementById("saldoValor").textContent = fmt(evento.detail);
-    });
+    function renderizarEstado() {
+      atualizarSaldo();
+      atualizarListaQuantidades();
+      atualizarTotal();
+    }
+    function atualizarListaQuantidades() {
+      [...lista.children].forEach((el) => {
+        const id = el.dataset.id;
+        const quantidadeEl = el.querySelector(".quantidade-item");
+        if (quantidadeEl) quantidadeEl.textContent = `Você tem: ${fmt(Jogo.getQuantidade(id))}`;
+      });
+    }
+    renderizarEstado();
+    window.addEventListener("estado-mudou", renderizarEstado);
   </script>
-  <script src="../inventario.js"></script>
 </body>
 
 </html>
