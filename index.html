@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Last Kingdom</title>
+  <meta name="description" content="The Last Kingdom — RPG de aventura medieval. Pressione qualquer tecla para iniciar a jornada." />
+  <link rel="icon" href="./favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="./favicon.ico" />
+  <link rel="stylesheet" href="Inicio.css" />
+</head>
+
+<body>
+  <main class="tela-press-start" id="telaInicial">
+    <div class="sombra"></div>
+    <div class="particulas" id="particulas"></div>
+
+    <!-- Conteúdo inicial: Pressione qualquer tecla -->
+    <section class="conteudo-central" id="secaoPressStart">
+      <div class="titulo-jogo">
+        <span class="ornamento">✦ ━━━━━━━━━ ✦</span>
+        <h1>THE LAST<br /><span>KINGDOM</span></h1>
+        <span class="ornamento inferior">━━━━━━━━━ ⚔ ━━━━━━━━━</span>
+      </div>
+
+      <div class="area-acao">
+        <p class="texto-piscante" id="textoStart">
+          Pressione qualquer tecla para iniciar
+        </p>
+        <span class="dica-mobile">(ou clique na tela)</span>
+      </div>
+    </section>
+
+    <!-- Nova seção de cadastro de Nome (inicialmente oculta) -->
+    <section class="conteudo-central oculto" id="secaoNome">
+      <div class="titulo-jogo">
+        <span class="ornamento">✦ ━━━━━━━━━ ✦</span>
+        <h1>IDENTIFIQUE-SE,<br /><span>GUERREIRO</span></h1>
+        <span class="ornamento inferior">━━━━━━━━━ ⚔ ━━━━━━━━━</span>
+      </div>
+
+      <div class="area-formulario">
+        <p class="subtitulo-nome">Como o reino deve chamá-lo?</p>
+        <input type="text" id="inputNome" placeholder="Digite seu nome ou apelido..." maxlength="20"
+          autocomplete="off" />
+        <button class="botao-entrar" id="btnConfirmarNome">Entrar no Reino</button>
+      </div>
+    </section>
+
+    <footer class="rodape">
+      <p>© 2026 The Last Kingdom • Versão 1.0</p>
+    </footer>
+  </main>
+
+  <script src="Inicio.js"></script>
+</body>
+
+</html>

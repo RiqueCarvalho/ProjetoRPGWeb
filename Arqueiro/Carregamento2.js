@@ -48,7 +48,7 @@ function animarCarregamento(tempo) {
         texto.textContent = "A jornada começa agora...";
 
         setTimeout(() => {
-            window.location.href = "..Arenas/ArenaI.html";
+            window.location.href = "../Arenas/ArenaI.html";
         }, 1000);
     }
 }
