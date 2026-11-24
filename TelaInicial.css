@@ -26,10 +26,12 @@ body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: linear-gradient(90deg,
-      rgba(4, 7, 15, 0.35) 0%,
-      rgba(4, 7, 15, 0.12) 55%,
-      rgba(4, 7, 15, 0.05) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(4, 7, 15, 0.35) 0%,
+    rgba(4, 7, 15, 0.12) 55%,
+    rgba(4, 7, 15, 0.05) 100%
+  );
   pointer-events: none;
   z-index: 0;
 }
@@ -63,6 +65,32 @@ body::before {
   height: auto;
   object-fit: contain;
   filter: drop-shadow(2px 4px 5px rgba(0, 0, 0, 0.65));
+}
+
+.botao-musica {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+
+  padding: 8px 14px;
+  background: rgba(22, 22, 73, 0.9);
+  border: 1px solid rgba(221, 187, 101, 0.6);
+  border-radius: 8px;
+
+  color: #f5e5bd;
+  font-family: Georgia, serif;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    filter 0.2s;
+}
+
+.botao-musica:hover {
+  transform: scale(1.05);
+  filter: brightness(1.15);
 }
 
 .botoes-menu {
@@ -246,14 +274,16 @@ body::before {
   transform: translateX(-50%);
   /* Garante o alinhamento perfeito no eixo X */
   z-index: 10;
-  font-family: 'Cinzel', serif;
+  font-family: "Cinzel", serif;
   font-size: 1.1rem;
   color: #f4e8d1;
   background: rgba(11, 12, 16, 0.85);
   border: 1px solid rgba(212, 175, 55, 0.5);
   padding: 10px 22px;
   border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7), 0 0 10px rgba(212, 175, 55, 0.2);
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.7),
+    0 0 10px rgba(212, 175, 55, 0.2);
   letter-spacing: 1.5px;
   text-align: center;
 }

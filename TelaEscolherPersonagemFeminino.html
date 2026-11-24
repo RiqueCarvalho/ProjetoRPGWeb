@@ -1,51 +1,82 @@
 <!doctype html>
 <html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Seleção de Personagem - RPG</title>
+    <link rel="icon" href="./favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="./favicon.ico" />
+    <link rel="stylesheet" href="TelaEscolherPersonagemFeminino.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Seleção de Personagem - RPG</title>
-  <link rel="icon" href="./favicon.ico" sizes="any" />
-  <link rel="apple-touch-icon" href="./favicon.ico" />
-  <link rel="stylesheet" href="TelaEscolherPersonagemFeminino.css" />
-</head>
+  <body>
+    <div class="container-selecao">
+      <!-- Botão de Voltar -->
+      <button type="button" class="btn-voltar" onclick="voltar()">
+        <img src="./Imagens/Elementos_gráficos/Seta.png" alt="Voltar" />
+      </button>
 
-<body>
-  <div class="container-selecao">
-    <!-- Botão de Voltar -->
-    <button type="button" class="btn-voltar" onclick="voltar()">
-      <img src="./Imagens/Elementos_gráficos/Seta.png" alt="Voltar" />
-    </button>
+      <!-- Container Flexbox dos Personagens -->
+      <div class="container-personagens">
+        <!-- Personagem 1: Alquimista -->
+        <div class="coluna-personagem">
+          <img
+            src="./Imagens/Personagens/Alquimista.png"
+            alt="Alquimista"
+            class="sprite-heroi alquimista-img"
+          />
+          <button
+            type="button"
+            class="btn-selecionar"
+            onclick="selecionarPersonagem('Alquimista')"
+          >
+            Selecionar
+          </button>
+        </div>
 
-    <!-- Container Flexbox dos Personagens -->
-    <div class="container-personagens">
-      <!-- Personagem 1: Alquimista -->
-      <div class="coluna-personagem">
-        <img src="./Imagens/Personagens/Alquimista.png" alt="Alquimista" class="sprite-heroi alquimista-img" />
-        <button type="button" class="btn-selecionar" onclick="selecionarPersonagem('Alquimista')">
-          Selecionar
-        </button>
-      </div>
+        <!-- Personagem 2: Bruxa -->
+        <div class="coluna-personagem">
+          <img
+            src="./Imagens/Personagens/Bruxa.png"
+            alt="Bruxa"
+            class="sprite-heroi bruxa-img"
+          />
+          <button
+            type="button"
+            class="btn-selecionar"
+            onclick="selecionarPersonagem('Bruxa')"
+          >
+            Selecionar
+          </button>
+        </div>
 
-      <!-- Personagem 2: Bruxa -->
-      <div class="coluna-personagem">
-        <img src="./Imagens/Personagens/Bruxa.png" alt="Bruxa" class="sprite-heroi bruxa-img" />
-        <button type="button" class="btn-selecionar" onclick="selecionarPersonagem('Bruxa')">
-          Selecionar
-        </button>
-      </div>
-
-      <!-- Personagem 3: Atiradora -->
-      <div class="coluna-personagem">
-        <img src="./Imagens/Personagens/Atiradora.png" alt="Atiradora" class="sprite-heroi atiradora-img" />
-        <button type="button" class="btn-selecionar" onclick="selecionarPersonagem('Atiradora')">
-          Selecionar
-        </button>
+        <!-- Personagem 3: Atiradora -->
+        <div class="coluna-personagem">
+          <img
+            src="./Imagens/Personagens/Atiradora.png"
+            alt="Atiradora"
+            class="sprite-heroi atiradora-img"
+          />
+          <button
+            type="button"
+            class="btn-selecionar"
+            onclick="selecionarPersonagem('Atiradora')"
+          >
+            Selecionar
+          </button>
+        </div>
       </div>
     </div>
-  </div>
 
-  <script src="TelaEscolherPersonagemFeminino.js"></script>
-</body>
+    <!-- Música da jornada em continuidade -->
+    <audio
+      id="musicaJornada"
+      src="./Audios/Arrival to Earth (Film Version) - Transformers (The Expanded Score).mp3"
+      loop
+      preload="auto"
+    ></audio>
+    <script src="./continuidade-musica.js"></script>
 
+    <script src="TelaEscolherPersonagemFeminino.js"></script>
+  </body>
 </html>

@@ -1,83 +1,97 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Seleção de Personagens - RPG</title>
     <link rel="icon" href="./favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="./favicon.ico" />
-    <link rel="stylesheet" href="TelaEscolherPersonagemMasculino.css">
+    <link rel="stylesheet" href="TelaEscolherPersonagemMasculino.css" />
     <script src="TelaEscolherPersonagemMasculino.js" defer></script>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <main class="game-screen">
+      <!-- Área principal do cenário -->
+      <section class="stage">
+        <!-- Imagem principal -->
+        <img
+          src="WhatsApp Image 2026-11-17 at 08.31.48.jpeg"
+          class="scene-image"
+          id="sceneImage"
+          alt="Cenário medieval de seleção de personagens"
+        />
 
-        <!-- Área principal do cenário -->
-        <section class="stage">
+        <!-- Nuvens animadas -->
+        <div class="cloud-layer clouds-far"></div>
+        <div class="cloud-layer clouds-near"></div>
 
-            <!-- Imagem principal -->
-            <img src="WhatsApp Image 2026-11-17 at 08.31.48.jpeg" class="scene-image" id="sceneImage"
-                alt="Cenário medieval de seleção de personagens">
+        <!-- Névoa mágica -->
+        <div class="horizon-mist"></div>
 
-            <!-- Nuvens animadas -->
-            <div class="cloud-layer clouds-far"></div>
-            <div class="cloud-layer clouds-near"></div>
+        <!-- Brilho dos pedestais -->
+        <div class="pedestal-glows">
+          <span class="pedestal-glow" data-glow="0"></span>
+          <span class="pedestal-glow" data-glow="1"></span>
+          <span class="pedestal-glow" data-glow="2"></span>
+        </div>
 
-            <!-- Névoa mágica -->
-            <div class="horizon-mist"></div>
+        <!-- Botão voltar -->
+        <button
+          class="back-button"
+          id="backButton"
+          aria-label="Voltar"
+          title="Voltar"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M19 12H5M12 19l-7-7 7-7"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
 
-            <!-- Brilho dos pedestais -->
-            <div class="pedestal-glows">
-                <span class="pedestal-glow" data-glow="0"></span>
-                <span class="pedestal-glow" data-glow="1"></span>
-                <span class="pedestal-glow" data-glow="2"></span>
-            </div>
+        <!-- Botões dos personagens -->
+        <div class="character-buttons">
+          <button class="select-button" data-character="0">Selecionar</button>
 
-            <!-- Botão voltar -->
-            <button class="back-button" id="backButton" aria-label="Voltar" title="Voltar">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M19 12H5M12 19l-7-7 7-7" fill="none" stroke="currentColor" stroke-width="2.8"
-                        stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-            </button>
+          <button class="select-button" data-character="1">Selecionar</button>
 
-            <!-- Botões dos personagens -->
-            <div class="character-buttons">
+          <button class="select-button" data-character="2">Selecionar</button>
+        </div>
 
-                <button class="select-button" data-character="0">
-                    Selecionar
-                </button>
+        <!-- Escolher imagem do computador -->
+        <label class="background-picker" title="Escolher imagem de fundo">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M4 5h16v14H4zM4 15l5-5 4 4 2-2 5 5"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <circle cx="15.5" cy="9" r="1.5" fill="currentColor" />
+          </svg>
 
-                <button class="select-button" data-character="1">
-                    Selecionar
-                </button>
+          <span>Trocar fundo</span>
 
-                <button class="select-button" data-character="2">
-                    Selecionar
-                </button>
-
-            </div>
-
-            <!-- Escolher imagem do computador -->
-            <label class="background-picker" title="Escolher imagem de fundo">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M4 5h16v14H4zM4 15l5-5 4 4 2-2 5 5" fill="none" stroke="currentColor" stroke-width="1.7"
-                        stroke-linecap="round" stroke-linejoin="round" />
-                    <circle cx="15.5" cy="9" r="1.5" fill="currentColor" />
-                </svg>
-
-                <span>Trocar fundo</span>
-
-                <input type="file" id="backgroundInput" accept="image/*">
-            </label>
-
-        </section>
-
+          <input type="file" id="backgroundInput" accept="image/*" />
+        </label>
+      </section>
     </main>
 
-</body>
-
+    <!-- Música da jornada em continuidade -->
+    <audio
+      id="musicaJornada"
+      src="./Audios/Arrival to Earth (Film Version) - Transformers (The Expanded Score).mp3"
+      loop
+      preload="auto"
+    ></audio>
+    <script src="./continuidade-musica.js"></script>
+  </body>
 </html>

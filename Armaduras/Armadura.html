@@ -171,6 +171,16 @@
     render();
     window.addEventListener("estado-mudou", () => { atualizarSaldo(); render(); });
   </script>
+
+  <!-- Música da jornada em continuidade (subpasta -> raiz) -->
+  <audio
+    id="musicaJornada"
+    src="../Audios/Arrival to Earth (Film Version) - Transformers (The Expanded Score).mp3"
+    loop
+    preload="auto"
+  ></audio>
+  <script src="../continuidade-musica.js"></script>
+
 </body>
 
 </html>

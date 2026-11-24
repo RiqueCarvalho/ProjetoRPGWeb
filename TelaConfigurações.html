@@ -1,102 +1,115 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>The Last Kingdom - Configurações</title>
     <link rel="icon" href="./favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="./favicon.ico" />
-    <link rel="stylesheet" href="TelaConfigurações.css">
-</head>
+    <link rel="stylesheet" href="TelaConfigurações.css" />
+  </head>
 
-<body>
+  <body>
     <!-- Botão Voltar Estilizado -->
-    <button class="btn-voltar" onclick="window.location.href = 'TelaInicial.html'" title="Voltar ao Menu">
-        <img src="./Imagens/Elementos_gráficos/WhatsApp Image 2026-10-28 at 11.26.43.jpeg" alt="Voltar" />
+    <button
+      class="btn-voltar"
+      onclick="window.location.href = 'TelaInicial.html'"
+      title="Voltar ao Menu"
+    >
+      <img
+        src="./Imagens/Elementos_gráficos/WhatsApp Image 2026-10-28 at 11.26.43.jpeg"
+        alt="Voltar"
+      />
     </button>
 
     <main class="game-screen">
-        <div class="background"></div>
-        <div class="dark-overlay"></div>
+      <div class="background"></div>
+      <div class="dark-overlay"></div>
 
-        <!-- Ornaments decorativos de topo -->
-        <img class="logo" src="./Imagens/Elementos_gráficos/logo.png" alt="Logo The Last Kingdom">
+      <!-- Ornaments decorativos de topo -->
+      <img
+        class="logo"
+        src="./Imagens/Elementos_gráficos/logo.png"
+        alt="Logo The Last Kingdom"
+      />
 
-        <section class="settings-panel">
-            <div class="panel-header">
-                <span class="ornamento">✦ ━━━━━━━━━ ✦</span>
-                <h1>Configurações</h1>
-                <span class="ornamento">━━━━━━━━━ ⚔ ━━━━━━━━━</span>
+      <section class="settings-panel">
+        <div class="panel-header">
+          <span class="ornamento">✦ ━━━━━━━━━ ✦</span>
+          <h1>Configurações</h1>
+          <span class="ornamento">━━━━━━━━━ ⚔ ━━━━━━━━━</span>
+        </div>
+
+        <!-- Grade de Configurações Principais -->
+        <div class="settings-grid">
+          <!-- SFX -->
+          <div class="setting-card">
+            <div class="setting-info">
+              <h2>Efeitos Sonoros</h2>
+              <p>Ativar ou desativar os sons de batalha e interface</p>
             </div>
+            <button class="gold-button toggle" data-setting="sfx">
+              Desligado
+            </button>
+          </div>
 
-            <!-- Grade de Configurações Principais -->
-            <div class="settings-grid">
-
-                <!-- SFX -->
-                <div class="setting-card">
-                    <div class="setting-info">
-                        <h2>Efeitos Sonoros</h2>
-                        <p>Ativar ou desativar os sons de batalha e interface</p>
-                    </div>
-                    <button class="gold-button toggle" data-setting="sfx">
-                        Desligado
-                    </button>
-                </div>
-
-                <!-- Música -->
-                <div class="setting-card">
-                    <div class="setting-info">
-                        <h2>Trilha Sonora</h2>
-                        <p>Imersão musical épica do reino</p>
-                    </div>
-                    <button class="gold-button toggle" data-setting="music">
-                        Desligado
-                    </button>
-                </div>
-
-                <!-- Brilho -->
-                <div class="setting-card">
-                    <div class="setting-info">
-                        <h2>Luminosidade</h2>
-                        <p>Ajuste visual do ambiente de jogo</p>
-                    </div>
-                    <button class="gold-button" id="brightnessButton">
-                        Claro
-                    </button>
-                </div>
-
-                <!-- Tela Cheia -->
-                <div class="setting-card fullscreen-card">
-                    <div class="setting-info">
-                        <h2>Modo de Exibição</h2>
-                        <p>Expandir o reino para a tela inteira</p>
-                    </div>
-                    <label class="fullscreen-switch">
-                        <input type="checkbox" id="fullscreen">
-                        <span class="slider"></span>
-                        <span class="fullscreen-text">Tela Cheia</span>
-                    </label>
-                </div>
-
+          <!-- Música -->
+          <div class="setting-card">
+            <div class="setting-info">
+              <h2>Trilha Sonora</h2>
+              <p>Imersão musical épica do reino</p>
             </div>
+            <button class="gold-button toggle" data-setting="music">
+              Desligado
+            </button>
+          </div>
 
-            <!-- Botões de Ação Inferiores -->
-            <div class="bottom-buttons">
-                <button class="action-button cancel-btn" id="cancelButton">
-                    Cancelar
-                </button>
-
-                <button class="action-button save-btn" id="saveButton">
-                    Salvar Alterações
-                </button>
+          <!-- Brilho -->
+          <div class="setting-card">
+            <div class="setting-info">
+              <h2>Luminosidade</h2>
+              <p>Ajuste visual do ambiente de jogo</p>
             </div>
-        </section>
+            <button class="gold-button" id="brightnessButton">Claro</button>
+          </div>
 
-        <div class="message hidden" id="message"></div>
+          <!-- Tela Cheia -->
+          <div class="setting-card fullscreen-card">
+            <div class="setting-info">
+              <h2>Modo de Exibição</h2>
+              <p>Expandir o reino para a tela inteira</p>
+            </div>
+            <label class="fullscreen-switch">
+              <input type="checkbox" id="fullscreen" />
+              <span class="slider"></span>
+              <span class="fullscreen-text">Tela Cheia</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Botões de Ação Inferiores -->
+        <div class="bottom-buttons">
+          <button class="action-button cancel-btn" id="cancelButton">
+            Cancelar
+          </button>
+
+          <button class="action-button save-btn" id="saveButton">
+            Salvar Alterações
+          </button>
+        </div>
+      </section>
+
+      <div class="message hidden" id="message"></div>
     </main>
 
-    <script src="TelaConfigurações.js"></script>
-</body>
+    <!-- Tag de áudio com o tema medieval -->
+    <audio
+      id="musicaMedieval"
+      src="./Audios/Brandon Fiechter - Cobblestone Village.mp3"
+      loop
+      preload="auto"
+    ></audio>
 
+    <script src="TelaConfigurações.js"></script>
+  </body>
 </html>
