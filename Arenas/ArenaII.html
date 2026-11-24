@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>The Last Kingdom - Arena II</title>
+
+    <link rel="icon" href="../favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="../favicon.ico">
+
+    <link rel="stylesheet" href="ArenaII.css">
+</head>
+
+<body>
+
+    <main class="arena">
+
+        <div class="fundo-arena"></div>
+        <div class="camada-escura"></div>
+
+        <!-- INFORMAÇÕES SUPERIORES -->
+        <header class="topo-arena">
+
+            <div class="informacao-topo">
+                <span>ATAQUE</span>
+                <strong id="valorAtaque">0</strong>
+            </div>
+
+            <div class="informacao-topo moedas">
+                <span>MOEDAS</span>
+                <strong id="moedas">0</strong>
+            </div>
+
+            <div class="informacao-topo jogador">
+                <span>JOGADOR</span>
+                <strong id="nomeUsuario">USER</strong>
+            </div>
+
+        </header>
+
+        <!-- ÁREA DA BATALHA -->
+        <section class="campo-batalha">
+
+            <!-- HERÓI -->
+            <div class="lado-combate" id="ladoHeroi">
+
+                <div class="identificacao">
+                    <h2 id="nomeHeroi">Herói</h2>
+                    <p id="vidaHeroiTexto">120/120 HP</p>
+                </div>
+
+                <div class="barra-vida">
+                    <div id="vidaHeroiBarra"></div>
+                </div>
+
+                <div class="personagem-container">
+                    <img id="imagemHeroi" src="" alt="Personagem escolhido">
+                </div>
+
+            </div>
+
+            <!-- VILÃO -->
+            <div class="lado-combate" id="ladoVilao">
+
+                <div class="identificacao">
+                    <h2 id="nomeVilao">Vilão</h2>
+                    <p id="vidaVilaoTexto">120/120 HP</p>
+                </div>
+
+                <div class="barra-vida">
+                    <div id="vidaVilaoBarra"></div>
+                </div>
+
+                <div class="personagem-container">
+                    <img id="imagemVilao" src="" alt="Vilão da arena">
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- REGISTRO DA BATALHA -->
+        <section class="painel-batalha">
+
+            <div id="registroBatalha" class="registro">
+                A batalha está prestes a começar...
+            </div>
+
+        </section>
+
+        <!-- BOTÕES -->
+        <footer class="controles">
+
+            <button id="btnAtacar" class="botao atacar">
+                ⚔ ATACAR
+            </button>
+
+            <button id="btnCurar" class="botao curar">
+                🧪 USAR POÇÃO
+                <span id="quantidadePocao">(0)</span>
+            </button>
+
+            <!-- APARECE SOMENTE APÓS A VITÓRIA -->
+            <button id="btnProxima" class="botao proxima" hidden>
+                CONTINUAR HISTÓRIA
+            </button>
+
+            <!-- APARECE SOMENTE APÓS A DERROTA -->
+            <button id="btnReiniciar" class="botao reiniciar" hidden>
+                ↻ REINICIAR PARTIDA
+            </button>
+
+        </footer>
+
+        <!-- RESULTADO -->
+        <div id="resultadoBatalha" class="resultado" hidden>
+
+            <div class="resultado-card">
+
+                <h2 id="tituloResultado">VITÓRIA!</h2>
+
+                <p id="textoResultado"></p>
+
+            </div>
+
+        </div>
+
+        <!-- EFEITOS DE DANO -->
+        <div id="efeitosCombate"></div>
+
+    </main>
+
+    <!-- SISTEMAS DO JOGO -->
+    <script src="../personagens.js"></script>
+    <script src="../estado.js"></script>
+    <script src="../inventario.js"></script>
+
+    <!-- SCRIPT DA ARENA II -->
+    <script src="ArenaII.js"></script>
+
+</body>
+
+</html>
