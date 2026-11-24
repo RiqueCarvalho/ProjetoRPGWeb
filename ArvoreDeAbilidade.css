@@ -88,7 +88,14 @@ button {
     height: 620px;
     overflow: hidden;
     border: 2px solid #76513a;
-    background: linear-gradient(135deg, #1b1010, #080606);
+
+    background:
+        linear-gradient(
+            135deg,
+            #1b1010,
+            #080606
+        );
+
     box-shadow: 0 0 30px #000;
 }
 
@@ -119,11 +126,19 @@ button {
 .node {
     position: absolute;
     transform: translate(-50%, -50%);
+
     width: 75px;
     height: 75px;
+
     border-radius: 50%;
     border: 3px solid #957348;
-    background: radial-gradient(#543027, #100909);
+
+    background:
+        radial-gradient(
+            #543027,
+            #100909
+        );
+
     color: #f1d5a8;
 
     box-shadow:
@@ -170,14 +185,22 @@ button {
 .core {
     width: 115px;
     height: 115px;
+
     border: 5px double #d04b3d;
-    background: radial-gradient(#672525, #160909);
+
+    background:
+        radial-gradient(
+            #672525,
+            #160909
+        );
+
     box-shadow: 0 0 30px #a51f25;
 }
 
 .core .symbol {
     font-size: 38px;
 }
+
 
 /* POSIÇÕES DA ÁRVORE */
 
@@ -186,55 +209,21 @@ button {
     top: 50%;
 }
 
-[data-id="brutal"] {
-    left: 27%;
-    top: 27%;
-}
-
 [data-id="iron"] {
-    left: 27%;
-    top: 73%;
-}
-
-[data-id="axe"] {
-    left: 12%;
-    top: 39%;
-}
-
-[data-id="intimidate"] {
-    left: 12%;
-    top: 61%;
+    left: 25%;
+    top: 24%;
 }
 
 [data-id="fury"] {
-    left: 50%;
-    top: 91%;
+    left: 75%;
+    top: 24%;
 }
 
 [data-id="blood"] {
-    left: 73%;
-    top: 39%;
+    left: 50%;
+    top: 84%;
 }
 
-[data-id="stamina"] {
-    left: 73%;
-    top: 73%;
-}
-
-[data-id="berserk"] {
-    left: 88%;
-    top: 27%;
-}
-
-[data-id="warcry"] {
-    left: 88%;
-    top: 61%;
-}
-
-[data-id="legend"] {
-    left: 88%;
-    top: 91%;
-}
 
 /* PAINEL DE HABILIDADES */
 
@@ -242,8 +231,10 @@ button {
     margin: 20px auto;
     max-width: 600px;
     padding: 20px;
+
     border: 1px solid #80503b;
     background: #190d0d;
+
     text-align: center;
 }
 
@@ -258,9 +249,16 @@ button {
 
 .upgrade {
     padding: 13px 22px;
+
     border: 1px solid #d39b62;
+
     color: white;
-    background: linear-gradient(#a42c30, #4b1518);
+
+    background:
+        linear-gradient(
+            #a42c30,
+            #4b1518
+        );
 }
 
 .upgrade:disabled {
@@ -273,6 +271,7 @@ button {
     font: 12px Arial;
     text-align: center;
 }
+
 
 /* CELULAR */
 
@@ -317,4 +316,5 @@ button {
     h1 {
         font-size: 22px;
     }
+
 }
