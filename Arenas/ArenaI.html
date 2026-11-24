@@ -4,168 +4,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arena de Batalha</title>
+
+    <title>The Last Kingdom - Arena I</title>
+    <link rel="icon" href="../favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="../favicon.ico" />
+
     <link rel="stylesheet" href="ArenaI.css">
 </head>
 
 <body>
 
-    <div class="arena">
+    <main class="arena">
 
-        <!-- TÍTULO -->
-        <div class="titulo">
-            ⚔️ Arena de Batalha
-        </div>
+        <div class="fundo-arena"></div>
+        <div class="camada-escura"></div>
 
-        <!-- MOEDAS -->
-        <div class="moedas">
-            🪙 <span id="moedas">0</span>
-        </div>
+        <!-- INFORMAÇÕES SUPERIORES -->
+        <header class="topo-arena">
 
-        <!-- BARRAS DE VIDA E STATUS -->
-        <div class="status">
-            <div class="status-box">
-                Herói
-                <div class="barra">
-                    <div id="hpHeroi" class="hp"></div>
-                </div>
-                <span id="textoHeroi">100 HP</span>
+            <div class="informacao-topo">
+                <span>ATAQUE</span>
+                <strong id="valorAtaque">0</strong>
             </div>
 
-            <div class="status-box">
-                Monstro
-                <div class="barra">
-                    <div id="hpMonstro" class="hp"></div>
-                </div>
-                <span id="textoMonstro">100 HP</span>
+            <div class="informacao-topo moedas">
+                <span>MOEDAS</span>
+                <strong id="moedas">0</strong>
             </div>
+
+            <div class="informacao-topo jogador">
+                <span>JOGADOR</span>
+                <strong id="nomeUsuario">USER</strong>
+            </div>
+
+        </header>
+
+        <!-- ÁREA DA BATALHA -->
+        <section class="campo-batalha">
+
+            <!-- HERÓI -->
+            <div class="lado-combate" id="ladoHeroi">
+
+                <div class="identificacao">
+                    <h2 id="nomeHeroi">Herói</h2>
+                    <p id="vidaHeroiTexto">120/120 HP</p>
+                </div>
+
+                <div class="barra-vida">
+                    <div id="vidaHeroiBarra"></div>
+                </div>
+
+                <div class="personagem-container">
+                    <img id="imagemHeroi" src="" alt="Personagem escolhido">
+                </div>
+
+            </div>
+
+            <!-- VILÃO -->
+            <div class="lado-combate" id="ladoVilao">
+
+                <div class="identificacao">
+                    <h2 id="nomeVilao">Vilão</h2>
+                    <p id="vidaVilaoTexto">120/120 HP</p>
+                </div>
+
+                <div class="barra-vida">
+                    <div id="vidaVilaoBarra"></div>
+                </div>
+
+                <div class="personagem-container">
+                    <img id="imagemVilao" src="" alt="Vilão da arena">
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- REGISTRO DA BATALHA -->
+        <section class="painel-batalha">
+
+            <div id="registroBatalha" class="registro">
+                A batalha está prestes a começar...
+            </div>
+
+        </section>
+
+        <!-- BOTÕES -->
+        <footer class="controles">
+
+            <button id="btnAtacar" class="botao atacar">
+                ⚔ ATACAR
+            </button>
+
+            <button id="btnCurar" class="botao curar">
+                🧪 USAR POÇÃO
+                <span id="quantidadePocao">(0)</span>
+            </button>
+
+            <!-- APARECE SOMENTE APÓS A VITÓRIA -->
+            <button id="btnProxima" class="botao proxima" hidden>
+                CONTINUAR HISTÓRIA
+            </button>
+
+            <!-- APARECE SOMENTE APÓS A DERROTA -->
+            <button id="btnReiniciar" class="botao reiniciar" hidden>
+                ↻ REINICIAR PARTIDA
+            </button>
+
+        </footer>
+
+        <!-- RESULTADO -->
+        <div id="resultadoBatalha" class="resultado" hidden>
+
+            <div class="resultado-card">
+
+                <h2 id="tituloResultado">VITÓRIA!</h2>
+
+                <p id="textoResultado"></p>
+
+            </div>
+
         </div>
 
-        <!-- PERSONAGENS -->
-        <div id="elHeroi" class="personagem heroi">
-            <img src="../Imagens/Personagens/klatos.png" alt="Herói">
-        </div>
+        <!-- EFEITOS DE DANO -->
+        <div id="efeitosCombate"></div>
 
-        <div id="elMonstro" class="personagem monstro">
-            <img src="../Imagens/Elementos_gráficos/monstro.png" alt="Monstro">
-        </div>
+    </main>
 
-        <!-- CONTROLES / BOTÕES -->
-        <div class="botoes">
-            <button id="btnAtacar" onclick="atacar()">⚔️ Atacar</button>
-            <button id="btnEsquivar" onclick="esquivar()">💨 Esquivar</button>
-            <button id="btnPocao" onclick="pocao()">🧪 Usar Poção</button>
-            <button id="btnReiniciar" onclick="reiniciarBatalha()">🔄 Reiniciar</button>
-        </div>
-
-    </div>
+    <script src="../personagens.js"></script>
+    <script src="../estado.js"></script>
+    <script src="../inventario.js"></script>
     <script src="ArenaI.js"></script>
-
-    <!-- LÓGICA DO JOGO -->
-    <script>
-        let hpHeroi = 100;
-        let hpMonstro = 100;
-        let moedas = 0;
-        let esquivando = false;
-
-        const elHeroi = document.getElementById("elHeroi");
-        const elMonstro = document.getElementById("elMonstro");
-
-        function atualizarTela() {
-            document.getElementById("hpHeroi").style.width = hpHeroi + "%";
-            document.getElementById("hpMonstro").style.width = hpMonstro + "%";
-            document.getElementById("textoHeroi").textContent = hpHeroi + " HP";
-            document.getElementById("textoMonstro").textContent = hpMonstro + " HP";
-            document.getElementById("moedas").textContent = moedas;
-        }
-
-        function contraAtaqueMonstro() {
-            setTimeout(() => {
-                if (hpMonstro <= 0) return;
-
-                // Animação de ataque do monstro
-                elMonstro.classList.add("atacando-monstro");
-                setTimeout(() => elMonstro.classList.remove("atacando-monstro"), 250);
-
-                if (esquivando) {
-                    alert("💨 Você esquivou do ataque do monstro!");
-                    esquivando = false;
-                } else {
-                    let danoMonstro = Math.floor(Math.random() * 15) + 5;
-                    hpHeroi -= danoMonstro;
-                    if (hpHeroi < 0) hpHeroi = 0;
-
-                    // Animação de dano no Herói
-                    elHeroi.classList.add("dano");
-                    setTimeout(() => elHeroi.classList.remove("dano"), 300);
-
-                    atualizarTela();
-
-                    if (hpHeroi === 0) {
-                        alert("💀 Você foi derrotado!");
-                    }
-                }
-            }, 600);
-        }
-
-        function atacar() {
-            if (hpHeroi <= 0 || hpMonstro <= 0) return;
-
-            // Animação de ataque do herói
-            elHeroi.classList.add("atacando-heroi");
-            setTimeout(() => elHeroi.classList.remove("atacando-heroi"), 250);
-
-            let dano = Math.floor(Math.random() * 20) + 10;
-            hpMonstro -= dano;
-            if (hpMonstro < 0) hpMonstro = 0;
-
-            // Animação de dano no Monstro
-            elMonstro.classList.add("dano");
-            setTimeout(() => elMonstro.classList.remove("dano"), 300);
-
-            atualizarTela();
-
-            if (hpMonstro === 0) {
-                moedas += 10;
-                atualizarTela();
-                setTimeout(() => alert("🏆 Você venceu!\n🪙 +10 moedas!"), 200);
-                return;
-            }
-
-            contraAtaqueMonstro();
-        }
-
-        function esquivar() {
-            if (hpHeroi <= 0 || hpMonstro <= 0) return;
-
-            esquivando = true;
-
-            // Animação de esquiva
-            elHeroi.classList.add("esquivando-heroi");
-            setTimeout(() => elHeroi.classList.remove("esquivando-heroi"), 400);
-
-            contraAtaqueMonstro();
-        }
-
-        function pocao() {
-            if (hpHeroi <= 0 || hpHeroi >= 100) return;
-
-            hpHeroi += 25;
-            if (hpHeroi > 100) hpHeroi = 100;
-
-            atualizarTela();
-            contraAtaqueMonstro();
-        }
-
-        function reiniciarBatalha() {
-            hpHeroi = 100;
-            hpMonstro = 100;
-            esquivando = false;
-            atualizarTela();
-        }
-
-        atualizarTela();
-    </script>
 
 </body>
 

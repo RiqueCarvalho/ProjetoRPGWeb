@@ -3,23 +3,32 @@ const botaoVoltar = document.getElementById("voltar");
 const botaoEscolher = document.getElementById("escolher");
 
 // Botão voltar
-botaoVoltar.addEventListener("click", () => {
-    window.history.back();
-});
+if (botaoVoltar) {
+    botaoVoltar.addEventListener("click", () => {
+        window.history.back();
+    });
+}
 
 // Botão escolher
-botaoEscolher.addEventListener("click", () => {
+if (botaoEscolher) {
 
-    // Salva a personagem escolhida
-    localStorage.setItem("personagemSelecionado", "Morgana");
+    botaoEscolher.addEventListener("click", () => {
 
-    // Efeito de transição
-    document.body.style.transition = "opacity 0.8s ease";
-    document.body.style.opacity = "0";
+        // Salva a personagem escolhida
+        localStorage.setItem("personagemSelecionado", "Atiradora");
+        localStorage.setItem("personagemSelecionadoId", "atiradora");
+        localStorage.setItem("personagemSelecionadoNome", "Atiradora");
+        localStorage.setItem("heroiSelecionado", "Atiradora");
 
-    // Redireciona para a tela de carregamento 5
-    setTimeout(() => {
-        window.location.href = "Carregamento6.html";
-    }, 800);
+        // Efeito de transição
+        document.body.style.transition = "opacity 0.8s ease";
+        document.body.style.opacity = "0";
 
-});
+        // Redireciona para a tela de carregamento 6
+        setTimeout(() => {
+            window.location.href = "Carregamento6.html";
+        }, 800);
+
+    });
+
+}

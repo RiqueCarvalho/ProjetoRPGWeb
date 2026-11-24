@@ -1,229 +1,508 @@
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
 }
 
-html, body {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
+body {
     overflow: hidden;
-    background: #0d0a1a;
-    color: white;
-    font-family: Arial, sans-serif;
-}
-
-/* Arena ocupando a tela inteira */
-.arena {
-    width: 100vw;
-    height: 100vh;
-    position: relative;
-    background-image: url("../Imagens/Cenários/arena.png.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    border: none;
-    border-radius: 0;
-    overflow: hidden;
-}
-
-/* TÍTULO PRINCIPAL */
-.titulo {
-    position: absolute;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: white;
-    font-size: 30px;
-    font-weight: bold;
-    text-shadow: 0 3px 8px black;
-    z-index: 10;
-}
-
-/* CONTADOR DE MOEDAS */
-.moedas {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    color: #ffd83d;
-    font-size: 20px;
-    font-weight: bold;
-    background: rgba(0, 0, 0, 0.55);
-    padding: 8px 16px;
-    border-radius: 15px;
-    border: 1px solid #ffd83d;
-    z-index: 40;
-}
-
-/* PAINEL DE HP */
-.status {
-    position: absolute;
-    top: 70px;
-    left: 10%;
-    right: 10%;
-    display: flex;
-    justify-content: space-between;
-    z-index: 20;
-}
-
-.status-box {
-    width: 35%;
-    text-align: center;
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-    text-shadow: 0 2px 5px black;
-    background: rgba(0, 0, 0, 0.45);
-    padding: 10px;
-    border-radius: 12px;
-}
-
-.barra {
-    width: 100%;
-    height: 22px;
-    margin-top: 6px;
-    margin-bottom: 4px;
-    background: #44151c;
-    border: 2px solid white;
-    border-radius: 20px;
-    overflow: hidden;
-}
-
-.hp {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, #ff3030, #ffd52e, #40ed58);
-    transition: width 0.3s ease-in-out;
-}
-
-/* PERSONAGENS GRANDES E BEM POSICIONADOS */
-.personagem {
-    position: absolute;
-    bottom: 95px;
-    width: 450px;
-    height: 550px;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    z-index: 5;
-    transition: transform 0.25s ease, filter 0.2s ease;
-}
-
-.heroi {
-    left: 10%;
-}
-
-.monstro {
-    right: 10%;
-}
-
-.personagem img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
-/* ANIMAÇÕES VISUAIS */
-.atacando-heroi {
-    transform: translateX(120px) scale(1.08);
-}
-
-.atacando-monstro {
-    transform: translateX(-120px) scale(1.08);
-}
-
-.esquivando-heroi {
-    transform: translate(-40px, -20px) rotate(-10deg);
-}
-
-.dano {
-    filter: brightness(2) sepia(1) hue-rotate(-50deg) saturate(5);
-}
-
-/* BOTÕES ORGANIZADOS ABAIXO DOS PERSONAGENS */
-.botoes {
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 15px;
-    z-index: 30;
+    background: #08090d;
+    color: #f5e8ca;
+    font-family: Georgia, serif;
 }
 
 button {
-    padding: 14px 28px;
-    border: none;
-    border-radius: 12px;
-    background: #8c52ff;
-    color: white;
-    font-size: 16px;
+    font-family: Georgia, serif;
+}
+
+.arena {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 600px;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.fundo-arena {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+
+    background:
+        url("Arena.jpg") center center / cover no-repeat;
+}
+
+.camada-escura {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    background:
+        linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.38),
+            rgba(0, 0, 0, 0.08) 45%,
+            rgba(0, 0, 0, 0.65));
+}
+
+/* TOPO */
+
+.topo-arena {
+    position: absolute;
+    top: 4%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: min(900px, 90%);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.3fr;
+    gap: 12px;
+
+    z-index: 5;
+}
+
+.informacao-topo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
+    padding: 10px;
+    min-width: 0;
+
+    background: rgba(22, 22, 73, 0.94);
+    border: 1px solid rgba(221, 187, 101, 0.45);
+
+    color: #f5e5bd;
+    text-align: center;
+    text-transform: uppercase;
+
+    font-size: clamp(13px, 1.6vw, 23px);
     font-weight: bold;
+
+    box-shadow: 0 5px 15px #0008;
+}
+
+.informacao-topo strong {
+    overflow-wrap: anywhere;
+}
+
+/* PERSONAGENS */
+
+.campo-batalha {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    padding: 0 9% 125px;
+}
+
+.lado-combate {
+    position: relative;
+    width: 35%;
+    height: 65%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.identificacao {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 3;
+}
+
+.identificacao h2 {
+    font-size: clamp(17px, 2vw, 27px);
+    text-shadow: 2px 3px 5px black;
+    margin-bottom: 8px;
+}
+
+.identificacao p {
+    font-size: clamp(15px, 1.8vw, 24px);
+    font-weight: bold;
+    text-shadow: 2px 3px 5px black;
+}
+
+.barra-vida {
+    position: absolute;
+    top: 58px;
+
+    width: 100%;
+    height: 19px;
+
+    background: #310d0d;
+    border: 2px solid #e5d1a3;
+    border-radius: 20px;
+    overflow: hidden;
+
+    z-index: 3;
+}
+
+.barra-vida div {
+    width: 100%;
+    height: 100%;
+
+    background: linear-gradient(to right,
+            #e21b0c,
+            #d4a323,
+            #16c72b);
+
+    transition: width 0.45s ease;
+}
+
+.personagem-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.personagem-container img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+
+    object-fit: contain;
+    object-position: bottom;
+
+    filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.8));
+
+    transform-origin: bottom center;
+}
+
+/* ANIMAÇÕES */
+
+.atacando {
+    animation: ataque 0.55s ease;
+}
+
+.recebendo-dano {
+    animation: dano 0.5s ease;
+}
+
+.derrotado {
+    animation: cair 0.8s forwards;
+}
+
+@keyframes ataque {
+    0% {
+        transform: translateX(0) scale(1);
+    }
+
+    35% {
+        transform: translateX(75px) scale(1.08);
+    }
+
+    65% {
+        transform: translateX(90px) scale(1.1);
+    }
+
+    100% {
+        transform: translateX(0) scale(1);
+    }
+}
+
+@keyframes dano {
+
+    0%,
+    100% {
+        transform: translateX(0);
+        filter: brightness(1);
+    }
+
+    25% {
+        transform: translateX(-15px);
+        filter: brightness(2) sepia(1);
+    }
+
+    50% {
+        transform: translateX(12px);
+    }
+
+    75% {
+        transform: translateX(-8px);
+    }
+}
+
+@keyframes cair {
+    to {
+        transform: rotate(80deg) translateY(80px);
+        opacity: 0.25;
+    }
+}
+
+/* MENSAGENS */
+
+.painel-batalha {
+    position: absolute;
+    bottom: 105px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: min(650px, 80%);
+    z-index: 5;
+}
+
+.registro {
+    min-height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 10px 15px;
+
+    text-align: center;
+    font-size: clamp(12px, 1.2vw, 16px);
+
+    background: rgba(12, 13, 35, 0.92);
+    border: 1px solid #b28c3a;
+    border-radius: 7px;
+
+    box-shadow: 0 4px 15px #0009;
+}
+
+/* BOTÕES */
+
+.controles {
+    position: absolute;
+    bottom: 3.5%;
+    left: 0;
+
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(10px, 6vw, 100px);
+
+    padding: 0 15px;
+    z-index: 10;
+}
+
+.botao {
+    position: relative;
+
+    min-width: 180px;
+    padding: 13px 22px;
+
+    border-radius: 16px;
+    border: 2px solid rgba(0, 0, 0, 0.7);
+
+    color: white;
+    font-size: clamp(14px, 1.8vw, 23px);
+    font-weight: bold;
+
     cursor: pointer;
-    box-shadow: 0 5px 0 #592cb5;
-    transition: background 0.2s, transform 0.1s;
+    transition: 0.25s;
+
+    box-shadow: 0 5px 12px #0009;
 }
 
-button:hover {
-    background: #a979ff;
+.botao:hover:not(:disabled) {
+    transform: translateY(-5px);
+    filter: brightness(1.2);
 }
 
-button:active {
-    transform: translateY(4px);
-    box-shadow: 0 1px 0 #592cb5;
+.botao:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    filter: grayscale(0.7);
 }
 
-/* ADAPTAÇÃO PARA DISPOSITIVOS MÓVEIS OU TELAS PEQUENAS */
-@media (max-width: 768px) {
-    .personagem {
-        width: 180px;
-        height: 250px;
-        bottom: 90px;
+.atacar {
+    background: #1028c4;
+}
+
+.curar {
+    background: #760c70;
+}
+
+.proxima {
+    background: #087d0b;
+}
+
+.reiniciar {
+    background: #a12613;
+}
+
+.curar span {
+    position: absolute;
+    top: -12px;
+    right: -8px;
+
+    background: #c49b35;
+    color: #1b1204;
+
+    padding: 4px 8px;
+    border-radius: 50%;
+    font-size: 12px;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+/* RESULTADO */
+
+.resultado {
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+}
+
+.resultado-card {
+    width: min(400px, 85%);
+    padding: 30px;
+
+    text-align: center;
+
+    background: rgba(20, 19, 55, 0.96);
+    border: 2px solid #d4af37;
+    border-radius: 12px;
+
+    box-shadow: 0 0 35px #000;
+}
+
+.resultado-card h2 {
+    color: #e7c65a;
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.resultado-card p {
+    line-height: 1.6;
+}
+
+/* DANO FLUTUANTE */
+
+#efeitosCombate {
+    position: fixed;
+    inset: 0;
+    z-index: 15;
+    pointer-events: none;
+}
+
+.numero-dano {
+    position: fixed;
+
+    color: #ff2929;
+    font-size: 34px;
+    font-weight: bold;
+
+    text-shadow:
+        2px 2px 3px black,
+        0 0 10px red;
+
+    animation: flutuar 1s forwards;
+}
+
+.numero-cura {
+    color: #48ff70;
+    text-shadow: 0 0 10px green;
+}
+
+@keyframes flutuar {
+    from {
+        transform: translate(-50%, 0) scale(0.8);
+        opacity: 1;
     }
 
-    .heroi {
-        left: 5%;
-    }
-
-    .monstro {
-        right: 5%;
-    }
-
-    button {
-        padding: 10px 14px;
-        font-size: 13px;
+    to {
+        transform: translate(-50%, -100px) scale(1.4);
+        opacity: 0;
     }
 }
 
-button:hover {
-    background: #a979ff;
-}
+/* RESPONSIVIDADE */
 
-button:active {
-    transform: translateY(4px);
-    box-shadow: 0 1px 0 #592cb5;
-}
+@media (max-width: 700px) {
 
-/* ADAPTAÇÃO PARA DISPOSITIVOS MÓVEIS OU TELAS PEQUENAS */
-@media (max-width: 768px) {
-    .personagem {
-        width: 170px;
-        height: 240px;
-        bottom: 100px;
+    .topo-arena {
+        width: 96%;
+        gap: 5px;
     }
 
-    .heroi {
-        left: 3%;
+    .informacao-topo {
+        padding: 8px 4px;
+        flex-direction: column;
+        font-size: 11px;
     }
 
-    .monstro {
-        right: 3%;
+    .campo-batalha {
+        padding: 0 3% 180px;
     }
 
-    button {
-        padding: 10px 16px;
+    .lado-combate {
+        width: 47%;
+        height: 55%;
+    }
+
+    .identificacao h2 {
         font-size: 14px;
     }
+
+    .identificacao p {
+        font-size: 13px;
+    }
+
+    .barra-vida {
+        top: 48px;
+        height: 13px;
+    }
+
+    .controles {
+        bottom: 2%;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    .botao {
+        min-width: 0;
+        width: 44%;
+        padding: 11px 5px;
+        font-size: 13px;
+    }
+
+    .painel-batalha {
+        bottom: 115px;
+        width: 94%;
+    }
+}
+
+@keyframes ataqueVilao {
+    0% {
+        transform: translateX(0) scale(1);
+    }
+
+    35%,
+    65% {
+        transform: translateX(-75px) scale(1.08);
+    }
+
+    100% {
+        transform: translateX(0) scale(1);
+    }
+}
+
+.atacando-vilao {
+    animation: ataqueVilao 0.55s ease;
 }

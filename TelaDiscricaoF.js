@@ -10,6 +10,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Salva a personagem escolhida
             localStorage.setItem("personagemSelecionado", "A Alquimista");
+            localStorage.setItem("personagemSelecionadoId", "alquimista");
+            localStorage.setItem("personagemSelecionadoNome", "Alquimista");
+            localStorage.setItem("heroiSelecionado", "Alquimista");
 
             // Efeito de transição
             document.body.style.transition = "opacity 0.8s ease";

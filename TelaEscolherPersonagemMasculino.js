@@ -1,6 +1,3 @@
-// =====================================
-// ELEMENTOS DA TELA
-// =====================================
 
 const sceneImage = document.getElementById("sceneImage");
 
@@ -22,46 +19,43 @@ const pedestalGlows = document.querySelectorAll(
 
 const backButton = document.getElementById("backButton");
 
+// Cadastro dos personagens masculinos
+const personagens = [
+    {
+        id: "arqueiro",
+        nome: "Arqueiro",
+        destino: "./Arqueiro/Arqueiro.html"
+    },
 
-// =====================================
-// ROTAS DOS PERSONAGENS
-// =====================================
+    {
+        id: "cavaleiro",
+        nome: "Cavaleiro",
+        destino: "./Cavaleiro/Cavaleiro.html"
+    },
 
-const characterRoutes = [
-    "./Arqueiro/Arqueiro.html",
-    "./Cavaleiro/Cavaleiro.html",
-    "./GiganteGuerreiro/GiganteGuerreiro.html"
+    {
+        id: "gigante-guerreiro",
+        nome: "O Gigante Guerreiro",
+        destino: "./GiganteGuerreiro/GiganteGuerreiro.html"
+    }
 ];
 
-
-// =====================================
-// SELEÇÃO DE PERSONAGENS
-// =====================================
-
+// Seleção visual
 function selectCharacter(index) {
 
-    // Atualiza todos os botões
     selectButtons.forEach((button, i) => {
 
         const selected = i === index;
 
-        button.classList.toggle(
-            "is-selected",
-            selected
-        );
+        button.classList.toggle("is-selected", selected);
 
         button.textContent = selected
             ? "◆ Selecionar ◆"
             : "Selecionar";
 
-        button.setAttribute(
-            "aria-pressed",
-            selected
-        );
+        button.setAttribute("aria-pressed", selected);
     });
 
-
-    // Atualiza o brilho dos pedestais
     pedestalGlows.forEach((glow, i) => {
 
         glow.classList.toggle(
@@ -70,62 +64,63 @@ function selectCharacter(index) {
         );
 
     });
-
 }
 
-
-// Adiciona o evento aos três personagens
+// Eventos dos botões
 selectButtons.forEach((button, index) => {
 
     button.addEventListener("click", () => {
 
+        const personagem = personagens[index];
+
+        if (!personagem) return;
+
         selectCharacter(index);
 
-        const destination = characterRoutes[index];
+        // Salva a identificação do herói
+        localStorage.setItem(
+            "personagemSelecionadoId",
+            personagem.id
+        );
 
-        if (destination) {
-            // Aguarda 350ms para mostrar o brilho no pedestal antes de abrir a tela
-            setTimeout(() => {
-                window.location.href = destination;
-            }, 350);
-        }
+        localStorage.setItem(
+            "personagemSelecionadoNome",
+            personagem.nome
+        );
+
+        // Mantém compatibilidade com o sistema antigo
+        localStorage.setItem(
+            "heroiSelecionado",
+            personagem.nome
+        );
+
+        setTimeout(() => {
+            window.location.href = personagem.destino;
+        }, 350);
 
     });
 
 });
 
-
-// Começa com o primeiro personagem selecionado
+// Estado visual inicial
 selectCharacter(0);
 
-
-// =====================================
-// ESCOLHER IMAGEM DO COMPUTADOR
-// =====================================
-
+// Escolher imagem de fundo
 backgroundInput.addEventListener("change", (event) => {
 
     const file = event.target.files[0];
 
-    if (!file) {
-        return;
-    }
+    if (!file) return;
 
-    // Verifica se o arquivo é uma imagem
     if (!file.type.startsWith("image/")) {
-
         alert("Escolha um arquivo de imagem válido.");
-
         return;
     }
 
-    // Cria um endereço temporário para a imagem
     const imageURL = URL.createObjectURL(file);
 
-    // Atualiza o cenário principal
     sceneImage.src = imageURL;
 
-    // Atualiza o fundo desfocado (caso exista no HTML)
     if (blurredBackground) {
         blurredBackground.style.backgroundImage =
             `url("${imageURL}")`;
@@ -133,11 +128,7 @@ backgroundInput.addEventListener("change", (event) => {
 
 });
 
-
-// =====================================
-// BOTÃO DE VOLTAR
-// =====================================
-
+// Botão voltar
 backButton.addEventListener("click", () => {
     window.location.href = "TelaInicial3.html";
 });
