@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Árvore de Habilidades - Ragnar</title>
-    <link rel="icon" href="./favicon.ico" sizes="any" />
-    <link rel="apple-touch-icon" href="./favicon.ico" />
+
+    <link rel="icon" href="./favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="./favicon.ico">
+
     <link rel="stylesheet" href="ArvoreDeAbilidade.css">
 </head>
 
@@ -22,104 +24,109 @@
             </button>
 
             <div class="heading">
+
                 <h1>Árvore de Habilidades</h1>
-                <div class="subtitle">O LEGADO DE RAGNAR</div>
+
+                <div class="subtitle">
+                    O LEGADO DE RAGNAR
+                </div>
+
             </div>
 
             <div class="xp-box">
+
                 <strong id="xp">0 XP</strong>
 
                 <div class="progress">
                     <div class="progress-bar" id="progress"></div>
                 </div>
+
             </div>
 
         </header>
+
 
         <section class="tree-container">
 
             <div class="runes"></div>
 
-            <svg class="connections" viewBox="0 0 1000 620" preserveAspectRatio="none">
+            <svg class="connections"
+                 viewBox="0 0 1000 620"
+                 preserveAspectRatio="none">
 
-                <line x1="500" y1="310" x2="270" y2="167" />
-                <line x1="500" y1="310" x2="270" y2="453" />
-                <line x1="500" y1="310" x2="120" y2="242" />
-                <line x1="500" y1="310" x2="120" y2="378" />
-                <line x1="500" y1="310" x2="500" y2="565" />
-                <line x1="500" y1="310" x2="730" y2="242" />
-                <line x1="500" y1="310" x2="730" y2="453" />
-                <line x1="500" y1="310" x2="880" y2="167" />
-                <line x1="500" y1="310" x2="880" y2="378" />
-                <line x1="500" y1="310" x2="880" y2="565" />
+                <line x1="500" y1="310" x2="250" y2="150" />
+
+                <line x1="500" y1="310" x2="750" y2="150" />
+
+                <line x1="500" y1="310" x2="500" y2="520" />
 
             </svg>
 
+
+            <!-- HABILIDADE CENTRAL -->
+
             <button class="node core" data-id="core">
+
                 <span class="symbol">ᛟ</span>
+
                 <span class="rank">RAGNAR</span>
+
             </button>
 
-            <button class="node available" data-id="brutal">
-                <span class="symbol">⚒</span>
-                <span class="rank">0/3</span>
-            </button>
+
+            <!-- RESISTÊNCIA DE FERRO -->
 
             <button class="node available" data-id="iron">
+
                 <span class="symbol">♜</span>
+
                 <span class="rank">0/3</span>
+
             </button>
 
-            <button class="node locked" data-id="axe">
-                <span class="symbol">⚔</span>
-                <span class="rank">0/3</span>
-            </button>
 
-            <button class="node locked" data-id="intimidate">
-                <span class="symbol">♛</span>
-                <span class="rank">0/3</span>
-            </button>
+            <!-- FÚRIA DO CARNICEIRO -->
 
             <button class="node available" data-id="fury">
+
                 <span class="symbol">ϟ</span>
+
                 <span class="rank">0/3</span>
+
             </button>
+
+
+            <!-- INSTINTO DE SOBREVIVÊNCIA -->
 
             <button class="node available" data-id="blood">
+
                 <span class="symbol">♥</span>
-                <span class="rank">0/3</span>
-            </button>
 
-            <button class="node locked" data-id="stamina">
-                <span class="symbol">♧</span>
                 <span class="rank">0/3</span>
-            </button>
 
-            <button class="node locked" data-id="berserk">
-                <span class="symbol">✹</span>
-                <span class="rank">0/3</span>
-            </button>
-
-            <button class="node locked" data-id="legend">
-                <span class="symbol">♛</span>
-                <span class="rank">0/3</span>
             </button>
 
         </section>
 
+
+        <!-- DETALHES DA HABILIDADE -->
+
         <section class="details">
 
-            <h2 id="skill-name">Essência de Ragnar</h2>
+            <h2 id="skill-name">
+                Essência de Ragnar
+            </h2>
 
             <p id="skill-desc">
                 Selecione uma habilidade para conhecer seus poderes.
             </p>
 
             <button class="upgrade" id="upgrade" disabled>
-                Necessário: 1.000 XP
+                Habilidade central
             </button>
 
         </section>
+
 
         <p class="note">
             Cada melhoria custa 1.000 XP.
@@ -127,6 +134,7 @@
         </p>
 
     </div>
+
 
     <script src="ArvoreDeAbilidade.js"></script>
 
