@@ -7,37 +7,71 @@ const containerParticulas = document.getElementById("particulas");
 
 let transicaoAtiva = false;
 
-// Função chamada quando o usuário pressiona qualquer tecla ou clica na tela inicial
+// ==========================================
+// REINICIAR A JORNADA
+// ==========================================
+
+function reiniciarJogo() {
+  // Remove o estado central: moedas, vida, inventário e equipamentos
+  localStorage.removeItem("rpg_estado_v1");
+
+  // Remove o saldo do sistema antigo, se existir
+  localStorage.removeItem("saldo");
+
+  // Remove o personagem escolhido anteriormente
+  localStorage.removeItem("personagemSelecionado");
+
+  // Remove registros de vitória e progresso de arenas/capítulos
+  const chavesParaRemover = [];
+
+  for (let i = 0; i < localStorage.length; i++) {
+    const chave = localStorage.key(i);
+
+    if (/^(arena|capitulo|progresso)/i.test(chave)) {
+      chavesParaRemover.push(chave);
+    }
+  }
+
+  chavesParaRemover.forEach((chave) => {
+    localStorage.removeItem(chave);
+  });
+}
+
+// ==========================================
+// MOSTRAR TELA DE IDENTIFICAÇÃO
+// ==========================================
+
 function mostrarTelaNome(evento) {
   if (transicaoAtiva) return;
 
-  // Evita conflito se clicar dentro do formulário de nome antes da hora
-  if (evento.target.closest('#secaoNome')) return;
+  if (evento.target.closest("#secaoNome")) return;
 
   transicaoAtiva = true;
 
-  // Transição suave ocultando o "Press Start" e mostrando o campo de nome
   secaoPressStart.style.opacity = "0";
+
   setTimeout(() => {
     secaoPressStart.classList.add("oculto");
     secaoNome.classList.remove("oculto");
     secaoNome.style.opacity = "1";
 
-    // Foca automaticamente no campo de texto para digitar
     inputNome.focus();
   }, 400);
 
-  // Remove os ouvintes antigos da tela inicial
   document.removeEventListener("keydown", lidarComTecla);
   telaInicial.removeEventListener("click", mostrarTelaNome);
 }
 
 function lidarComTecla(evento) {
   if (evento.key === "F5" || evento.key === "F12") return;
+
   mostrarTelaNome(evento);
 }
 
-// Função para salvar o apelido e ir para a tela de Boas-Vindas
+// ==========================================
+// SALVAR NOME E COMEÇAR NOVA JORNADA
+// ==========================================
+
 function salvarEAvancar() {
   let nomeJogador = inputNome.value.trim();
 
@@ -45,42 +79,53 @@ function salvarEAvancar() {
     nomeJogador = "Guerreiro Anônimo";
   }
 
-  // Salva o nome na memória do navegador
+  // Reinicia os dados da jornada anterior
+  reiniciarJogo();
+
+  // Salva o novo jogador
   localStorage.setItem("jogadorNome", nomeJogador);
 
-  // Efeito visual de saída e redirecionamento para a tela de Boas-Vindas
+  // Transição para a próxima tela
   telaInicial.style.opacity = "0";
+
   setTimeout(() => {
     window.location.href = "BoasVindas.html";
   }, 800);
 }
 
-// Eventos de clique/tecla iniciais
+// ==========================================
+// EVENTOS
+// ==========================================
+
 document.addEventListener("keydown", lidarComTecla);
 telaInicial.addEventListener("click", mostrarTelaNome);
 
-// Evento ao clicar no botão de confirmar nome
 btnConfirmarNome.addEventListener("click", (e) => {
   e.stopPropagation();
   salvarEAvancar();
 });
 
-// Evento ao apertar "Enter" dentro do campo de texto
 inputNome.addEventListener("keydown", (e) => {
   e.stopPropagation();
+
   if (e.key === "Enter") {
     salvarEAvancar();
   }
 });
 
-// Geração de partículas flutuantes douradas no fundo
+// ==========================================
+// PARTÍCULAS
+// ==========================================
+
 function criarParticulas() {
   for (let i = 0; i < 25; i++) {
     const particula = document.createElement("div");
+
     particula.classList.add("brilho");
     particula.style.left = `${Math.random() * 100}vw`;
     particula.style.animationDuration = `${4 + Math.random() * 6}s`;
     particula.style.animationDelay = `${Math.random() * 5}s`;
+
     containerParticulas.appendChild(particula);
   }
 }

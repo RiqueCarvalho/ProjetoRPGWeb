@@ -34,7 +34,7 @@ window.CatalogoJogo = {
             id: "gigante-guerreiro",
             nome: "O Gigante Guerreiro",
             tipo: "masculino",
-            imagem: "../Imagens/Personagens/Gigante_Cavaleiro.png",
+            imagem: "../Imagens/Personagens/Gigante_Sem_Base.png",
             vida: 150,
             ataque: 20,
             defesa: 15
