@@ -1,0 +1,400 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    color: #d4f5e9;
+    font-family: Georgia, serif;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #073e35,
+            #071713 60%,
+            #020605
+        );
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+h1 {
+    color: #80e8c2;
+    text-align: center;
+    font-size: 30px;
+    text-shadow: 0 0 15px #00b98a;
+}
+
+.subtitle {
+    text-align: center;
+    color: #5bc6a1;
+    font-size: 12px;
+    letter-spacing: 3px;
+}
+
+button {
+    cursor: pointer;
+    font-family: Georgia, serif;
+}
+
+.back {
+    padding: 12px 18px;
+    color: #c5f5e5;
+    background: #09251f;
+    border: 1px solid #278d70;
+}
+
+.xp-box {
+    padding: 12px;
+    min-width: 130px;
+    text-align: center;
+    background: #06130f;
+    border: 1px solid #258b70;
+}
+
+.xp-box strong {
+    color: #7df0bd;
+    font-size: 21px;
+}
+
+.progress {
+    height: 6px;
+    margin-top: 8px;
+    background: #173a30;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    background: #00d99c;
+    box-shadow: 0 0 10px #00d99c;
+    transition: .3s;
+}
+
+.tree-container {
+    position: relative;
+    height: 620px;
+    overflow: hidden;
+    border: 2px solid #286c59;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #103c30,
+            #07140f 70%,
+            #020605
+        );
+
+    box-shadow:
+        0 0 30px #000,
+        inset 0 0 50px #006d50;
+}
+
+.runes {
+    position: absolute;
+    width: 410px;
+    height: 410px;
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%) rotate(-15deg);
+
+    border: 3px dashed #00c995;
+
+    border-radius:
+        43% 57% 62% 38% /
+        46% 39% 61% 54%;
+
+    opacity: .35;
+
+    box-shadow:
+        0 0 25px #00c995,
+        0 0 55px #00bd85,
+        inset 0 0 35px #00a979;
+
+    animation: runeRotate 18s linear infinite;
+}
+
+@keyframes runeRotate {
+    from {
+        transform: translate(-50%, -50%) rotate(-15deg);
+    }
+
+    to {
+        transform: translate(-50%, -50%) rotate(345deg);
+    }
+}
+
+.skill-cost {
+    color: #a5f5d4;
+    font-size: 15px;
+    margin: 15px 0;
+    text-shadow: 0 0 8px #00bd85;
+}
+
+.bonus {
+    color: #55eeb5;
+    font-size: 19px;
+    font-weight: bold;
+    margin: 15px;
+    text-shadow: 0 0 10px #00d99c;
+}
+
+.dark-aura {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    background: #00bd85;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: .12;
+}
+
+.connections {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.connections line {
+    stroke: #24785f;
+    stroke-width: 5;
+    filter: drop-shadow(0 0 5px #00d99c);
+}
+
+.node {
+    position: absolute;
+    transform: translate(-50%, -50%);
+
+    width: 75px;
+    height: 75px;
+
+    border-radius: 50%;
+    border: 3px solid #398d70;
+
+    background:
+        radial-gradient(
+            #164b3b,
+            #06130e
+        );
+
+    color: #c5ffe9;
+
+    box-shadow:
+        0 0 0 5px #020605,
+        0 0 18px #00a979;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    transition: .2s;
+}
+
+.node:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+    border-color: #7bffca;
+    box-shadow: 0 0 25px #00e5a0;
+}
+
+.node .symbol {
+    font-size: 27px;
+    text-shadow: 0 0 12px #00ffb3;
+}
+
+.node .rank {
+    font: 10px Arial;
+    margin-top: 4px;
+}
+
+.available {
+    border-color: #00c58c;
+    box-shadow: 0 0 18px #00a979;
+}
+
+.maxed {
+    border-color: #b3ffe0;
+    background: #17694e;
+
+    box-shadow:
+        0 0 25px #00ffae;
+}
+
+.core {
+    width: 115px;
+    height: 115px;
+
+    border: 5px double #00e0a0;
+
+    background:
+        radial-gradient(
+            #176b50,
+            #03100b
+        );
+
+    box-shadow:
+        0 0 35px #00c995,
+        inset 0 0 20px #00bd85;
+}
+
+.core .symbol {
+    font-size: 42px;
+}
+
+
+/* POSIÇÕES */
+
+[data-id="core"] {
+    left: 50%;
+    top: 50%;
+}
+
+[data-id="power"] {
+    left: 25%;
+    top: 24%;
+}
+
+[data-id="armor"] {
+    left: 75%;
+    top: 24%;
+}
+
+[data-id="essence"] {
+    left: 50%;
+    top: 84%;
+}
+
+
+/* PAINEL DE HABILIDADES */
+
+.details {
+    margin: 20px auto;
+    max-width: 600px;
+    padding: 20px;
+
+    border: 1px solid #28785e;
+    background: #071711;
+
+    text-align: center;
+
+    box-shadow: 0 0 20px #000;
+}
+
+.details h2 {
+    color: #85efc5;
+    text-shadow: 0 0 10px #008e68;
+}
+
+.details p {
+    color: #b4d7c9;
+    line-height: 1.5;
+}
+
+.bonus {
+    color: #55eeb5;
+    font-size: 17px;
+    font-weight: bold;
+    margin: 12px;
+}
+
+.upgrade {
+    padding: 13px 22px;
+
+    border: 1px solid #3bd5a0;
+
+    color: #eafff6;
+
+    background:
+        linear-gradient(
+            #087b5b,
+            #063d2d
+        );
+
+    transition: .2s;
+}
+
+.upgrade:not(:disabled):hover {
+    box-shadow: 0 0 18px #00d99c;
+}
+
+.upgrade:disabled {
+    opacity: .4;
+    cursor: not-allowed;
+}
+
+.note {
+    color: #83a99a;
+    font: 12px Arial;
+    text-align: center;
+}
+
+
+/* CELULAR */
+
+@media(max-width:600px) {
+
+    .container {
+
+        
+        padding: 10px;
+    }
+
+    .header {
+        flex-wrap: wrap;
+    }
+
+    .heading {
+        order: -1;
+        width: 100%;
+    }
+
+    .tree-container {
+        height: 500px;
+    }
+
+    .node {
+        width: 55px;
+        height: 55px;
+    }
+
+    .node .symbol {
+        font-size: 20px;
+    }
+
+    .core {
+        width: 85px;
+        height: 85px;
+    }
+
+    .runes {
+        width: 280px;
+        height: 280px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    .runes {
+        width: 280px;
+        height: 280px;
+    }
+}
