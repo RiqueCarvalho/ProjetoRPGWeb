@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Detalhes de Seleção do Vilão</title>
+
+    <link rel="icon" href="./favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="./favicon.ico" />
+
+    <link rel="stylesheet" href="TelaDetalhePersonagemVilao.css">
+    <script src="TelaDetalhePersonagemVilao.js" defer></script>
+</head>
+
+<body>
+
+    <main class="tela-selecao">
+
+        <!-- CENÁRIO MEDIEVAL -->
+        <div class="cenario"></div>
+
+        <!-- IMAGEM DO PERSONAGEM -->
+        <div class="personagem-slot">
+
+            <img
+                src="./Imagens/personagens/viloes/vilao2.png"
+                alt="Imagem do vilão"
+                class="personagem-imagem"
+            >
+
+        </div>
+
+        <!-- BOTÃO VOLTAR -->
+        <button class="botao-voltar" id="botaoVoltar" aria-label="Voltar">
+            <span>←</span>
+        </button>
+
+        <!-- PAINEL DE INFORMAÇÕES -->
+        <aside class="painel-personagem">
+
+            <!-- RETRATO / ARTE DO PERSONAGEM -->
+<div class="retrato-container">
+
+    <img
+        class="retrato"
+        src="./Imagens/Elementos_gráficos/Rei_espectral.jpeg"
+        alt="Arte do Rei Espectral"
+    >
+
+</div>
+
+            <!-- NOME E DESCRIÇÃO -->
+            <div class="informacoes">
+
+                <h1>Nome do Vilão</h1>
+
+                <p>
+                    Descrição provisória do personagem.
+                    Aqui você poderá adicionar a história,
+                    personalidade e características do vilão.
+                </p>
+
+            </div>
+
+            <!-- BOTÕES DE OPÇÕES -->
+            <div class="opcoes-personagem">
+
+                <button class="opcao" data-menu="habilidades"
+                    aria-label="Árvore de habilidades">
+
+                    <img
+                        src="./Imagens/Elementos_gráficos/arvore de abilidade.png"
+                        alt="Árvore de habilidades"
+                    >
+
+                </button>
+
+                <button class="opcao" data-menu="armas"
+                    aria-label="Mudar arma">
+
+                    <img
+                        src="./Imagens/Elementos_gráficos/troca de arma.png"
+                        alt="Mudar arma"
+                    >
+
+                </button>
+
+                <button class="opcao" data-menu="estilos"
+                    aria-label="Trocar estilo">
+
+                    <img
+                        src="./Imagens/Elementos_gráficos/troca de skim.png"
+                        alt="Trocar estilo"
+                    >
+
+                </button>
+
+            </div>
+
+            <!-- ATRIBUTOS -->
+            <div class="atributos">
+
+                <span>Atk: 100</span>
+                <span>Def: 100</span>
+                <span>Vida: 2000</span>
+
+            </div>
+
+        </aside>
+
+        <!-- BOTÃO ESCOLHER -->
+        <button class="botao-escolher" id="botaoEscolher">
+            Escolher
+        </button>
+
+        <!-- MENSAGENS -->
+        <div class="mensagem" id="mensagem" aria-live="polite"></div>
+
+    </main>
+
+</body>
+</html>
