@@ -1,146 +1,104 @@
 <!doctype html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#08090d" />
 
-    <title>Seleção de Vilões</title>
-    <link rel="icon" href="./favicon.ico" sizes="any" />
-    <link rel="apple-touch-icon" href="./favicon.ico" />
-    <link rel="stylesheet" href="./TelaViloes.css" />
-    <script src="./TelaViloes.js" defer></script>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#08090d" />
 
-  <body>
-    <main class="villain-screen" aria-label="Tela de seleção de personagens">
-      <!-- Imagem de fundo -->
-      <img
-        class="scene-background"
-        src="./Imagens/Cenários/MonstrosCenarios.jpg"
-        alt=""
-        aria-hidden="true"
-        draggable="false"
-      />
+  <title>Seleção de Vilões</title>
+  <link rel="icon" href="./favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="./favicon.ico" />
+  <link rel="stylesheet" href="./TelaViloes.css" />
+  <script src="./TelaViloes.js" defer></script>
+</head>
 
-      <div class="scene-shading" aria-hidden="true"></div>
+<body>
+  <main class="villain-screen" aria-label="Tela de seleção de personagens">
 
-      <!-- Botão voltar -->
-      <button
-        class="back-button"
-        id="backButton"
-        type="button"
-        aria-label="Voltar"
-        title="Voltar"
-      >
-        <img
-          src="./Imagens/Elementos_gráficos/WhatsApp Image 2026-10-28 at 11.26.43.jpeg"
-          alt=""
-          class="back-button-image"
-          draggable="false"
-        />
+    <!-- Imagem de fundo -->
+    <img class="scene-background" src="./Imagens/Cenários/MonstrosCenarios.jpg" alt="" aria-hidden="true"
+      draggable="false" />
 
-        <span class="visually-hidden">Voltar</span>
-      </button>
+    <div class="scene-shading" aria-hidden="true"></div>
 
-      <!-- Aviso de imagens não encontradas -->
-      <p
-        class="asset-warning"
-        id="assetWarning"
-        role="status"
-        aria-live="polite"
-        hidden
-      ></p>
+    <!-- Botão voltar -->
+    <button class="back-button" id="backButton" type="button" aria-label="Voltar" title="Voltar">
+      <img src="./Imagens/Elementos_gráficos/WhatsApp Image 2026-10-28 at 11.26.43.jpeg" alt=""
+        class="back-button-image" draggable="false" />
 
-      <!-- Área de seleção dos personagens -->
-      <section class="character-selection" aria-label="Escolha seu personagem">
-        <!-- Cavaleiro Espectral -->
-        <article
-          class="character-card spectral"
-          data-character-id="ferrado"
-          data-character-name="Cavaleiro Espectral"
-        >
-          <div class="character-aura" aria-hidden="true"></div>
+      <span class="visually-hidden">Voltar</span>
+    </button>
 
-          <div class="character-visual">
-            <img
-              class="character-image"
-              src="./Imagens/Personagens/ferrado.png"
-              alt="Cavaleiro Espectral"
-              draggable="false"
-            />
-          </div>
+    <!-- Aviso de imagens não encontradas -->
+    <p class="asset-warning" id="assetWarning" role="status" aria-live="polite" hidden></p>
 
-          <div class="character-details">
-            <h2 class="character-name">Cavaleiro Espectral</h2>
+    <!-- Área de seleção dos personagens -->
+    <section class="character-selection" aria-label="Escolha seu personagem">
 
-            <button class="select-button" type="button" aria-pressed="false">
-              <span>Selecionar</span>
-            </button>
-          </div>
-        </article>
+      <!-- CAVALEIRO ESPECTRAL -->
+      <article class="character-card spectral" data-character-id="ferrado" data-character-name="Cavaleiro Espectral">
+        <div class="character-aura" aria-hidden="true"></div>
 
-        <!-- Bárbaro do Norte -->
-        <article
-          class="character-card barbarian"
-          data-character-id="klatos"
-          data-character-name="Bárbaro do Norte"
-        >
-          <div class="character-aura" aria-hidden="true"></div>
+        <div class="character-visual">
+          <img class="character-image" src="./Imagens/Personagens/ferrado.png" alt="Cavaleiro Espectral"
+            draggable="false" />
+        </div>
 
-          <div class="character-visual">
-            <img
-              class="character-image"
-              src="./Imagens/Personagens/klatos.png"
-              alt="Bárbaro do Norte"
-              draggable="false"
-            />
-          </div>
+        <div class="character-details">
+          <h2 class="character-name">Cavaleiro Espectral</h2>
 
-          <div class="character-details">
-            <h2 class="character-name">Bárbaro do Norte</h2>
+          <button class="select-button" type="button" aria-pressed="false"
+            onclick="window.location.href = 'TelaDetalheVilaoII.html'">
+            <span>Selecionar</span>
+          </button>
+        </div>
+      </article>
 
-            <button class="select-button" type="button" aria-pressed="false">
-              <span>Selecionar</span>
-            </button>
-          </div>
-        </article>
+      <!-- BÁRBARO DO NORTE -->
+      <article class="character-card barbarian" data-character-id="klatos" data-character-name="Bárbaro do Norte">
+        <div class="character-aura" aria-hidden="true"></div>
 
-        <!-- Lorde Infernal -->
-        <article
-          class="character-card infernal"
-          data-character-id="eocao1"
-          data-character-name="Lorde Infernal"
-        >
-          <div class="character-aura" aria-hidden="true"></div>
+        <div class="character-visual">
+          <img class="character-image" src="./Imagens/Personagens/klatos.png" alt="Bárbaro do Norte"
+            draggable="false" />
+        </div>
 
-          <div class="character-visual">
-            <img
-              class="character-image"
-              src="./Imagens/Personagens/EoCão1.png"
-              alt="Lorde Infernal"
-              draggable="false"
-            />
-          </div>
+        <div class="character-details">
+          <h2 class="character-name">Bárbaro do Norte</h2>
 
-          <div class="character-details">
-            <h2 class="character-name">Lorde Infernal</h2>
+          <button class="select-button" type="button" aria-pressed="false"
+            onclick="window.location.href = 'TelaDetalheVilaoI.html'">
+            <span>Selecionar</span>
+          </button>
+        </div>
+      </article>
 
-            <button class="select-button" type="button" aria-pressed="false">
-              <span>Selecionar</span>
-            </button>
-          </div>
-        </article>
-      </section>
-    </main>
+      <!-- LORDE INFERNAL -->
+      <article class="character-card infernal" data-character-id="eocao1" data-character-name="Lorde Infernal">
+        <div class="character-aura" aria-hidden="true"></div>
 
-    <!-- Música da jornada em continuidade -->
-    <audio
-      id="musicaJornada"
-      src="./Audios/WhatsApp-Audio-2026-11-03-at-05.32.15.mp3"
-      loop
-      preload="auto"
-    ></audio>
-    <script src="./continuidade-musica.js"></script>
-  </body>
+        <div class="character-visual">
+          <img class="character-image" src="./Imagens/Personagens/EoCão1.png" alt="Lorde Infernal" draggable="false" />
+        </div>
+
+        <div class="character-details">
+          <h2 class="character-name">Lorde Infernal</h2>
+
+          <button class="select-button" type="button" aria-pressed="false"
+            onclick="window.location.href = 'TelaDetalheVilaoIII.html'">
+            <span>Selecionar</span>
+          </button>
+        </div>
+      </article>
+
+    </section>
+  </main>
+
+  <!-- Música da jornada em continuidade -->
+  <audio id="musicaJornada" src="./Audios/WhatsApp-Audio-2026-11-03-at-05.32.15.mp3" loop preload="auto"></audio>
+
+  <script src="./continuidade-musica.js"></script>
+</body>
+
 </html>

@@ -10,8 +10,8 @@
     <link rel="icon" href="./favicon.ico" sizes="any">
     <link rel="apple-touch-icon" href="./favicon.ico">
 
-    <link rel="stylesheet" href="TelaDetalhePersonagemVilao1.css">
-    <script src="TelaDetalhePersonagemVilao1.js" defer></script>
+    <link rel="stylesheet" href="TelaDetalheVilaoIII.css">
+    <script src="TelaDetalheVilaoIII.js" defer></script>
 </head>
 
 <body>
@@ -24,17 +24,15 @@
         <!-- IMAGEM DO PERSONAGEM -->
         <div class="personagem-slot">
 
-            <img
-                src="./Imagens/personagens/viloes/vilao1.png"
-                alt="Vilão 1"
-                class="personagem-gif"
-            >
+            <img src="./Imagens/personagens/viloes/vilao1.png" alt="Vilão 1" class="personagem-gif">
 
         </div>
 
         <!-- BOTÃO VOLTAR -->
-        <button class="botao-voltar" id="botaoVoltar" aria-label="Voltar">
-            <span>←</span>
+        <button class="back-button" id="backButton" type="button" onclick="window.location.href = 'TelaViloes.html'"
+            aria-label="Voltar" title="Voltar">
+            <img src="./Imagens/Elementos_gráficos/WhatsApp Image 2026-10-28 at 11.26.43.jpeg" alt="Voltar"
+                class="back-button-image" draggable="false">
         </button>
 
         <!-- PAINEL DE INFORMAÇÕES -->
@@ -43,11 +41,7 @@
             <!-- ARTE DO PERSONAGEM -->
             <div class="retrato-container">
 
-                <img
-                    class="retrato"
-                    src="./Imagens/Elementos_gráficos/Art_monstro.png"
-                    alt="Arte do Vilão 1"
-                >
+                <img class="retrato" src="./Imagens/Elementos_gráficos/Art_monstro.png" alt="Arte do Vilão 1">
 
             </div>
 
@@ -67,34 +61,16 @@
             <!-- BOTÕES DE OPÇÕES -->
             <div class="opcoes-personagem">
 
-                <button class="opcao" data-menu="habilidades"
-                    aria-label="Árvore de habilidades">
-
-                    <img
-                        src="./Imagens/Elementos_gráficos/arvore de abilidade.png"
-                        alt="Árvore de habilidades"
-                    >
-
+                <button class="opcao" data-menu="habilidades" aria-label="Árvore de habilidades" type="button">
+                    <img src="./Imagens/Elementos_gráficos/arvore de abilidade.png" alt="Árvore de habilidades">
                 </button>
 
-                <button class="opcao" data-menu="armas"
-                    aria-label="Mudar arma">
-
-                    <img
-                        src="./Imagens/Elementos_gráficos/troca de arma.png"
-                        alt="Mudar arma"
-                    >
-
+                <button class="opcao" data-menu="armas" aria-label="Mudar arma" type="button">
+                    <img src="./Imagens/Elementos_gráficos/troca de arma.png" alt="Mudar arma">
                 </button>
 
-                <button class="opcao" data-menu="estilos"
-                    aria-label="Trocar estilo">
-
-                    <img
-                        src="./Imagens/Elementos_gráficos/troca de skim.png"
-                        alt="Trocar estilo"
-                    >
-
+                <button class="opcao" data-menu="estilos" aria-label="Trocar estilo" type="button">
+                    <img src="./Imagens/Elementos_gráficos/troca de skim.png" alt="Trocar estilo">
                 </button>
 
             </div>
@@ -111,7 +87,7 @@
         </aside>
 
         <!-- BOTÃO ESCOLHER -->
-        <button class="botao-escolher" id="botaoEscolher">
+        <button class="botao-escolher" id="botaoEscolher" type="button">
             Escolher
         </button>
 
@@ -121,4 +97,5 @@
     </main>
 
 </body>
+
 </html>

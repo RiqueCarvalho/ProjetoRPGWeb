@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Detalhes de Seleção do Bárbaro</title>
-    <link rel="icon" href="./favicon.ico" sizes="any" />
-    <link rel="apple-touch-icon" href="./favicon.ico" />
 
-    <link rel="stylesheet" href="TelaDetalhePersonagemBarbaro.css">
-    <script src="TelaDetalhePersonagemBarbaro.js" defer></script>
+    <link rel="icon" href="./favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="./favicon.ico">
+
+    <link rel="stylesheet" href="TelaDetalheVilaoI.css">
+    <script src="TelaDetalheVilaoI.js" defer></script>
 </head>
 
 <body>
@@ -23,8 +24,7 @@
         <!--
             ESPAÇO RESERVADO PARA A GIF DO RAGNAR.
 
-            Por enquanto, permanece vazio e transparente.
-            Quando tiver a GIF, coloque uma imagem aqui:
+            Quando tiver a GIF, coloque a imagem aqui:
 
             <img
                 src="./Imagens/Elementos_gráficos/Ragnar.gif"
@@ -35,12 +35,12 @@
 
         <div class="personagem-slot"></div>
 
-
         <!-- BOTÃO VOLTAR -->
-        <button class="botao-voltar" id="botaoVoltar" aria-label="Voltar">
-            <span>←</span>
+        <button class="back-button" id="botaoVoltar" type="button" onclick="window.location.href = 'TelaViloes.html'"
+            aria-label="Voltar" title="Voltar">
+            <img src="./Imagens/Elementos_gráficos/WhatsApp Image 2026-10-28 at 11.26.43.jpeg" alt="Voltar"
+                class="back-button-image" draggable="false">
         </button>
-
 
         <!-- PAINEL DE INFORMAÇÕES -->
         <aside class="painel-personagem">
@@ -51,7 +51,6 @@
                 <img class="retrato" src="./Imagens/Elementos_gráficos/Barbaro.jpeg" alt="Retrato de Ragnar">
 
             </div>
-
 
             <!-- NOME E DESCRIÇÃO -->
             <div class="informacoes">
@@ -66,46 +65,38 @@
 
             </div>
 
-
             <!-- BOTÕES DE OPÇÕES -->
             <div class="opcoes-personagem">
 
-                <button class="opcao" data-menu="habilidades" aria-label="Árvore de habilidades">
+                <button class="opcao" data-menu="habilidades" aria-label="Árvore de habilidades" type="button">
                     <img src="./Imagens/Elementos_gráficos/arvore de abilidade.png" alt="Árvore de habilidades">
                 </button>
 
-
-                <button class="opcao" data-menu="armas" aria-label="Mudar arma">
+                <button class="opcao" data-menu="armas" aria-label="Mudar arma" type="button">
                     <img src="./Imagens/Elementos_gráficos/troca de arma.png" alt="Mudar arma">
                 </button>
 
-
-                <button class="opcao" data-menu="estilos" aria-label="Trocar estilo">
+                <button class="opcao" data-menu="estilos" aria-label="Trocar estilo" type="button">
                     <img src="./Imagens/Elementos_gráficos/troca de skim.png" alt="Trocar estilo">
                 </button>
 
             </div>
 
-
             <!-- ATRIBUTOS -->
             <div class="atributos">
 
                 <span>Atk: 120</span>
-
                 <span>Def: 150</span>
-
                 <span>Vida: 2500</span>
 
             </div>
 
         </aside>
 
-
         <!-- BOTÃO ESCOLHER -->
-        <button class="botao-escolher" id="botaoEscolher">
+        <button class="botao-escolher" id="botaoEscolher" type="button">
             Escolher
         </button>
-
 
         <!-- MENSAGENS -->
         <div class="mensagem" id="mensagem" aria-live="polite"></div>
