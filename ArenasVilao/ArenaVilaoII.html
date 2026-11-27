@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>The Last Kingdom - Arena dos Vilões II</title>
+
+    <link rel="icon" href="../favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="../favicon.ico" />
+    <link rel="stylesheet" href="ArenaVilaoII.css" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=MedievalSharp&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <main class="arena">
+      <!-- CENÁRIO -->
+      <div class="cenario"></div>
+
+      <!-- ESCURECIMENTO -->
+      <div class="overlay"></div>
+
+      <!-- PARTÍCULAS -->
+      <div class="particulas"></div>
+
+      <!-- CABEÇALHO -->
+      <header class="cabecalho-arena">
+        <div class="identificacao-jogador">
+          <span class="texto-jogador">JOGADOR</span>
+          <h2 id="nomeUsuario">Aventureiro</h2>
+        </div>
+
+        <div class="titulo-arena">
+          <span class="subtitulo-arena">O DESAFIO DOS VILÕES</span>
+          <h1>ARENA II</h1>
+          <p>O Reino das Sombras</p>
+        </div>
+
+        <div class="painel-moedas">
+          <span class="icone-moeda">◈</span>
+          <span id="moedas">0</span>
+          <span class="texto-moedas">MOEDAS</span>
+        </div>
+      </header>
+
+      <!-- BOTÃO VOLTAR -->
+      <button
+        class="botao-voltar"
+        id="btnVoltar"
+        title="Voltar para seleção de vilões"
+      >
+        <img
+          src="../Imagens/Elementos_gráficos/WhatsApp Image 2026-10-28 at 11.26.43.jpeg"
+          alt="Voltar"
+        />
+      </button>
+
+      <!-- CAMPO DE BATALHA -->
+      <section class="campo-batalha">
+        <!-- VILÃO -->
+        <div class="combatente lado-vilao" id="ladoVilao">
+          <div class="informacoes-combatente">
+            <span class="categoria-combatente">VILÃO</span>
+
+            <h2 id="nomeVilao">Vilão</h2>
+
+            <div class="barra-vida-container">
+              <div class="barra-vida barra-vilao">
+                <div id="vidaVilaoBarra" class="vida-preenchimento"></div>
+              </div>
+
+              <div class="texto-vida">
+                <span>VIDA</span>
+                <span id="vidaVilaoTexto">0 / 0</span>
+              </div>
+            </div>
+
+            <div class="atributos-combatente">
+              <div class="atributo">
+                <span class="atributo-icone">⚔</span>
+                <span>ATAQUE</span>
+                <strong id="ataqueVilao">0</strong>
+              </div>
+
+              <div class="atributo">
+                <span class="atributo-icone">🛡</span>
+                <span>DEFESA</span>
+                <strong id="defesaVilao">0</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="imagem-combatente-container">
+            <img
+              id="imagemVilao"
+              class="imagem-combatente"
+              src="./vilao1.png"
+              alt="Vilão"
+            />
+          </div>
+        </div>
+
+        <!-- CENTRO -->
+        <div class="centro-batalha">
+          <div class="simbolo-vs">
+            <span>VS</span>
+          </div>
+
+          <div id="mensagemCombate" class="mensagem-combate">
+            A batalha está prestes a começar...
+          </div>
+
+          <div id="danoFlutuante" class="dano-flutuante"></div>
+        </div>
+
+        <!-- HERÓI -->
+        <div class="combatente lado-heroi" id="ladoHeroi">
+          <div class="informacoes-combatente">
+            <span class="categoria-combatente">CAMPEÃO</span>
+
+            <h2 id="nomeHeroi">Herói</h2>
+
+            <div class="barra-vida-container">
+              <div class="barra-vida barra-heroi">
+                <div id="vidaHeroiBarra" class="vida-preenchimento"></div>
+              </div>
+
+              <div class="texto-vida">
+                <span>VIDA</span>
+                <span id="vidaHeroiTexto">0 / 0</span>
+              </div>
+            </div>
+
+            <div class="atributos-combatente">
+              <div class="atributo">
+                <span class="atributo-icone">⚔</span>
+                <span>ATAQUE</span>
+                <strong id="ataqueHeroi">0</strong>
+              </div>
+
+              <div class="atributo">
+                <span class="atributo-icone">🛡</span>
+                <span>DEFESA</span>
+                <strong id="defesaHeroi">0</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="imagem-combatente-container">
+            <img
+              id="imagemHeroi"
+              class="imagem-combatente"
+              src="../Imagens/Personagens/Art_heroi.png"
+              alt="Herói"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- AÇÕES DO JOGADOR -->
+      <section class="painel-acoes">
+        <button id="btnAtacar" class="botao-acao botao-atacar">
+          <span class="icone-acao">⚔</span>
+          <span>ATACAR</span>
+        </button>
+
+        <button id="btnCurar" class="botao-acao botao-curar">
+          <span class="icone-acao">✚</span>
+          <span>CURAR</span>
+
+          <span class="quantidade-pocao">
+            Poções: <strong id="quantidadePocao">0</strong>
+          </span>
+        </button>
+      </section>
+
+      <!-- REGISTRO -->
+      <section class="registro-container">
+        <div class="registro-titulo">
+          <span>📜</span>
+          <h3>REGISTRO DA BATALHA</h3>
+        </div>
+
+        <div id="registroBatalha" class="registro-batalha">
+          <p class="mensagem-registro">A batalha começará em breve...</p>
+        </div>
+      </section>
+
+      <!-- RESULTADO -->
+      <div id="resultadoBatalha" class="modal-resultado">
+        <div class="conteudo-resultado">
+          <div class="ornamento-resultado">✦</div>
+
+          <h1 id="tituloResultado">RESULTADO</h1>
+
+          <p id="textoResultado">O destino da batalha foi decidido.</p>
+
+          <div class="botoes-resultado">
+            <button id="btnProxima" class="botao-resultado botao-proxima">
+              PRÓXIMA ARENA
+            </button>
+
+            <button id="btnReiniciar" class="botao-resultado botao-reiniciar">
+              TENTAR NOVAMENTE
+            </button>
+
+            <button
+              id="btnVoltarViloes"
+              class="botao-resultado botao-voltar-viloes"
+            >
+              ESCOLHER OUTRO VILÃO
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- EFEITOS -->
+      <div id="efeitosCombate" class="efeitos-combate"></div>
+
+      <!-- MÚSICA -->
+      <audio id="musicaArena" loop>
+        <source
+          src="../Audios/Epic Celtic Battle Music - Battle For Camelot (Tartalo Music).mp3"
+          type="audio/mpeg"
+        />
+      </audio>
+    </main>
+
+    <!-- SCRIPTS -->
+    <script src="../estado.js"></script>
+    <script src="../personagens.js"></script>
+    <script src="ArenaVilaoII.js"></script>
+  </body>
+</html>

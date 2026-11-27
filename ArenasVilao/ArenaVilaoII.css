@@ -1,0 +1,48 @@
+/* =========================================
+   ARENA DOS VILÕES II
+   Mantém o design da Arena I
+========================================= */
+
+@import url("./ArenaVilaoI.css");
+
+/* =========================================
+   CENÁRIO DA ARENA II
+========================================= */
+
+.arena .cenario {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.55)),
+    url("ArenaII.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* =========================================
+   IDENTIFICAÇÃO DA ARENA
+========================================= */
+
+.titulo-arena h1 {
+  text-shadow:
+    0 0 10px rgba(180, 20, 20, 0.7),
+    0 0 25px rgba(120, 0, 0, 0.5);
+}
+
+/* =========================================
+   EFEITOS DA ARENA II
+========================================= */
+
+.arena .particulas {
+  opacity: 0.85;
+}
+
+/* =========================================
+   RESPONSIVIDADE
+========================================= */
+
+@media (max-width: 900px) {
+  .arena .cenario {
+    background-position: center;
+  }
+}
